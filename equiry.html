@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Seva - Abhisheka (Saturday only)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #ffffff;
+            color: #ff3333;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 20px auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            border: 2px solid #ff3333;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: #ff3333;
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5em;
+            color: #ff3333;
+            margin: 25px 0 15px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            color: #ff3333;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1em;
+            margin-bottom: 15px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .back-btn i {
+            margin-right: 5px;
+        }
+
+        .back-btn:hover {
+            color: #4a4a4a;
+            transform: translateX(-3px);
+        }
+
+        .calendar-container {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ff3333;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .calendar-header button {
+            background: none;
+            border: none;
+            font-size: 1.2em;
+            cursor: pointer;
+            color: #ff3333;
+            transition: transform 0.2s ease;
+        }
+
+        .calendar-header button:hover {
+            transform: scale(1.3);
+        }
+
+        .calendar-header h3 {
+            font-size: 1.2em;
+            font-weight: 500;
+            color: #ff3333;
+        }
+
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 3px;
+        }
+
+        .calendar div {
+            padding: 8px;
+            text-align: center;
+            border-radius: 6px;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+
+        .day-header {
+            background: #ff3333;
+            color: #ffffff;
+            font-weight: 500;
+            font-size: 0.8em;
+            text-transform: uppercase;
+        }
+
+        .calendar-day {
+            background: #ffffff;
+            border: 1px solid #d9d9d9;
+            cursor: pointer;
+        }
+
+        .calendar-day:hover {
+            background: #ffe6e6;
+            transform: scale(1.05);
+        }
+
+        .calendar-day.selected {
+            background: #ff3333;
+            color: #ffffff;
+            border-color: #ff3333;
+            font-weight: 500;
+        }
+
+        .calendar-day.disabled {
+            background: #f5f5f5;
+            color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .calendar-day.saturday {
+            color: #4a4a4a;
+            font-weight: 500;
+        }
+
+        .divider {
+            border-top: 1px solid #ff3333;
+            margin: 20px 0;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            color: #ff3333;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ff3333;
+            border-radius: 6px;
+            font-size: 0.9em;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #ff3333;
+            box-shadow: 0 0 3px rgba(255, 51, 51, 0.3);
+        }
+
+        .form-group input:invalid {
+            border-color: #ff6666;
+        }
+
+        .total-amount {
+            font-size: 1.2em;
+            font-weight: 500;
+            text-align: right;
+            padding: 15px;
+            background: #ffe6e6;
+            border-radius: 6px;
+            color: #ff3333;
+            margin: 20px 0;
+        }
+
+        .submit-btn {
+            background: #ff3333;
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            background: #4a4a4a;
+            transform: translateY(-2px);
+        }
+
+        .payment-option, .transaction-type-option {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+
+        .payment-option:hover, .transaction-type-option:hover {
+            background: #ffe6e6;
+            border-color: #ff3333;
+        }
+
+        .payment-option.selected, .transaction-type-option.selected {
+            background: #ffe6e6;
+            border: 2px solid #ff3333;
+        }
+
+        .payment-icon {
+            font-size: 1.8em;
+            margin-right: 15px;
+            color: #4a4a4a;
+        }
+
+        .payment-details {
+            flex-grow: 1;
+        }
+
+        .payment-title {
+            font-weight: 500;
+            color: #4a4a4a;
+            margin-bottom: 3px;
+        }
+
+        .payment-description {
+            font-size: 0.8em;
+            color: #777;
+        }
+
+        .transaction-type-section, .online-payment-section, .upload-section, .manual-payment-section {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .upload-preview {
+            margin-top: 10px;
+            max-width: 100%;
+            max-height: 200px;
+            display: none;
+            border: 1px solid #ff3333;
+            border-radius: 6px;
+        }
+
+        .upload-btn, .confirm-payment-btn {
+            background: #ff3333;
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .upload-btn:hover, .confirm-payment-btn:hover {
+            background: #4a4a4a;
+            transform: translateY(-2px);
+        }
+
+        .ticket-section {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border: 1px solid #ff3333;
+        }
+
+        .ticket-section h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .ticket-details {
+            margin-bottom: 20px;
+        }
+
+        .ticket-details p {
+            font-size: 1em;
+            color: #4a4a4a;
+            margin: 5px 0;
+        }
+
+        .temple-name {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #ff3333;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .download-ticket-btn, .new-booking-btn {
+            background: #ff3333;
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+            margin-top: 10px;
+        }
+
+        .download-ticket-btn:hover, .new-booking-btn:hover {
+            background: #4a4a4a;
+            transform: translateY(-2px);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 85vh;
+            overflow-y: auto;
+            border: 2px solid #ff3333;
+            animation: slideIn 0.3s ease;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5em;
+            color: #ff3333;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: transform 0.2s ease;
+        }
+
+        .close-btn:hover {
+            transform: rotate(90deg);
+        }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6em;
+            color: #ff3333;
+            text-align: center;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .modal-seva-name {
+            font-size: 1.2em;
+            text-align: center;
+            margin-bottom: 10px;
+            color: #ff3333;
+            font-weight: 500;
+        }
+
+        .modal-seva-price {
+            font-size: 1.1em;
+            text-align: center;
+            margin-bottom: 15px;
+            color: #4a4a4a;
+            font-weight: 500;
+        }
+
+        .modal-form .form-group {
+            margin-bottom: 12px;
+        }
+
+        .modal-submit-btn {
+            background: #ff3333;
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 6px;
+            font-size: 1em;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .modal-submit-btn:hover {
+            background: #4a4a4a;
+            transform: translateY(-2px);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 15px auto;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.6em;
+            }
+
+            h2 {
+                font-size: 1.2em;
+            }
+
+            .calendar div {
+                padding: 6px;
+                font-size: 0.8em;
+            }
+
+            .modal-content {
+                padding: 15px;
+                width: 95%;
+            }
+
+            .ticket-section h2 {
+                font-size: 1.4em;
+            }
+
+            .ticket-details p {
+                font-size: 0.9em;
+            }
+
+            .temple-name {
+                font-size: 1.2em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                margin: 10px auto;
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.4em;
+            }
+
+            .calendar div {
+                padding: 5px;
+                font-size: 0.7em;
+            }
+
+            .submit-btn, .modal-submit-btn, .upload-btn, .confirm-payment-btn, .download-ticket-btn, .new-booking-btn {
+                font-size: 0.9em;
+                padding: 10px;
+            }
+
+            .payment-option, .transaction-type-option {
+                padding: 10px;
+            }
+
+            .payment-icon {
+                font-size: 1.5em;
+                margin-right: 10px;
+            }
+
+            .ticket-section h2 {
+                font-size: 1.2em;
+            }
+
+            .ticket-details p {
+                font-size: 0.8em;
+            }
+
+            .temple-name {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="Book-seva.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Seva List
+        </a>
+
+        <h1>Abhisheka (Saturday only) - ₹250</h1>
+
+        <h2 id="calendarHeader">Select Seva Date</h2>
+
+        <div class="calendar-container" id="calendarSection">
+            <div class="calendar-header">
+                <button onclick="prevMonth()"><</button>
+                <h3 id="calendarMonthYear"></h3>
+                <button onclick="nextMonth()">></button>
+            </div>
+            <div class="calendar" id="calendarDays"></div>
+        </div>
+
+        <div class="divider" id="divider1"></div>
+
+        <h2 id="kartaDetailsHeader">Karta's Details</h2>
+
+        <div class="form-group" id="formSection">
+            <label for="name">Karta's Name</label>
+            <input type="text" id="name" placeholder="Enter your full name" required>
+        </div>
+
+        <div class="form-group" id="formSection">
+            <label for="mobile">Mobile Number</label>
+            <input type="tel" id="mobile" placeholder="Enter mobile number" pattern="[0-9]{10}" required>
+        </div>
+
+        <div class="form-group" id="formSection">
+            <label for="gotra">Gotra</label>
+            <input type="text" id="gotra" placeholder="Enter gotra" required>
+        </div>
+
+        <div class="form-group" id="formSection">
+            <label for="nakshatra">Nakshatra</label>
+            <input type="text" id="nakshatra" placeholder="Enter nakshatra" required>
+        </div>
+
+        <div class="form-group" id="formSection">
+            <label for="rashi">Raashi</label>
+            <input type="text" id="rashi" placeholder="Enter raashi" required>
+        </div>
+
+        <div class="form-group" id="formSection">
+            <label for="email">Email ID</label>
+            <input type="email" id="email" placeholder="Enter Email ID" required>
+        </div>
+
+        <div class="form-group" id="formSection">
+            <label for="district">Enter District</label>
+            <input type="text" id="district" placeholder="Enter district" required>
+        </div>
+
+        <div class="form-group" id="formSection">
+            <label for="state">Enter State</label>
+            <input type="text" id="state" placeholder="Enter State" required>
+        </div>
+
+        <div class="form-group" id="formSection">
+            <label for="address">Enter Address</label>
+            <input type="text" id="address" placeholder="Enter Address" required>
+        </div>
+
+        <div class="form-group" id="formSection">
+            <label for="pincode">Pincode</label>
+            <input type="text" id="pincode" placeholder="Enter Pincode" pattern="[0-9]{6}" required>
+        </div>
+
+        <div class="form-group" id="paymentOptions">
+            <label>Select Payment Method</label>
+            <div class="payment-option" onclick="selectPayment(this, 'upi')">
+                <i class="fas fa-mobile-alt payment-icon"></i>
+                <div class="payment-details">
+                    <div class="payment-title">UPI Payment</div>
+                    <div class="payment-description">Pay using UPI app</div>
+                </div>
+                <i class="fas fa-check" style="display: none;"></i>
+            </div>
+            <div class="payment-option" onclick="selectPayment(this, 'card')">
+                <i class="far fa-credit-card payment-icon"></i>
+                <div class="payment-details">
+                    <div class="payment-title">Credit/Debit Card</div>
+                    <div class="payment-description">Pay with Visa, Mastercard, etc.</div>
+                </div>
+                <i class="fas fa-check" style="display: none;"></i>
+            </div>
+            <div class="payment-option" onclick="selectPayment(this, 'netbanking')">
+                <i class="fas fa-university payment-icon"></i>
+                <div class="payment-details">
+                    <div class="payment-title">Net Banking</div>
+                    <div class="payment-description">Pay directly from your bank</div>
+                </div>
+                <i class="fas fa-check" style="display: none;"></i>
+            </div>
+        </div>
+
+        <div class="transaction-type-section" id="transactionTypeSection">
+            <label>Transaction Type</label>
+            <div class="transaction-type-option" onclick="selectTransactionType(this, 'online')">
+                <div class="payment-details">
+                    <div class="payment-title">Online</div>
+                    <div class="payment-description">Pay online using selected method</div>
+                </div>
+                <i class="fas fa-check" style="display: none;"></i>
+            </div>
+            <div class="transaction-type-option" onclick="selectTransactionType(this, 'manual')">
+                <div class="payment-details">
+                    <div class="payment-title">Manual</div>
+                    <div class="payment-description">Pay offline and confirm</div>
+                </div>
+                <i class="fas fa-check" style="display: none;"></i>
+            </div>
+        </div>
+
+        <div class="online-payment-section" id="onlinePaymentSection">
+            <p>Please complete the payment using the selected method: <span id="selectedPaymentMethodDisplay"></span></p>
+            <button class="confirm-payment-btn" onclick="confirmOnlinePayment()">Confirm Payment</button>
+        </div>
+
+        <div class="manual-payment-section" id="manualPaymentSection">
+            <p><strong>Manual Payment Instructions:</strong></p>
+            <p>Please make the payment of ₹250 to the following account:</p>
+            <p><strong>Account Name:</strong> Sri JayaRama Seva Mandali</p>
+            <p><strong>Account Number:</strong> 123456789012</p>
+            <p><strong>IFSC Code:</strong> SBIN0001234</p>
+            <p><strong>Bank:</strong> State Bank of India</p>
+            <p>Once the payment is made, click the button below to confirm.</p>
+            <button class="confirm-payment-btn" onclick="confirmManualPayment()">Confirm Manual Payment</button>
+        </div>
+
+        <div class="upload-section" id="uploadSection">
+            <label for="paymentScreenshot">Upload Payment Screenshot (PNG, JPG, JPEG)</label>
+            <input type="file" id="paymentScreenshot" accept="image/png, image/jpeg, image/jpg" required>
+            <img id="uploadPreview" class="upload-preview" alt="Payment Screenshot Preview">
+            <button class="upload-btn" onclick="validateUpload()">Submit Screenshot</button>
+        </div>
+
+        <div class="divider" id="divider2"></div>
+
+        <div class="total-amount" id="totalAmount">
+            Total Amount: ₹250
+        </div>
+
+        <button class="submit-btn" id="submitBtn" onclick="validateForm()">Proceed to Payment</button>
+
+        <div class="ticket-section" id="ticketSection">
+            <h2>Seva Booking Ticket</h2>
+            <div class="ticket-details" id="ticketDetails"></div>
+            <button class="download-ticket-btn" onclick="downloadTicket()">Download Ticket</button>
+            <button class="new-booking-btn" onclick="newBooking()">Book Another Seva</button>
+        </div>
+    </div>
+
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">×</button>
+            <h3 class="modal-title">Confirm Seva Booking</h3>
+            <div class="modal-seva-name">Abhisheka (Saturday only)</div>
+            <div class="modal-seva-price">₹250</div>
+
+            <div class="modal-form">
+                <div class="form-group">
+                    <label for="modal-name">Karta's Name</label>
+                    <input type="text" id="modal-name" placeholder="Enter full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-mobile">Karta's Mobile Number</label>
+                    <input type="tel" id="modal-mobile" placeholder="Enter mobile number" pattern="[0-9]{10}" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-gotra">Gotra</label>
+                    <input type="text" id="modal-gotra" placeholder="Enter gotra" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-nakshatra">Nakshatra</label>
+                    <input type="text" id="modal-nakshatra" placeholder="Enter nakshatra" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-rashi">Raashi</label>
+                    <input type="text" id="modal-rashi" placeholder="Enter raashi" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-email">Email ID</label>
+                    <input type="email" id="modal-email" placeholder="Enter Email ID" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-district">Enter District</label>
+                    <input type="text" id="modal-district" placeholder="Enter district" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-state">Enter State</label>
+                    <input type="text" id="modal-state" placeholder="Enter State" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-address">Enter Address</label>
+                    <input type="text" id="modal-address" placeholder="Enter Address" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-pincode">Pincode</label>
+                    <input type="text" id="modal-pincode" placeholder="Enter Pincode" pattern="[0-9]{6}" required>
+                </div>
+                <button class="modal-submit-btn" onclick="submitBooking()">Confirm Booking</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('bookingModal');
+            const calendarDays = document.getElementById('calendarDays');
+            const monthYearDisplay = document.getElementById('calendarMonthYear');
+            let currentDate = new Date();
+            let selectedDate = null;
+            let selectedPaymentMethod = null;
+            let selectedTransactionType = null;
+            let bookingDetails = {};
+            let paymentConfirmed = false;
+
+            generateCalendar(currentDate);
+
+            function generateCalendar(date) {
+                const year = date.getFullYear();
+                const month = date.getMonth();
+                currentDate = new Date(year, month, 1);
+
+                monthYearDisplay.textContent = `${currentDate.toLocaleString('default', { month: 'long' })} ${year}`;
+
+                const firstDay = new Date(year, month, 1).getDay();
+                const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+                calendarDays.innerHTML = '';
+
+                const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                dayNames.forEach(day => {
+                    const dayElement = document.createElement('div');
+                    dayElement.className = 'day-header';
+                    dayElement.textContent = day;
+                    calendarDays.appendChild(dayElement);
+                });
+
+                for (let i = 0; i < firstDay; i++) {
+                    const emptyCell = document.createElement('div');
+                    emptyCell.className = 'calendar-day disabled';
+                    calendarDays.appendChild(emptyCell);
+                }
+
+                for (let day = 1; day <= daysInMonth; day++) {
+                    const dayElement = document.createElement('div');
+                    dayElement.className = 'calendar-day';
+                    dayElement.textContent = day;
+
+                    const dayOfWeek = new Date(year, month, day).getDay();
+                    if (dayOfWeek === 6) {
+                        dayElement.classList.add('saturday');
+                    }
+
+                    if (selectedDate && 
+                        selectedDate.getDate() === day && 
+                        selectedDate.getMonth() === month && 
+                        selectedDate.getFullYear() === year) {
+                        dayElement.classList.add('selected');
+                    }
+
+                    const today = new Date();
+                    if (new Date(year, month, day) < today.setHours(0, 0, 0, 0)) {
+                        dayElement.classList.add('disabled');
+                    } else if (dayOfWeek === 6) {
+                        dayElement.addEventListener('click', function() {
+                            document.querySelectorAll('.calendar-day').forEach(d => {
+                                d.classList.remove('selected');
+                            });
+                            this.classList.add('selected');
+                            selectedDate = new Date(year, month, day);
+                        });
+                    } else {
+                        dayElement.classList.add('disabled');
+                    }
+
+                    calendarDays.appendChild(dayElement);
+                }
+            }
+
+            window.prevMonth = function() {
+                currentDate.setMonth(currentDate.getMonth() - 1);
+                generateCalendar(currentDate);
+            };
+
+            window.nextMonth = function() {
+                currentDate.setMonth(currentDate.getMonth() + 1);
+                generateCalendar(currentDate);
+            };
+
+            window.selectPayment = function(element, method) {
+                document.querySelectorAll('.payment-option').forEach(option => {
+                    option.classList.remove('selected');
+                    option.querySelector('.fa-check').style.display = 'none';
+                });
+
+                element.classList.add('selected');
+                element.querySelector('.fa-check').style.display = 'inline-block';
+                selectedPaymentMethod = method;
+
+                document.getElementById('transactionTypeSection').style.display = 'block';
+                document.getElementById('onlinePaymentSection').style.display = 'none';
+                document.getElementById('manualPaymentSection').style.display = 'none';
+                document.getElementById('uploadSection').style.display = 'none';
+            };
+
+            window.selectTransactionType = function(element, type) {
+                document.querySelectorAll('.transaction-type-option').forEach(option => {
+                    option.classList.remove('selected');
+                    option.querySelector('.fa-check').style.display = 'none';
+                });
+
+                element.classList.add('selected');
+                element.querySelector('.fa-check').style.display = 'inline-block';
+                selectedTransactionType = type;
+
+                if (type === 'online') {
+                    document.getElementById('onlinePaymentSection').style.display = 'block';
+                    document.getElementById('selectedPaymentMethodDisplay').textContent = selectedPaymentMethod.charAt(0).toUpperCase() + selectedPaymentMethod.slice(1);
+                    document.getElementById('manualPaymentSection').style.display = 'none';
+                    document.getElementById('uploadSection').style.display = 'none';
+                } else {
+                    document.getElementById('manualPaymentSection').style.display = 'block';
+                    document.getElementById('onlinePaymentSection').style.display = 'none';
+                    document.getElementById('uploadSection').style.display = 'none';
+                }
+            };
+
+            window.validateForm = function() {
+                if (!selectedDate) {
+                    alert('Please select a Saturday for the seva.');
+                    return;
+                }
+
+                const requiredFields = ['name', 'mobile', 'gotra', 'nakshatra', 'rashi', 'email', 'district', 'state', 'address', 'pincode'];
+                let isValid = true;
+                const mobile = document.getElementById('mobile').value.trim();
+                const pincode = document.getElementById('pincode').value.trim();
+                const email = document.getElementById('email').value.trim();
+
+                requiredFields.forEach(field => {
+                    if (!document.getElementById(field).value.trim()) {
+                        isValid = false;
+                    }
+                });
+
+                if (!/^\d{10}$/.test(mobile)) {
+                    isValid = false;
+                    alert('Please enter a valid 10-digit mobile number.');
+                    return;
+                }
+
+                if (!/^\d{6}$/.test(pincode)) {
+                    isValid = false;
+                    alert('Please enter a valid 6-digit pincode.');
+                    return;
+                }
+
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    isValid = false;
+                    alert('Please enter a valid email address.');
+                    return;
+                }
+
+                if (!isValid) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+
+                if (!selectedPaymentMethod) {
+                    alert('Please select a payment method.');
+                    return;
+                }
+
+                if (!selectedTransactionType) {
+                    alert('Please select a transaction type (Online/Manual).');
+                    return;
+                }
+
+                openModal();
+            };
+
+            window.confirmOnlinePayment = function() {
+                document.getElementById('onlinePaymentSection').style.display = 'none';
+                document.getElementById('uploadSection').style.display = 'block';
+                alert(`Please complete the payment of ₹250 using ${selectedPaymentMethod} and upload the screenshot.`);
+            };
+
+            window.confirmManualPayment = function() {
+                paymentConfirmed = true;
+                alert('Manual payment confirmed. Proceeding to booking confirmation.');
+                submitBooking();
+            };
+
+            window.validateUpload = function() {
+                const screenshotInput = document.getElementById('paymentScreenshot');
+                const file = screenshotInput.files[0];
+
+                if (!file) {
+                    alert('Please upload a payment screenshot.');
+                    return;
+                }
+
+                const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg'];
+                if (!allowedTypes.includes(file.type)) {
+                    alert('Please upload a valid image file (PNG, JPG, JPEG).');
+                    return;
+                }
+
+                paymentConfirmed = true;
+                alert('Screenshot uploaded successfully. Proceeding to booking confirmation.');
+                submitBooking();
+            };
+
+            window.openModal = function() {
+                document.getElementById('modal-name').value = document.getElementById('name').value;
+                document.getElementById('modal-mobile').value = document.getElementById('mobile').value;
+                document.getElementById('modal-gotra').value = document.getElementById('gotra').value;
+                document.getElementById('modal-nakshatra').value = document.getElementById('nakshatra').value;
+                document.getElementById('modal-rashi').value = document.getElementById('rashi').value;
+                document.getElementById('modal-email').value = document.getElementById('email').value;
+                document.getElementById('modal-district').value = document.getElementById('district').value;
+                document.getElementById('modal-state').value = document.getElementById('state').value;
+                document.getElementById('modal-address').value = document.getElementById('address').value;
+                document.getElementById('modal-pincode').value = document.getElementById('pincode').value;
+                modal.style.display = 'flex';
+            };
+
+            window.closeModal = function() {
+                modal.style.display = 'none';
+            };
+
+            window.submitBooking = function() {
+                if (!paymentConfirmed) {
+                    alert('Please confirm payment before proceeding.');
+                    closeModal();
+                    return;
+                }
+
+                const name = document.getElementById('modal-name').value;
+                const mobile = document.getElementById('modal-mobile').value;
+                const gotra = document.getElementById('modal-gotra').value;
+                const nakshatra = document.getElementById('modal-nakshatra').value;
+                const rashi = document.getElementById('modal-rashi').value;
+                const email = document.getElementById('modal-email').value;
+                const district = document.getElementById('modal-district').value;
+                const state = document.getElementById('modal-state').value;
+                const address = document.getElementById('modal-address').value;
+                const pincode = document.getElementById('modal-pincode').value;
+
+                if (name && mobile && gotra && nakshatra && rashi && email && district && state && address && pincode && selectedDate) {
+                    bookingDetails = {
+                        name: name,
+                        mobile: mobile,
+                        gotra: gotra,
+                        nakshatra: nakshatra,
+                        rashi: rashi,
+                        email: email,
+                        district: district,
+                        state: state,
+                        address: address,
+                        pincode: pincode,
+                        date: selectedDate.toDateString(),
+                        time: "10:00 AM IST",
+                        paymentMethod: `${selectedPaymentMethod.charAt(0).toUpperCase() + selectedPaymentMethod.slice(1)} - ${selectedTransactionType.charAt(0).toUpperCase() + selectedTransactionType.slice(1)}`
+                    };
+
+                    alert(`Booking confirmed for ${name} on ${selectedDate.toDateString()} at 10:00 AM IST! We'll contact you at ${mobile}. Payment method: ${bookingDetails.paymentMethod}`);
+
+                    document.getElementById('calendarSection').style.display = 'none';
+                    document.getElementById('calendarHeader').style.display = 'none';
+                    document.getElementById('divider1').style.display = 'none';
+                    document.getElementById('kartaDetailsHeader').style.display = 'none';
+                    document.querySelectorAll('#formSection').forEach(section => {
+                        section.style.display = 'none';
+                    });
+                    document.getElementById('paymentOptions').style.display = 'none';
+                    document.getElementById('transactionTypeSection').style.display = 'none';
+                    document.getElementById('onlinePaymentSection').style.display = 'none';
+                    document.getElementById('manualPaymentSection').style.display = 'none';
+                    document.getElementById('uploadSection').style.display = 'none';
+                    document.getElementById('divider2').style.display = 'none';
+                    document.getElementById('totalAmount').style.display = 'none';
+                    document.getElementById('submitBtn').style.display = 'none';
+
+                    const ticketDetails = document.getElementById('ticketDetails');
+                    ticketDetails.innerHTML = `
+                        <div class="temple-name">Sri JayaRama Seva Mandali</div>
+                        <p><strong>Temple Address:</strong> 123 Temple Road, Bangalore, Karnataka, India 560001</p>
+                        <p><strong>Seva:</strong> Abhisheka (Saturday only)</p>
+                        <p><strong>Seva Date and Time:</strong> ${selectedDate.toDateString()} at 10:00 AM IST</p>
+                        <p><strong>Karta's Name:</strong> ${name}</p>
+                        <p><strong>Mobile Number:</strong> ${mobile}</p>
+                        <p><strong>Gotra:</strong> ${gotra}</p>
+                        <p><strong>Nakshatra:</strong> ${nakshatra}</p>
+                        <p><strong>Raashi:</strong> ${rashi}</p>
+                        <p><strong>Email ID:</strong> ${email}</p>
+                        <p><strong>District:</strong> ${district}</p>
+                        <p><strong>State:</strong> ${state}</p>
+                        <p><strong>Address:</strong> ${address}</p>
+                        <p><strong>Pincode:</strong> ${pincode}</p>
+                        <p><strong>Amount:</strong> ₹250</p>
+                        <p><strong>Payment Method:</strong> ${bookingDetails.paymentMethod}</p>
+                    `;
+                    document.getElementById('ticketSection').style.display = 'block';
+
+                    closeModal();
+
+                    const screenshotInput = document.getElementById('paymentScreenshot');
+                    const preview = document.getElementById('uploadPreview');
+                    screenshotInput.addEventListener('change', function() {
+                        const file = this.files[0];
+                        if (file) {
+                            const reader = new FileReader();
+                            reader.onload = function(e) {
+                                preview.src = e.target.result;
+                                preview.style.display = 'block';
+                            };
+                            reader.readAsDataURL(file);
+                        }
+                    });
+                } else {
+                    alert('Please fill in all fields and select a date.');
+                }
+            };
+
+            window.downloadTicket = function() {
+                const latexContent = `
+                    \\documentclass[a4paper,12pt]{article}
+                    \\usepackage{geometry}
+                    \\geometry{margin=1in}
+                    \\usepackage{utf8x}
+                    \\usepackage{ucs}
+                    \\usepackage{graphicx}
+                    \\usepackage{fancyhdr}
+                    \\usepackage{titling}
+                    \\usepackage{xcolor}
+
+                    \\pagestyle{fancy}
+                    \\fancyhf{}
+                    \\fancyhead[C]{\\textbf{Sri Jayarama Seva Mandali}}
+                    \\fancyfoot[C]{\\thepage}
+
+                    \\title{Seva Booking Ticket}
+                    \\author{}
+                    \\date{}
+
+                    \\begin{document}
+
+                    \\maketitle
+                    \\vspace{1cm}
+
+                    \\begin{center}
+                        \\Large{\\color{red}\\textbf{Sri JayaRama Seva Mandali}} \\\\
+                        \\vspace{0.3cm}
+                        \\normalsize
+                        123 Temple Road, Bangalore, Karnataka, India 560001 \\\\
+                        \\vspace{0.5cm}
+                        \\Large{\\textbf{Abhisheka (Saturday only) Ticket}} \\\\
+                        \\vspace{0.5cm}
+                        \\normalsize
+                        \\textbf{Date and Time of Seva:} ${bookingDetails.date} at 10:00 AM IST \\\\
+                        \\textbf{Amount:} ₹250 \\\\
+                        \\vspace{1cm}
+                    \\end{center}
+
+                    \\section*{Karta's Details}
+                    \\begin{itemize}
+                        \\item \\textbf{Name:} ${bookingDetails.name}
+                        \\item \\textbf{Mobile Number:} ${bookingDetails.mobile}
+                        \\item \\textbf{Gotra:} ${bookingDetails.gotra}
+                        \\item \\textbf{Nakshatra:} ${bookingDetails.nakshatra}
+                        \\item \\textbf{Raashi:} ${bookingDetails.rashi}
+                        \\item \\textbf{Email ID:} ${bookingDetails.email}
+                        \\item \\textbf{District:} ${bookingDetails.district}
+                        \\item \\textbf{State:} ${bookingDetails.state}
+                        \\item \\textbf{Address:} ${bookingDetails.address}
+                        \\item \\textbf{Pincode:} ${bookingDetails.pincode}
+                    \\end{itemize}
+
+                    \\vspace{1cm}
+                    \\begin{center}
+                        \\textbf{Payment Method:} ${bookingDetails.paymentMethod} \\\\
+                        \\vspace{0.5cm}
+                        \\small{Thank you for booking with Sri Jayarama Seva Mandali!}
+                    \\end{center}
+
+                    \\end{document}
+                `;
+
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = '';
+                form.style.display = 'none';
+
+                const textarea = document.createElement('textarea');
+                textarea.name = 'latex';
+                textarea.value = latexContent;
+                form.appendChild(textarea);
+
+                document.body.appendChild(form);
+                form.submit();
+                document.body.removeChild(form);
+            };
+
+            window.newBooking = function() {
+                selectedDate = null;
+                selectedPaymentMethod = null;
+                selectedTransactionType = null;
+                bookingDetails = {};
+                paymentConfirmed = false;
+
+                document.getElementById('ticketSection').style.display = 'none';
+                document.getElementById('calendarSection').style.display = 'block';
+                document.getElementById('calendarHeader').style.display = 'block';
+                document.getElementById('divider1').style.display = 'block';
+                document.getElementById('kartaDetailsHeader').style.display = 'block';
+                document.querySelectorAll('#formSection').forEach(section => {
+                    section.style.display = 'block';
+                    section.querySelector('input').value = '';
+                });
+                document.getElementById('paymentOptions').style.display = 'block';
+                document.getElementById('transactionTypeSection').style.display = 'none';
+                document.getElementById('onlinePaymentSection').style.display = 'none';
+                document.getElementById('manualPaymentSection').style.display = 'none';
+                document.getElementById('uploadSection').style.display = 'none';
+                document.getElementById('divider2').style.display = 'block';
+                document.getElementById('totalAmount').style.display = 'block';
+                document.getElementById('submitBtn').style.display = 'block';
+                document.getElementById('paymentScreenshot').value = '';
+                document.getElementById('uploadPreview').style.display = 'none';
+
+                document.querySelectorAll('.payment-option').forEach(option => {
+                    option.classList.remove('selected');
+                    option.querySelector('.fa-check').style.display = 'none';
+                });
+
+                document.querySelectorAll('.transaction-type-option').forEach(option => {
+                    option.classList.remove('selected');
+                    option.querySelector('.fa-check').style.display = 'none';
+                });
+
+                generateCalendar(new Date());
+            };
+
+            window.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
