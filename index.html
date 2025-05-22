@@ -48,6 +48,7 @@
     <nav class="navbar">
       <div class="logo" style="display: flex; align-items: center;">
         <img src="images/l-2.png" style="width: 80px; height: 80px; margin-left: 3px; background: linear-gradient(#f7971e, #ffd200);" alt="SJRSM Logo">
+       
         <div style="display: flex; flex-direction: column; margin-left: 10px;">
           <span class="brand-name" style="font-weight: bold; font-size: clamp(16px, 2vw, 24px); font-family: sans-serif; color: #000000; white-space: nowrap;">
               SRI JAYARAMA SEVA MANDALI  <sub><font color="red">®</font></sub>
@@ -639,7 +640,10 @@ if (menuToggle && navLinks) {
   grid-template-columns: 1fr;
   gap: 40px;
 }
-
+.card1
+{
+  margin-top: 2px;
+}
 /* Card base styling */
 .card1, .card2, .card3 {
   display: flex;
@@ -740,6 +744,10 @@ if (menuToggle && navLinks) {
     gap: 50px;
     padding-top: 50px;
   }
+  .card1
+  {
+    margin-top: 20px;
+  }
 
   .card1, .card2, .card3 {
     flex-direction: row;
@@ -765,7 +773,10 @@ if (menuToggle && navLinks) {
     gap: 30px;
     padding: 30px 15px;
   }
-
+  .card1
+  {
+    margin-top: 20px;
+  }
   .card1, .card2, .card3 {
     flex-direction: column;
     max-width: 600px;
@@ -797,6 +808,13 @@ if (menuToggle && navLinks) {
     gap: 20px;
     padding: 30px 10px;
   }
+
+  @media screen and (max-width: 600px) {
+  .card1 {
+    
+    margin-top: 40px !important;
+  }
+}
 
   .card1, .card2, .card3 {
     max-width: 100%;
