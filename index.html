@@ -184,6 +184,7 @@ if (menuToggle && navLinks) {
 
 <!-- Hero Section -->
 <!-- Hero Section -->
+<!-- Hero Section -->
 <div class="hero">
   <div class="slider">
     <button class="slider-arrow slider-arrow-left" aria-label="Previous Slide">←</button>
@@ -191,7 +192,7 @@ if (menuToggle && navLinks) {
     <img class="slide" src="images/image-4.jpg" alt="Slide 4" onerror="this.classList.add('error'); this.innerHTML='Image 4 not loaded'">
     <button class="slider-arrow slider-arrow-right" aria-label="Next Slide">→</button>
 
-    <!-- ✅ Hero Content Added -->
+    <!-- Hero Content -->
     <div class="hero-content">
       <p id="p1">Welcome to Sri Jayarama Sannidhi</p>
       <p id="p2">Join us every Saturday for Prakarothsava Seva & Vishnusahasranama Parayana</p>
@@ -343,6 +344,18 @@ if (menuToggle && navLinks) {
   /* Hero container styles */
   .hero {
     position: relative;
+    width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;
+  }
+
+  /*.hero {
+    position: relative;
     width: 100vw;
     height: calc(100vh - 100px);
     overflow: hidden;
@@ -350,19 +363,21 @@ if (menuToggle && navLinks) {
     justify-content: center;
     align-items: center;
     margin-top: -40px;
-  }
+  }  */
 
 
 
 
-  /* Slider container with fallback background */
-  .slider {
+    /* Slider container - Modified for better mobile behavior */
+    .slider {
     position: relative;
     width: 100%;
     height: 100%;
     background-color: #222;
     display: flex;
     align-items: center;
+    overflow: hidden;
+    touch-action: pan-y; /* Enable touch scrolling */
   }
 
   /* Image slide styles */
@@ -516,9 +531,9 @@ if (menuToggle && navLinks) {
       font-size: 1.2em;
     }
     .slider-arrow {
-      width: 35px;
-      height: 35px;
-      font-size: 1.3rem;
+      width: 50px;
+      height: 50px;
+      font-size: 1.8rem;
     }
   }
 
@@ -544,17 +559,30 @@ if (menuToggle && navLinks) {
   }
 </style>
 
+
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     const slides = document.querySelectorAll('.slide');
     const leftArrow = document.querySelector('.slider-arrow-left');
     const rightArrow = document.querySelector('.slider-arrow-right');
+    const slider = document.querySelector('.slider');
     let currentSlide = 0;
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let isAnimating = false;
 
     function showSlide(index) {
+      if (isAnimating) return;
+      
+      isAnimating = true;
       slides[currentSlide].classList.remove('active');
       currentSlide = (index + slides.length) % slides.length;
       slides[currentSlide].classList.add('active');
+      
+      // Reset animation state after transition
+      setTimeout(() => {
+        isAnimating = false;
+      }, 1000);
     }
 
     function showNextSlide() {
@@ -567,7 +595,7 @@ if (menuToggle && navLinks) {
 
     // Initialize the first slide
     if (slides.length > 0) {
-      slides[currentSlide].classList.add('active');
+      showSlide(0);
     }
 
     // Arrow button events
@@ -576,13 +604,49 @@ if (menuToggle && navLinks) {
       rightArrow.addEventListener('click', showNextSlide);
     }
 
+    // Touch events for mobile swipe
+    slider.addEventListener('touchstart', function(e) {
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    slider.addEventListener('touchmove', function(e) {
+      touchEndX = e.touches[0].clientX;
+    }, { passive: true });
+
+    slider.addEventListener('touchend', function() {
+      const threshold = 50; // Minimum swipe distance
+      const difference = touchStartX - touchEndX;
+      
+      if (Math.abs(difference) > threshold) {
+        if (difference > 0) {
+          showNextSlide(); // Swipe left
+        } else {
+          showPrevSlide(); // Swipe right
+        }
+      }
+    }, { passive: true });
+
     // Handle image load errors
     slides.forEach(slide => {
       if (slide.complete && slide.naturalHeight === 0) {
         slide.classList.add('error');
         slide.innerHTML = 'Image failed to load';
       }
+      
+      // Add error listener for images that fail later
+      slide.addEventListener('error', function() {
+        this.classList.add('error');
+        this.innerHTML = 'Image failed to load';
+      });
     });
+
+    // Auto-rotate slides (optional)
+    let slideInterval = setInterval(showNextSlide, 5000);
+    
+    // Pause auto-rotation when user interacts
+    slider.addEventListener('mouseenter', () => clearInterval(slideInterval));
+    slider.addEventListener('mouseleave', () => slideInterval = setInterval(showNextSlide, 5000));
+    slider.addEventListener('touchstart', () => clearInterval(slideInterval), { passive: true });
   });
 </script>
 
