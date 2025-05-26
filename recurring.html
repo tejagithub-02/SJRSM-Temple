@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jayarama Dinadarshi - Sri Jayarama Seva Mandali</title>
+  <title>Recurring Annual Events - Sri Jayarama Seva Mandali</title>
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-  <meta name="keywords" content="Jayarama Dinadarshi, Hindu Calendar, Panchang, Sri Jayarama Seva Mandali, Bengaluru" />
-  <meta name="description" content="Discover the Jayarama Dinadarshi, a Hindu panchang by Sri Jayarama Seva Mandali, guiding devotees with daily astrological and religious insights for 2025." />
+  <meta name="keywords" content="Recurring Events, Sri Jayarama Seva Mandali, temple ceremonies, annual festivals" />
+  <meta name="description" content="Explore the recurring annual temple ceremonies at Sri Jayarama Seva Mandali, including Sri Rama Navami, Hanuman Jayanti, and more." />
   <style>
     @media (max-width: 768px) {
       .nav-links {
@@ -40,94 +40,112 @@
       margin-top: 100px;
     }
 
-    .event-details {
-      display: flex;
-      flex-direction: column;
-      background: linear-gradient(135deg, #fff8e1, #ffe0b2);
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      gap: 20px;
-    }
-
-    .content-wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    .title {
-      font-size: 1.8em;
-      color: #b71c1c;
-      margin-bottom: 15px;
-      font-weight: bold;
-      text-align: center;
-    }
-
-    .image-container {
+    .preview-container {
       display: flex;
       flex-direction: row;
-      gap: 15px;
-      justify-content: center;
       flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      padding-bottom: 20px;
     }
 
-    .image-container img {
-      flex: 1;
-      min-width: 200px;
-      max-width: 400px;
-      height: 250px;
+    .preview-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: linear-gradient(135deg, #fff8e1, #ffe0b2);
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      padding: 12px;
+      text-align: center;
+      width: 350px;
+      flex-shrink: 0;
+      margin: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .preview-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .preview-card img {
+      width: 100%;
+      max-width: 320px;
+      height: 240px;
       border-radius: 10px;
-      border: 2px solid #ccc;
+      border: 3px solid #ffd700;
+      display: block;
+      margin: 0 auto;
       object-fit: cover;
     }
 
-    .description {
-      font-size: 1.1em;
-      color: #333;
-      line-height: 1.6;
-      text-align: justify;
+    .preview-card .title {
+      font-size: 1.4em;
+      color: #b71c1c;
+      margin: 15px 0;
+      font-weight: bold;
       font-family: 'Raleway', sans-serif;
     }
 
-    .highlight-box {
-      background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-      border-left: 4px solid #1976d2;
-      padding: 15px;
-      margin: 20px 0;
-      border-radius: 0 8px 8px 0;
+    .preview-card .date {
+      font-size: 1em;
+      color: #333;
+      margin: 5px 0;
+      font-family: 'Raleway', sans-serif;
     }
 
-    @media (max-width: 992px) {
-      .image-container {
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      .image-container img {
-        width: 100%;
-        max-width: 100%;
-      }
+    .preview-card .explore-btn {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #b71c1c;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1em;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.3s ease;
+    }
+
+    .preview-card .explore-btn:hover {
+      background-color: #d32f2f;
     }
 
     @media (max-width: 768px) {
-      .event-details {
-        padding: 15px;
-      }
-
       .container {
+        padding: 15px;
         margin-top: 80px;
       }
 
-      .title {
-        font-size: 1.5em;
+      .preview-container {
+        gap: 20px;
+        padding-bottom: 15px;
       }
 
-      .image-container img {
+      .preview-card {
+        width: 300px;
+        padding: 10px;
+        margin: 10px;
+      }
+
+      .preview-card img {
+        max-width: 280px;
         height: 200px;
       }
 
-      .description {
-        font-size: 1em;
+      .preview-card .title {
+        font-size: 1.2em;
+      }
+
+      .preview-card .date {
+        font-size: 0.9em;
+      }
+
+      .preview-card .explore-btn {
+        padding: 8px 18px;
+        font-size: 0.9em;
       }
     }
 
@@ -137,12 +155,31 @@
         margin-top: 60px;
       }
 
-      .event-details {
-        padding: 10px;
+      .preview-container {
+        gap: 15px;
       }
 
-      .image-container img {
+      .preview-card {
+        width: 250px;
+        margin: 10px;
+      }
+
+      .preview-card img {
+        max-width: 230px;
         height: 180px;
+      }
+
+      .preview-card .title {
+        font-size: 1.1em;
+      }
+
+      .preview-card .date {
+        font-size: 0.85em;
+      }
+
+      .preview-card .explore-btn {
+        padding: 6px 16px;
+        font-size: 0.85em;
       }
     }
 
@@ -172,7 +209,13 @@
       }
       .pq-copyright-footer {
         padding-bottom: 20px;
-        margin-top: -130px;
+        margin-top: -150px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .pq-copyright-footer {
+        margin-top: -110px;
       }
     }
   </style>
@@ -182,7 +225,7 @@
     <div class="header">
         <nav class="navbar">
             <div class="logo" style="display: flex; align-items: center;">
-                <img src="images/l-2.png" style="width: 80px; height: 80px; margin-left: 3px;background: linear-gradient(#f7971e, #ffd200);" alt="SJRSM Logo">
+                <img src="images/l-2.png" style="width: 80px; height: 80px; margin-left: 3px; background: linear-gradient(#f7971e, #ffd200);" alt="SJRSM Logo">
                 <div style="display: flex; flex-direction: column; margin-left: 10px;">
                   <span class="brand-name" style="font-weight: bold; font-size: clamp(16px, 2vw, 24px); font-family: sans-serif; color: #000000; white-space: nowrap;">
                       SRI JAYARAMA SEVA MANDALI <span style="font-size: clamp(12px, 1.5vw, 16px); color: red;">(R)</span>
@@ -201,11 +244,11 @@
               <li class="dropdown">
                 <a href="javascript:void(0);" class="dropdown-toggle"><h4>Events</h4></a>
                 <div class="dropdown-content">
-                  <a href="Upcoming Pooja Dates.html">Upcoming Pooja Dates</a>
-                  <a href="previous-events.html">Previous Events</a>
-                  <a href="recurring.html">Recurring Events</a>
-              </div>
-            </li>
+                    <a href="Upcoming Pooja Dates.html">Upcoming Pooja Dates</a>
+                    <a href="previous-events.html">Previous Events</a>
+                    <a href="recurring.html">Recurring Events</a>
+                </div>
+              </li>
               <li><a href="Book-seva.html"><h4>Seva</h4></a></li>
               <li><a href="gallery.html"><h4>Gallery</h4></a></li>
               <li><a href="publications.html"><h4>Publications</h4></a></li>
@@ -216,42 +259,29 @@
   </header>
 
   <div class="container">
-    <div class="event-details">
-      <h2 class="title">Jayarama Dinadarshi</h2>
+    <div class="preview-container">
+      <!-- Preview Card 1 -->
+     
+
+      <!-- Preview Card 2 -->
       
-      <div class="content-wrapper">
-        <div class="image-container">
-          <img src="images/ra.jpeg" alt="Hindu calendar with astrological details">
-          <img src="images/ram.jpeg" alt="Traditional Hindu almanac display">
-          <img src="images/rama.jpeg" alt="Devotees consulting panchang for rituals">
-        </div>
+
+     
+      <div class="preview-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIEAfgFRRcEkAuuisTAHoUF-vNqDdfUQAjwQ&s" alt="Hanuman Jayanti">
+        <div class="title">Hanuman Jayanti</div>
+        <div class="date">May 5th (Every Year)</div>
         
-        <div class="description">
-          <p>The Jayarama Dinadarshi is a revered Hindu panchang curated by Sri Jayarama Seva Mandali, offering daily astrological and religious guidance for devotees in Bengaluru and beyond.</p>
-          
-          <div class="highlight-box">
-            <p><strong>What is Jayarama Dinadarshi?</strong><br>
-            "Dinadarshi," meaning "daily guide," is a Hindu calendar detailing tithi (lunar day), nakshatra (star), yoga, karana, and auspicious timings like Rahu Kalam and Abhijit Muhurta. Published by the Mandali, it aligns spiritual practices with Vedic traditions, guiding rituals, prayers, and events like Ramanavami celebrations.</p>
-          </div>
-          
-          <p><strong>Spiritual Significance:</strong><br>
-          The Dinadarshi fosters devotion to Lord Rama by providing precise timings for worship and events. It played a key role in scheduling Ramayana discourses and music concerts during the 60th Ramanavami festival in April 2025.</p>
-          
-          <p><strong>Sample Panchang: April 22, 2025 (Bengaluru, IST):</strong><br>
-          - Tithi: Krishna Ashtami (ends ~11:30 PM)<br>
-          - Nakshatra: Shravana (6:45 AM–next day 8:00 AM)<br>
-          - Yoga: Siddhi (4:20 AM–next day 5:10 AM)<br>
-          - Karana: Kaulava (11:00 AM–11:30 PM)<br>
-          - Sunrise/Sunset: 6:05 AM/6:35 PM<br>
-          - Rahu Kalam: 3:00 PM–4:30 PM<br>
-          - Abhijit Muhurta: 11:50 AM–12:30 PM</p>
-          
-          <p><strong>How to Use:</strong><br>
-          Consult the Dinadarshi for daily worship, fasting (e.g., Ekadashi), or Mandali events. Available in print or digitally, it complements resources like <em>Srimad Ramayana Chitramanjari</em> for festivals like Vaikunta Ekadashi.</p>
-          
-          <p><strong>Join the Tradition:</strong><br>
-          Deepen your spiritual journey with the Jayarama Dinadarshi. Contact Sri Jayarama Seva Mandali or visit our website for the 2025 edition and event updates!</p>
-        </div>
+        <a href="hanuman.html" class="explore-btn">Explore More</a>
+    </div>
+     
+
+      <!-- Preview Card 5: Temple Ceremony -->
+      <div class="preview-card">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2OP9qExVAqr1IHQ8dmZNIGWbTKhdtRzEVMRmCZyW0ieSvke3pnhFtLqCPrfhFi1dDLZU&usqp=CAU" alt="Temple Anniversary Ceremony">
+          <div class="title">Temple Anniversary Ceremony</div>
+          <div class="date">March 15th (Every Year)</div>
+          <a href="temple.html" class="explore-btn">Explore More</a>
       </div>
     </div>
   </div>
@@ -318,13 +348,13 @@
     document.addEventListener('DOMContentLoaded', function() {
       const menuToggle = document.querySelector('.menu-toggle');
       const navLinks = document.querySelector('.nav-links');
-    
+
       if (menuToggle && navLinks) {
         menuToggle.addEventListener('click', function(e) {
           e.preventDefault();
           navLinks.classList.toggle('active');
         });
-    
+
         document.querySelectorAll('.dropdown .dropdown-toggle').forEach(toggle => {
           toggle.addEventListener('click', function(e) {
             if (window.innerWidth <= 768) {
@@ -333,13 +363,42 @@
             }
           });
         });
-    
+
+        document.querySelectorAll('.toggle-sub').forEach(toggle => {
+          toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('data-target');
+            const targetDropdown = document.getElementById(targetId);
+
+            document.querySelectorAll('.sub-dropdown-content').forEach(menu => {
+              if (menu !== targetDropdown) menu.style.display = 'none';
+            });
+            document.querySelectorAll('.toggle-sub').forEach(link => {
+              if (link !== this) link.classList.remove('active');
+            });
+
+            if (targetDropdown && targetDropdown.style.display === 'block') {
+              targetDropdown.style.display = 'none';
+              this.classList.remove('active');
+            } else if (targetDropdown) {
+              targetDropdown.style.display = 'block';
+              this.classList.add('active');
+            }
+          });
+        });
+
         document.addEventListener('click', function(e) {
           if (window.innerWidth <= 768) {
             if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
               navLinks.classList.remove('active');
               document.querySelectorAll('.dropdown').forEach(dropdown => {
                 dropdown.classList.remove('active');
+              });
+              document.querySelectorAll('.sub-dropdown-content').forEach(menu => {
+                menu.style.display = 'none';
+              });
+              document.querySelectorAll('.toggle-sub').forEach(link => {
+                link.classList.remove('active');
               });
             }
           }

@@ -10,13 +10,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="keywords" content="Sri Jayarama Seva Mandali, publications, temple publications, religious documents" />
   <meta name="description" content="Explore our collection of publications related to Sri Jayarama Seva Mandali's events, rituals, and spiritual activities." />
-  <style>body {
-    background-image: url('/path/to/image.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    /* other styles */
-  }</style>
- <style>
+  <style>
+    body {
+      background-image: url('/path/to/image.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
     @media (max-width: 768px) {
       .nav-links {
         display: none;
@@ -67,6 +67,94 @@
       line-height: 1.6;
       margin-bottom: 20px;
       text-align: justify;
+    }
+
+    .tab-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .tab-button {
+      background: #2196f3;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 0 5px;
+      border-radius: 5px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .tab-button:hover {
+      background: #1976d2;
+    }
+
+    .tab-button.active {
+      background: #b71c1c;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .book-card {
+      background: rgba(255, 255, 255, 0.9);
+      border: 2px solid #2196f3;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .book-card:hover {
+      transform: scale(1.05);
+    }
+
+    .book-card h3 {
+      font-size: 1.1em;
+      color: #333;
+      margin-bottom: 10px;
+      font-family: 'Raleway', sans-serif;
+      font-weight: bold;
+    }
+
+    .book-card p {
+      font-size: 0.9em;
+      color: #333;
+      font-family: 'Raleway', sans-serif;
+      line-height: 1.5;
+    }
+
+    .book-card .book-icon {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 10px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .books-note {
+      font-size: 1em;
+      color: #b71c1c;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 20px;
     }
 
     .publications-grid {
@@ -126,15 +214,31 @@
         font-size: 1em;
       }
 
-      .publication-card {
+      .tab-button {
+        padding: 8px 15px;
+        font-size: 0.9em;
+      }
+
+      .publication-card,
+      .book-card {
         padding: 10px;
       }
 
-      .publication-card h3 {
+      .publication-card h3,
+      .book-card h3 {
         font-size: 1em;
       }
 
       .publication-card a {
+        font-size: 0.9em;
+      }
+
+      .book-card .book-icon {
+        width: 56px;
+        height: 56px;
+      }
+
+      .books-note {
         font-size: 0.9em;
       }
     }
@@ -148,13 +252,27 @@
       .publications-section {
         padding: 10px;
       }
+
+      .tab-button {
+        padding: 6px 12px;
+        font-size: 0.8em;
+      }
+
+      .book-card .book-icon {
+        width: 48px;
+        height: 48px;
+      }
+
+      .books-note {
+        font-size: 0.8em;
+      }
     }
 
     @media (min-width: 992px) {
       .pq-copyright-footer {
         margin-top: -150px;
       }
-      
+
       .pq-footer-top {
         padding-top: -180px;
       }
@@ -164,7 +282,7 @@
       .pq-footer-top {
         margin-top: -80px;
       }
-      
+
       .pq-footer-items .pq-footer-item:nth-child(2) {
         position: relative;
         top: -30px;
@@ -174,6 +292,7 @@
         position: relative;
         top: -60px;
       }
+
       .pq-copyright-footer {
         padding-bottom: 20px;
         margin-top: -130px;
@@ -184,38 +303,38 @@
 <body>
   <header>
     <div class="header">
-        <nav class="navbar">
-            <div class="logo" style="display: flex; align-items: center;">
-                <img src="images/l-2.png" style="width: 80px; height: 80px; margin-left: 3px;background: linear-gradient(#f7971e, #ffd200);" alt="SJRSM Logo">
-                <div style="display: flex; flex-direction: column; margin-left: 10px;">
-                  <span class="brand-name" style="font-weight: bold; font-size: clamp(16px, 2vw, 24px); font-family: sans-serif; color: #000000; white-space: nowrap;">
-                      SRI JAYARAMA SEVA MANDALI <span style="font-size: clamp(12px, 1.5vw, 16px); color: red;">(R)</span>
-                  </span>
-                  <span style="margin-left: 6px; font-size: clamp(12px, 1.5vw, 16px); color: red; font-family: sans-serif; white-space: nowrap;">
-                      8th Block, Jayanagar, Bangalore
-                  </span>
-              </div>
-            </div>
-            <div class="menu-toggle">
-                <i class="fa-solid fa-bars"></i>
-            </div>
-            <ul class="nav-links">
-              <li><a href="index.html"><h4>Home</h4></a></li>
-              <li><a href="About_us.html"><h4>About Us</h4></a></li>
-              <li class="dropdown">
-                <a href="javascript:void(0);" class="dropdown-toggle"><h4>Events</h4></a>
-                <div class="dropdown-content">
-                    <a href="Upcoming Pooja Dates.html">Upcoming Pooja Dates</a>
-                    <a href="previous-events.html">Previous Events</a>
-                </div>
-              </li>
-              <li><a href="Book-seva.html"><h4>Seva</h4></a></li>
-              <li><a href="gallery.html"><h4>Gallery</h4></a></li>
-              <li><a href="#"><h4>Publications</h4></a></li>
-            
-              <li><a href="Contact.html"><h4>Contact Us</h4></a></li>
-            </ul>
-        </nav>
+      <nav class="navbar">
+        <div class="logo" style="display: flex; align-items: center;">
+          <img src="images/l-2.png" style="width: 80px; height: 80px; margin-left: 3px;background: linear-gradient(#f7971e, #ffd200);" alt="SJRSM Logo">
+          <div style="display: flex; flex-direction: column; margin-left: 10px;">
+            <span class="brand-name" style="font-weight: bold; font-size: clamp(16px, 2vw, 24px); font-family: sans-serif; color: #000000; white-space: nowrap;">
+              SRI JAYARAMA SEVA MANDALI <span style="font-size: clamp(12px, 1.5vw, 16px); color: red;">(R)</span>
+            </span>
+            <span style="margin-left: 6px; font-size: clamp(12px, 1.5vw, 16px); color: red; font-family: sans-serif; white-space: nowrap;">
+              8th Block, Jayanagar, Bangalore
+            </span>
+          </div>
+        </div>
+        <div class="menu-toggle">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+        <ul class="nav-links">
+          <li><a href="index.html"><h4>Home</h4></a></li>
+          <li><a href="About_us.html"><h4>About Us</h4></a></li>
+          <li class="dropdown">
+            <a href="javascript:void(0);" class="dropdown-toggle"><h4>Events</h4></a>
+            <div class="dropdown-content">
+              <a href="Upcoming Pooja Dates.html">Upcoming Pooja Dates</a>
+              <a href="previous-events.html">Previous Events</a>
+              <a href="recurring.html">Recurring Events</a>
+          </div>
+          </li>
+          <li><a href="Book-seva.html"><h4>Seva</h4></a></li>
+          <li><a href="gallery.html"><h4>Gallery</h4></a></li>
+          <li><a href="#"><h4>Publications</h4></a></li>
+          <li><a href="Contact.html"><h4>Contact Us</h4></a></li>
+        </ul>
+      </nav>
     </div>
   </header>
 
@@ -224,59 +343,92 @@
       <h2 class="publications-title">Publications</h2>
       <div class="publications-description">
         <p>
-          Explore our collection of publications documenting the spiritual and cultural activities of Sri Jayarama Seva Mandali. These documents include detailed insights into our rituals, events, and community initiatives, offering valuable resources for devotees and researchers alike. Download the PDFs below to learn more about our sacred traditions and ongoing projects.
+          Explore our collection of publications documenting the spiritual and cultural activities of Sri Jayarama Seva Mandali. These documents include detailed insights into our rituals, events, and community initiatives, offering valuable resources for devotees and researchers alike. Select a category below to view our books or download our articles in PDF format.
         </p>
       </div>
-      <div class="publications-grid">
-        <div class="publication-card">
-          <i class="fas fa-file-pdf fa-2x"></i>
-          <h3>Publication 1: Abhirama 1992</h3>
-          <a href="pdf/p1.pdf" target="_blank">Download PDF</a>
+      <div class="tab-container">
+        <button class="tab-button active" data-tab="books">Books</button>
+        <button class="tab-button" data-tab="articles">Articles</button>
+      </div>
+      <div class="tab-content active" id="books">
+        <div class="books-note">
+          These books are available for sale only at Sri Jayarama Seva Mandali, 8th Block, Jayanagar, Bangalore.
         </div>
-        <div class="publication-card">
-          <i class="fas fa-file-pdf fa-2x"></i>
-          <h3>Publication 2: Baaligondu Belaku</h3>
-          <a href="pdf/p2.pdf" target="_blank">Download PDF</a>
+        <div class="books-grid">
+          <div class="book-card">
+            <img src="images/devudu ramayana.jpg" alt="Book Icon" class="book-icon">
+            <h3>Sri Rama Charita</h3>
+            <p>A detailed narrative of Lord Rama’s life, exploring his divine qualities and teachings as celebrated at Sri Jayarama Seva Mandali.</p>
+          </div>
+          <div class="book-card">
+            <img src="images/chitramanjari.jpg" alt="Book Icon" class="book-icon">
+            <h3>Devotion in Practice</h3>
+            <p>An insightful guide to the rituals and seva practices performed at Sri Jayarama Seva Mandali, with practical advice for devotees.</p>
+          </div>
+          <div class="book-card">
+            <img src="images/keertanegaLu.jpg" alt="Book Icon" class="book-icon">
+            <h3>KeertanegaLu</h3>
+            <p>A comprehensive overview of the annual festivals and poojas at Sri Jayarama Seva Mandali, including their spiritual significance.</p>
+          </div>
+          <div class="book-card">
+            <img src="images/ramayana stotragaLu.jpg" alt="Book Icon" class="book-icon">
+            <h3>Ramayana for Today</h3>
+            <p>A modern interpretation of the Ramayana, highlighting its relevance to contemporary life and spiritual practice.</p>
+          </div>
         </div>
-        <div class="publication-card">
-          <i class="fas fa-file-pdf fa-2x"></i>
-          <h3>Publication 3: Jayarama 1989</h3>
-          <a href="pdf/p3.pdf" target="_blank">Download PDF</a>
-        </div>
-        <div class="publication-card">
-          <i class="fas fa-file-pdf fa-2x"></i>
-          <h3>Publication 4: Kalyana Rama</h3>
-          <a href="pdf/p4.pdf" target="_blank">Download PDF</a>
-        </div>
-        <div class="publication-card">
-          <i class="fas fa-file-pdf fa-2x"></i>
-          <h3>Publication 5: RajaThabhi Rama 1995</h3>
-          <a href="pdf/p5.pdf" target="_blank">Download PDF</a>
-        </div>
-        <div class="publication-card">
-          <i class="fas fa-file-pdf fa-2x"></i>
-          <h3>Publication 6: Samskrutada Ramayana</h3>
-          <a href="pdf/p6.pdf" target="_blank">Download PDF</a>
-        </div>
-        <div class="publication-card">
-          <i class="fas fa-file-pdf fa-2x"></i>
-          <h3>Publication 7: Samsmarana Sanchike 1978</h3>
-          <a href="pdf/p7.pdf" target="_blank">Download PDF</a>
-        </div>
-        <div class="publication-card">
-          <i class="fas fa-file-pdf fa-2x"></i>
-          <h3>Publication 8: Sri Jayarama 1983</h3>
-          <a href="pdf/p8.pdf" target="_blank">Download PDF</a>
-        </div>
-        <div class="publication-card">
-          <i class="fas fa-file-pdf fa-2x"></i>
-          <h3>Publication 9: Srirama Rajatadri 1996</h3>
-          <a href="pdf/p9.pdf" target="_blank">Download PDF</a>
-        </div>
-        <div class="publication-card">
-          <i class="fas fa-file-pdf fa-2x"></i>
-          <h3>Publication 10: Srirama Sambhava</h3>
-          <a href="pdf/p10.pdf" target="_blank">Download PDF</a>
+      </div>
+      <div class="tab-content" id="articles">
+        <div class="publications-grid">
+          <div class="publication-card">
+            <i class="fas fa-file-pdf fa-2x"></i>
+            <h3>Publication 1: Abhirama 1992</h3>
+            <a href="pdf/p1.pdf" target="_blank">Download PDF</a>
+          </div>
+          <div class="publication-card">
+            <i class="fas fa-file-pdf fa-2x"></i>
+            <h3>Publication 2: Baaligondu Belaku</h3>
+            <a href="pdf/p2.pdf" target="_blank">Download PDF</a>
+          </div>
+          <div class="publication-card">
+            <i class="fas fa-file-pdf fa-2x"></i>
+            <h3>Publication 3: Jayarama 1989</h3>
+            <a href="pdf/p3.pdf" target="_blank">Download PDF</a>
+          </div>
+          <div class="publication-card">
+            <i class="fas fa-file-pdf fa-2x"></i>
+            <h3>Publication 4: Kalyana Rama</h3>
+            <a href="pdf/p4.pdf" target="_blank">Download PDF</a>
+          </div>
+          <div class="publication-card">
+            <i class="fas fa-file-pdf fa-2x"></i>
+            <h3>Publication 5: RajaThabhi Rama 1995</h3>
+            <a href="pdf/p5.pdf" target="_blank">Download PDF</a>
+          </div>
+          <div class="publication-card">
+            <i class="fas fa-file-pdf fa-2x"></i>
+            <h3>Publication 6: Samskrutada Ramayana</h3>
+            <a href="pdf/p6.pdf" target="_blank">Download PDF</a>
+          </div>
+          <div class="publication-card">
+            <i class="fas fa-file-pdf fa-2x"></i>
+            <h3>Publication 7: Samsmarana Sanchike 1978</h3>
+            <a href="pdf/p7.pdf" target="_blank">Download PDF</a>
+          </div>
+          <div class="publication-card">
+            <i class="fas fa-file-pdf fa-2x"></i>
+            <h3>Publication 8: Sri Jayarama 1983</h3>
+            <a href="pdf/p8.pdf" target="_blank">Download PDF</a>
+          </div>
+          <div class="publication-card">
+            <i class="fas fa-file-pdf fa-2x"></i>
+            <h3>Publication 9: Srirama Rajatadri 1996</h3>
+            <a href="pdf/p9.pdf" target="_blank">Download PDF</a>
+          </div>
+          <div class="publication-card">
+            <i class="fas fa-file-pdf fa-2x"></i>
+            <h3>Publication 10: Srirama Sambhava</h3>
+            <a href="pdf/p10.pdf" target="_blank">Download PDF</a>
+          </div>
         </div>
       </div>
     </div>
@@ -297,21 +449,21 @@
                         <h4>Address</h4>
                         <span> Sri Jayarama Seva Mandali(R),<br/>
                           492/A, Sri Jayarama Seva Mandli Road, 1st main,<br/>
-                           8th block, Jayanagar,Banglore - 560070, India</span>
+                          8th block, Jayanagar, Bangalore - 560070, India</span>
                       </div>
                     </div>
                     <div class="pq-footer-item text-start">
-                        <i class="ti-email"></i>
-                        <div class="pq-footer-items-info">
-                          <h4>Email Us</h4>
-                          <a href="mailto:jayaramasevamandali@gmail.com"><span>jayaramasevamandali@gmail.com</span></a>
-                        </div>
+                      <i class="ti-email"></i>
+                      <div class="pq-footer-items-info">
+                        <h4>Email Us</h4>
+                        <a href="mailto:jayaramasevamandali@gmail.com"><span>jayaramasevamandali@gmail.com</span></a>
                       </div>
+                    </div>
                     <div class="pq-footer-item text-start">
                       <i class="ti-mobile"></i>
                       <div class="pq-footer-items-info">
                         <h4>Contact Us</h4>
-                        <a href="tel:080 22445232"><span>080 22445232</span></a>
+                        <a href="tel:08022445232"><span>080 22445232</span></a>
                       </div>
                     </div>
                   </div>
@@ -342,6 +494,7 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Existing menu toggle and dropdown functionality
       const menuToggle = document.querySelector('.menu-toggle');
       const navLinks = document.querySelector('.nav-links');
 
@@ -386,7 +539,7 @@
         document.addEventListener('click', function(e) {
           if (window.innerWidth <= 768) {
             if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
-              navanatomyLinks.classList.remove('active');
+              navLinks.classList.remove('active');
               document.querySelectorAll('.dropdown').forEach(dropdown => {
                 dropdown.classList.remove('active');
               });
@@ -400,6 +553,23 @@
           }
         });
       }
+
+      // Tab switching functionality
+      const tabButtons = document.querySelectorAll('.tab-button');
+      const tabContents = document.querySelectorAll('.tab-content');
+
+      tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          // Remove active class from all buttons and contents
+          tabButtons.forEach(btn => btn.classList.remove('active'));
+          tabContents.forEach(content => content.classList.remove('active'));
+
+          // Add active class to clicked button and corresponding content
+          button.classList.add('active');
+          const tabId = button.getAttribute('data-tab');
+          document.getElementById(tabId).classList.add('active');
+        });
+      });
     });
   </script>
 </body>

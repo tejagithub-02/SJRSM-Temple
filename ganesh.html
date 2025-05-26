@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-  <meta name="keywords" content="" />
+  <meta name="keywords" content="Sankashtahara Ganapati Pooja, Sri Jayarama Seva Mandali, Bangalore" />
   <meta name="description" content="Details about the ಸಾಮೂಹಿಕ ಸಂಕಷಕ್ಟಹರ ಗಣಪತಿ ಪೂಜ event at Sri Jayarama Seva Mandali, including description and dates." />
   <style>
     @media (max-width: 768px) {
@@ -42,7 +42,7 @@
 
     .event-details {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       background: linear-gradient(135deg, #fff8e1, #ffe0b2);
       border-radius: 10px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -50,14 +50,44 @@
       gap: 20px;
     }
 
-    .left-section {
+    .content-section {
+      display: flex;
+      flex-direction: row;
+      gap: 30px;
+      align-items: flex-start;
+    }
+
+    .left-content {
       flex: 2;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      gap: 20px;
     }
 
-    .left-section .title {
+    .image-container {
+      display: flex;
+      flex-direction: row;
+      gap: 15px;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .image-container img {
+      flex: 1;
+      min-width: 200px;
+      max-width: 300px;
+      height: 200px;
+      border-radius: 10px;
+      border: 2px solid #ccc;
+      object-fit: cover;
+    }
+
+    .right-content {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .title {
       font-size: 1.8em;
       color: #b71c1c;
       margin-bottom: 15px;
@@ -65,34 +95,19 @@
       text-align: center;
     }
 
-    .left-section img {
-      width: 100%;
-      max-width: 400px;
-      height: 300px;
-      border-radius: 10px;
-      border: 2px solid #ccc;
-      object-fit: cover;
-    }
-
     .description {
       font-size: 1.1em;
       color: #333;
       line-height: 1.6;
-      margin-top: 15px;
       text-align: justify;
-    }
-
-    .right-section {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
     }
 
     .dates-section {
       background: linear-gradient(135deg, #ffeb3b, #ff9800);
       border-radius: 10px;
       padding: 15px;
+      position: sticky;
+      top: 120px;
     }
 
     .dates-title {
@@ -148,22 +163,43 @@
       margin: 5px 0;
     }
 
+    @media (max-width: 992px) {
+      .content-section {
+        flex-direction: column;
+      }
+      
+      .right-content {
+        width: 100%;
+        min-width: auto;
+      }
+      
+      .dates-section {
+        position: static;
+      }
+    }
+
     @media (max-width: 768px) {
       .event-details {
-        flex-direction: column;
+        padding: 15px;
       }
 
       .container {
         margin-top: 80px;
       }
 
-      .left-section .title {
+      .title {
         font-size: 1.5em;
       }
 
-      .left-section img {
+      .image-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .image-container img {
+        width: 100%;
         max-width: 100%;
-        height: 250px;
+        height: 180px;
       }
 
       .description {
@@ -199,6 +235,10 @@
 
       .event-details {
         padding: 10px;
+      }
+
+      .image-container img {
+        height: 160px;
       }
     }
 
@@ -258,15 +298,15 @@
               <li class="dropdown">
                 <a href="javascript:void(0);" class="dropdown-toggle"><h4>Events</h4></a>
                 <div class="dropdown-content">
-                    <a href="Upcoming Pooja Dates.html">Upcoming Pooja Dates</a>
-                    <a href="previous-events.html">Previous Events</a>
-                </div>
+                  <a href="Upcoming Pooja Dates.html">Upcoming Pooja Dates</a>
+                  <a href="previous-events.html">Previous Events</a>
+                  <a href="recurring.html">Recurring Events</a>
+              </div>
             </li>
               <li><a href="Book-seva.html"><h4>Seva</h4></a></li>
               <li><a href="gallery.html"><h4>Gallery</h4></a></li>
               <li><a href="publications.html"><h4>Publications</h4></a></li>
               <li><a href="Contact.html"><h4>Contact Us</h4></a></li>
-             
             </ul>
         </nav>
     </div>
@@ -274,42 +314,50 @@
 
   <div class="container">
     <div class="event-details">
-      <div class="left-section">
-        <h2 class="title">ಸಾಮೂಹಿಕ ಸಂಕಷಕ್ಟಹರ ಗಣಪತಿ ಪೂಜ</h2>
-        <img src="images/ganesh.jpeg" alt="Sri Vidya Ganapati Temple">
-        <div class="description">
-          <p>
-            The ಸಾಮೂಹಿಕ ಸಂಕಷಕ್ಟಹರ ಗಣಪತಿ ಪೂಜ is a sacred group ritual dedicated to Lord Ganesha, the remover of obstacles. This pooja is performed to seek blessings for success, prosperity, and the removal of difficulties in life. Devotees gather at Sri Jayarama Seva Mandali to participate in this auspicious event, which includes traditional chants, offerings, and prayers. The ritual begins with the invocation of Lord Ganesha, followed by the chanting of powerful mantras such as the Ganapati Atharvashirsha and the offering of modakas, which are considered Lord Ganesha’s favorite. The atmosphere is filled with devotion as participants engage in the sankalpa (intention-setting) and perform various rituals under the guidance of experienced priests. This pooja is particularly significant for those facing challenges in their personal or professional lives, as it is believed to clear obstacles and bring about positive transformations. The event concludes with the distribution of prasadam, a blessed offering, which devotees partake in with gratitude. Join us to experience the divine energy, immerse yourself in the spiritual ambiance, and receive the blessings of Lord Ganesha for a prosperous and obstacle-free life.
-          </p>
+      <h2 class="title">ಸಾಮೂಹಿಕ ಸಂಕಷಕ್ಟಹರ ಗಣಪತಿ ಪೂಜ</h2>
+      
+      <div class="content-section">
+        <div class="left-content">
+          <div class="image-container">
+            <img src="images/ganesh.jpeg" alt="Sri Vidya Ganapati Temple">
+            <img src="images/gane.jpeg" alt="Ganapati Pooja">
+            <img src="images/g.jpeg" alt="Ganapati Ritual">
+          </div>
+          
+          <div class="description">
+            <p>
+              The ಸಾಮೂಹಿಕ ಸಂಕಷಕ್ಟಹರ ಗಣಪತಿ ಪೂಜ is a sacred group ritual dedicated to Lord Ganesha, the remover of obstacles. This pooja is performed to seek blessings for success, prosperity, and the removal of difficulties in life. Devotees gather at Sri Jayarama Seva Mandali to participate in this auspicious event, which includes traditional chants, offerings, and prayers. The ritual begins with the invocation of Lord Ganesha, followed by the chanting of powerful mantras such as the Ganapati Atharvashirsha and the offering of modakas, which are considered Lord Ganesha's favorite. The atmosphere is filled with devotion as participants engage in the sankalpa (intention-setting) and perform various rituals under the guidance of experienced priests. This pooja is particularly significant for those facing challenges in their personal or professional lives, as it is believed to clear obstacles and bring about positive transformations. The event concludes with the distribution of prasadam, a blessed offering, which devotees partake in with gratitude. Join us to experience the divine energy, immerse yourself in the spiritual ambiance, and receive the blessings of Lord Ganesha for a prosperous and obstacle-free life.
+            </p>
+          </div>
         </div>
-      </div>
-      <div class="right-section">
-        <div class="dates-section">
-          <h2 class="dates-title">Pooja Dates</h2>
-          <div class="dates-grid">
-            <a href="enquiry.html" class="date-card">
-              <div class="date">April 16, 2025</div>
-              <div class="day">Wednesday</div>
-            </a>
-            <a href="enquiry.html" class="date-card">
-              <div class="date">May 16, 2025</div>
-              <div class="day">Friday</div>
-            </a>
-            <a href="enquiry.html" class="date-card">
-              <div class="date">June 14, 2025</div>
-              <div class="day">Saturday</div>
-            </a>
-            <a href="enquiry.html" class="date-card">
-              <div class="date">July 14, 2025</div>
-              <div class="day">Monday</div>
-            </a>
+        
+        <div class="right-content">
+          <div class="dates-section">
+            <h2 class="dates-title">Pooja Dates</h2>
+            <div class="dates-grid">
+              <a href="enquiry.html" class="date-card">
+                <div class="date">April 16, 2025</div>
+                <div class="day">Wednesday</div>
+              </a>
+              <a href="enquiry.html" class="date-card">
+                <div class="date">May 16, 2025</div>
+                <div class="day">Friday</div>
+              </a>
+              <a href="enquiry.html" class="date-card">
+                <div class="date">June 14, 2025</div>
+                <div class="day">Saturday</div>
+              </a>
+              <a href="enquiry.html" class="date-card">
+                <div class="date">July 14, 2025</div>
+                <div class="day">Monday</div>
+              </a>
+            </div>
+           
           </div>
         </div>
       </div>
     </div>
   </div>
-
- 
 
   <footer id="pq-footer">
     <div class="pq-footer-style-1">

@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Abhisheka</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #ffffff;
+            color: #ff3333;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 20px auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            border: 2px solid #ff3333;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: #ff3333;
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            color: #ff3333;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1em;
+            margin-bottom: 15px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .back-btn i {
+            margin-right: 5px;
+        }
+
+        .back-btn:hover {
+            color: #4a4a4a;
+            transform: translateX(-3px);
+        }
+
+        .divider {
+            border-top: 1px solid #ff3333;
+            margin: 20px 0;
+        }
+
+        .total-amount {
+            font-size: 1.2em;
+            font-weight: 500;
+            text-align: right;
+            padding: 15px;
+            background: #ffe6e6;
+            border-radius: 6px;
+            color: #ff3333;
+            margin: 20px 0;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            color: #ff3333;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+
+        .payment-option, .transaction-type-option {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+
+        .payment-option:hover, .transaction-type-option:hover {
+            background: #ffe6e6;
+            border-color: #ff3333;
+        }
+
+        .payment-option.selected, .transaction-type-option.selected {
+            background: #ffe6e6;
+            border: 2px solid #ff3333;
+        }
+
+        .payment-icon {
+            font-size: 1.8em;
+            margin-right: 15px;
+            color: #4a4a4a;
+        }
+
+        .payment-details {
+            flex-grow: 1;
+        }
+
+        .select-payment-btn {
+            background: #ff3333;
+            color: #ffffff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.9em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .select-payment-btn:hover {
+            background: #4a4a4a;
+            transform: translateY(-2px);
+        }
+
+        .select-payment-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .payment-title {
+            font-weight: 500;
+            color: #4a4a4a;
+            margin-bottom: 3px;
+        }
+
+        .payment-description {
+            font-size: 0.8em;
+            color: #777;
+        }
+
+        .transaction-type-section, .online-payment-section, .qr-payment-section, .upload-section, .manual-payment-section {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .upload-preview {
+            margin-top: 10px;
+            max-width: 100%;
+            max-height: 200px;
+            display: none;
+            border: 1px solid #ff3333;
+            border-radius: 6px;
+        }
+
+        .upload-btn, .confirm-payment-btn {
+            background: #ff3333;
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .upload-btn:hover, .confirm-payment-btn:hover {
+            background: #4a4a4a;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 15px auto;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.6em;
+            }
+
+            .select-payment-btn {
+                font-size: 0.8em;
+                padding: 6px 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                margin: 10px auto;
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.4em;
+            }
+
+            .upload-btn, .confirm-payment-btn, .select-payment-btn {
+                font-size: 0.9em;
+                padding: 10px;
+            }
+
+            .payment-option, .transaction-type-option {
+                padding: 10px;
+            }
+
+            .payment-icon {
+                font-size: 1.5em;
+                margin-right: 10px;
+            }
+
+            .select-payment-btn {
+                font-size: 0.7em;
+                padding: 5px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="book-seva-abhisheka.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back
+        </a>
+
+        <h1>Payment for Abhisheka</h1>
+
+        <div class="total-amount" id="totalAmount">
+            Total Amount: ₹<span id="amount">250</span>
+        </div>
+
+        <div class="form-group" id="paymentOptions">
+            <label>Select Payment Method</label>
+            <div class="payment-option" onclick="highlightPayment(this)">
+                <i class="fas fa-qrcode payment-icon"></i>
+                <div class="payment-details">
+                    <div class="payment-title">Scan QR Code</div>
+                    <div class="payment-description">Pay by scanning UPI QR code</div>
+                </div>
+                <i class="fas fa-check" style="display: none;"></i>
+                <button class="select-payment-btn" onclick="selectPayment(this, 'qr')">Select</button>
+            </div>
+            <div class="payment-option" onclick="highlightPayment(this)">
+                <i class="fas fa-mobile-alt payment-icon"></i>
+                <div class="payment-details">
+                    <div class="payment-title">UPI Payment</div>
+                    <div class="payment-description">Pay using UPI app</div>
+                </div>
+                <i class="fas fa-check" style="display: none;"></i>
+                <button class="select-payment-btn" onclick="selectPayment(this, 'upi')">Select</button>
+            </div>
+            <div class="payment-option" onclick="highlightPayment(this)">
+                <i class="fas fa-credit-card payment-icon"></i>
+                <div class="payment-details">
+                    <div class="payment-title">Credit/Debit Card</div>
+                    <div class="payment-description">Pay using your card</div>
+                </div>
+                <i class="fas fa-check" style="display: none;"></i>
+                <button class="select-payment-btn" onclick="selectPayment(this, 'card')">Select</button>
+            </div>
+            <div class="payment-option" onclick="highlightPayment(this)">
+                <i class="fas fa-university payment-icon"></i>
+                <div class="payment-details">
+                    <div class="payment-title">Net Banking</div>
+                    <div class="payment-description">Pay via online banking</div>
+                </div>
+                <i class="fas fa-check" style="display: none;"></i>
+                <button class="select-payment-btn" onclick="selectPayment(this, 'netbanking')">Select</button>
+            </div>
+        </div>
+
+        <div class="transaction-type-section" id="transactionTypeSection">
+            <label>Transaction Type</label>
+            <div class="transaction-type-option" onclick="selectTransactionType(this, 'online')">
+                <div class="payment-details">
+                    <div class="payment-title">Online</div>
+                    <div class="payment-description">Pay online using selected method</div>
+                </div>
+                <i class="fas fa-check" style="display: none;"></i>
+            </div>
+            <div class="transaction-type-option" onclick="selectTransactionType(this, 'manual')">
+                <div class="payment-details">
+                    <div class="payment-title">Manual</div>
+                    <div class="payment-description">Pay offline and confirm</div>
+                </div>
+                <i class="fas fa-check" style="display: none;"></i>
+            </div>
+        </div>
+
+        <div class="online-payment-section" id="onlinePaymentSection">
+            <p>Please complete the payment using the selected method: <span id="selectedPaymentMethodDisplay"></span></p>
+            <button class="confirm-payment-btn" onclick="confirmOnlinePayment()">Confirm Payment</button>
+        </div>
+
+        <div class="qr-payment-section" id="qrPaymentSection" style="display: none;">
+            <p>Please scan the QR code below to complete your payment of ₹<span id="qrAmount">250</span>:</p>
+            <div style="text-align: center; margin: 20px 0;">
+                <img src="https://thumb.ac-illust.com/16/16537c8a55c9792d39b3b2c303df5d83_t.jpeg" 
+                     alt="UPI QR Code" 
+                     style="max-width: 250px; border: 1px solid #ddd; padding: 10px; background: white;">
+            </div>
+            <p style="text-align: center; font-weight: bold;">UPI ID: sjrsm@upi</p>
+            <p style="text-align: center;">After payment, please click the confirmation button below.</p>
+            <button class="confirm-payment-btn" onclick="confirmQRPayment()">I've Completed Payment</button>
+        </div>
+
+        <div class="manual-payment-section" id="manualPaymentSection">
+            <p><strong>Manual Payment Instructions:</strong></p>
+            <p>Please make the payment of ₹<span id="manualAmount">250</span> to the following account:</p>
+            <p><strong>Account Name:</strong> Sri JayaRama Seva Mandali</p>
+            <p><strong>Account Number:</strong> 123456789012</p>
+            <p><strong>IFSC Code:</strong> SBIN0001234</p>
+            <p><strong>Bank:</strong> State Bank of India</p>
+            <p>Once the payment is made, click the button below to confirm.</p>
+            <button class="confirm-payment-btn" onclick="confirmManualPayment()">Confirm Manual Payment</button>
+        </div>
+
+        <div class="upload-section" id="uploadSection">
+            <label for="paymentScreenshot">Upload Payment Screenshot (PNG, JPG, JPEG)</label>
+            <input type="file" id="paymentScreenshot" accept="image/png, image/jpeg, image/jpg" required>
+            <img id="uploadPreview" class="upload-preview" alt="Payment Screenshot Preview">
+            <button class="upload-btn" onclick="validateUpload()">Submit Screenshot</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const amount = urlParams.get('amount') || '250';
+            let selectedPaymentMethod = null;
+            let selectedTransactionType = null;
+            let bookingDetails = {
+                name: urlParams.get('name'),
+                mobile: urlParams.get('mobile'),
+                gotra: urlParams.get('gotra'),
+                nakshatra: urlParams.get('nakshatra'),
+                rashi: urlParams.get('rashi'),
+                district: urlParams.get('district'),
+                state: urlParams.get('state'),
+                address: urlParams.get('address'),
+                pincode: urlParams.get('pincode'),
+                date: urlParams.get('date'),
+                time: urlParams.get('time')
+            };
+
+            // Update amount displays
+            document.getElementById('totalAmount').innerHTML = `Total Amount: ₹${amount}`;
+            document.getElementById('qrAmount').textContent = amount;
+            document.getElementById('manualAmount').textContent = amount;
+
+            window.highlightPayment = function(element) {
+                document.querySelectorAll('.payment-option').forEach(option => {
+                    option.classList.remove('selected');
+                    option.querySelector('.fa-check').style.display = 'none';
+                });
+
+                element.classList.add('selected');
+                element.querySelector('.fa-check').style.display = 'inline-block';
+            };
+
+            window.selectPayment = function(element, method) {
+                selectedPaymentMethod = method;
+                document.getElementById('transactionTypeSection').style.display = 'block';
+                document.getElementById('onlinePaymentSection').style.display = 'none';
+                document.getElementById('qrPaymentSection').style.display = 'none';
+                document.getElementById('manualPaymentSection').style.display = 'none';
+                document.getElementById('uploadSection').style.display = 'none';
+            };
+
+            window.selectTransactionType = function(element, type) {
+                document.querySelectorAll('.transaction-type-option').forEach(option => {
+                    option.classList.remove('selected');
+                    option.querySelector('.fa-check').style.display = 'none';
+                });
+
+                element.classList.add('selected');
+                element.querySelector('.fa-check').style.display = 'inline-block';
+                selectedTransactionType = type;
+
+                if (type === 'online') {
+                    if (selectedPaymentMethod === 'qr') {
+                        document.getElementById('qrPaymentSection').style.display = 'block';
+                        document.getElementById('onlinePaymentSection').style.display = 'none';
+                    } else {
+                        document.getElementById('onlinePaymentSection').style.display = 'block';
+                        let displayMethod = '';
+                        switch (selectedPaymentMethod) {
+                            case 'upi':
+                                displayMethod = 'UPI';
+                                break;
+                            case 'card':
+                                displayMethod = 'Credit/Debit Card';
+                                break;
+                            case 'netbanking':
+                                displayMethod = 'Net Banking';
+                                break;
+                            default:
+                                displayMethod = selectedPaymentMethod;
+                        }
+                        document.getElementById('selectedPaymentMethodDisplay').textContent = displayMethod;
+                        document.getElementById('qrPaymentSection').style.display = 'none';
+                    }
+                    document.getElementById('manualPaymentSection').style.display = 'none';
+                    document.getElementById('uploadSection').style.display = 'none';
+                } else {
+                    document.getElementById('manualPaymentSection').style.display = 'block';
+                    document.getElementById('onlinePaymentSection').style.display = 'none';
+                    document.getElementById('qrPaymentSection').style.display = 'none';
+                    document.getElementById('uploadSection').style.display = 'none';
+                }
+            };
+
+            window.confirmOnlinePayment = function() {
+                document.getElementById('onlinePaymentSection').style.display = 'none';
+                document.getElementById('uploadSection').style.display = 'block';
+                let displayMethod = '';
+                switch (selectedPaymentMethod) {
+                    case 'upi':
+                        displayMethod = 'UPI';
+                        break;
+                    case 'card':
+                        displayMethod = 'Credit/Debit Card';
+                        break;
+                    case 'netbanking':
+                        displayMethod = 'Net Banking';
+                        break;
+                    default:
+                        displayMethod = selectedPaymentMethod;
+                }
+                alert(`Please complete the payment of ₹${amount} using ${displayMethod} and upload the screenshot.`);
+            };
+
+            window.confirmQRPayment = function() {
+                document.getElementById('qrPaymentSection').style.display = 'none';
+                document.getElementById('uploadSection').style.display = 'block';
+                alert('Please upload the payment confirmation screenshot after scanning the QR code.');
+            };
+
+            window.confirmManualPayment = function() {
+                let displayMethod = '';
+                switch (selectedPaymentMethod) {
+                    case 'upi':
+                        displayMethod = 'UPI';
+                        break;
+                    case 'card':
+                        displayMethod = 'Credit/Debit Card';
+                        break;
+                    case 'netbanking':
+                        displayMethod = 'Net Banking';
+                        break;
+                    case 'qr':
+                        displayMethod = 'QR Code';
+                        break;
+                    default:
+                        displayMethod = selectedPaymentMethod;
+                }
+                bookingDetails.paymentMethod = `${displayMethod} - ${selectedTransactionType.charAt(0).toUpperCase() + selectedTransactionType.slice(1)}`;
+                redirectToTicketPage();
+            };
+
+            window.validateUpload = function() {
+                const screenshotInput = document.getElementById('paymentScreenshot');
+                const file = screenshotInput.files[0];
+
+                if (!file) {
+                    alert('Please upload a payment screenshot.');
+                    return;
+                }
+
+                const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg'];
+                if (!allowedTypes.includes(file.type)) {
+                    alert('Please upload a valid image file (PNG, JPG, JPEG).');
+                    return;
+                }
+
+                let displayMethod = '';
+                switch (selectedPaymentMethod) {
+                    case 'upi':
+                        displayMethod = 'UPI';
+                        break;
+                    case 'card':
+                        displayMethod = 'Credit/Debit Card';
+                        break;
+                    case 'netbanking':
+                        displayMethod = 'Net Banking';
+                        break;
+                    case 'qr':
+                        displayMethod = 'QR Code';
+                        break;
+                    default:
+                        displayMethod = selectedPaymentMethod;
+                }
+                bookingDetails.paymentMethod = `${displayMethod} - ${selectedTransactionType.charAt(0).toUpperCase() + selectedTransactionType.slice(1)}`;
+                redirectToTicketPage();
+            };
+
+            function redirectToTicketPage() {
+                const params = new URLSearchParams(bookingDetails);
+                params.append('payment', 'success');
+                window.location.href = `book-seva-abhisheka.html?${params.toString()}`;
+            }
+
+            const screenshotInput = document.getElementById('paymentScreenshot');
+            const preview = document.getElementById('uploadPreview');
+            screenshotInput.addEventListener('change', function() {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        preview.src = e.target.result;
+                        preview.style.display = 'block';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

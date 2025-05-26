@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Seva - Abhisheka (Saturday only)</title>
+    <title>Book Seva - Abhisheka</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -150,11 +150,6 @@
             cursor: not-allowed;
         }
 
-        .calendar-day.saturday {
-            color: #4a4a4a;
-            font-weight: 500;
-        }
-
         .divider {
             border-top: 1px solid #ff3333;
             margin: 20px 0;
@@ -220,6 +215,10 @@
             transform: translateY(-2px);
         }
 
+        #paymentOptions {
+            display: none;
+        }
+
         .payment-option, .transaction-type-option {
             display: flex;
             align-items: center;
@@ -252,6 +251,28 @@
             flex-grow: 1;
         }
 
+        .select-payment-btn {
+            background: #ff3333;
+            color: #ffffff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.9em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .select-payment-btn:hover {
+            background: #4a4a4a;
+            transform: translateY(-2px);
+        }
+
+        .select-payment-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
         .payment-title {
             font-weight: 500;
             color: #4a4a4a;
@@ -263,7 +284,7 @@
             color: #777;
         }
 
-        .transaction-type-section, .online-payment-section, .upload-section, .manual-payment-section, .qr-payment-section {
+        .transaction-type-section, .online-payment-section, .qr-payment-section, .upload-section, .manual-payment-section {
             display: none;
             margin-top: 20px;
         }
@@ -326,6 +347,13 @@
             color: #ff3333;
             text-align: center;
             margin-bottom: 10px;
+        }
+
+        .logo-placeholder {
+            text-align: center;
+            margin-bottom: 10px;
+            font-style: italic;
+            color: #777;
         }
 
         .download-ticket-btn, .new-booking-btn {
@@ -481,6 +509,11 @@
             .temple-name {
                 font-size: 1.2em;
             }
+
+            .select-payment-btn {
+                font-size: 0.8em;
+                padding: 6px 10px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -498,7 +531,7 @@
                 font-size: 0.7em;
             }
 
-            .submit-btn, .modal-submit-btn, .upload-btn, .confirm-payment-btn, .download-ticket-btn, .new-booking-btn {
+            .submit-btn, .modal-submit-btn, .upload-btn, .confirm-payment-btn, .download-ticket-btn, .new-booking-btn, .select-payment-btn {
                 font-size: 0.9em;
                 padding: 10px;
             }
@@ -523,18 +556,21 @@
             .temple-name {
                 font-size: 1em;
             }
+
+            .select-payment-btn {
+                font-size: 0.7em;
+                padding: 5px 8px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <a href="Book-seva.html" class="back-btn">
-            <i class="fas fa-arrow-left"></i> Back to Seva List
+        <a href="Upcoming Pooja Dates.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back
         </a>
 
-        <h1>Abhisheka (Saturday only) - ₹250</h1>
-
-        <h2 id="calendarHeader">Select Seva Date</h2>
+        <h1>Abhisheka - ₹250</h1>
 
         <div class="calendar-container" id="calendarSection">
             <div class="calendar-header">
@@ -575,11 +611,6 @@
         </div>
 
         <div class="form-group" id="formSection">
-            <label for="email">Email ID</label>
-            <input type="email" id="email" placeholder="Enter Email ID" required>
-        </div>
-
-        <div class="form-group" id="formSection">
             <label for="district">Enter District</label>
             <input type="text" id="district" placeholder="Enter district" required>
         </div>
@@ -601,40 +632,24 @@
 
         <div class="form-group" id="paymentOptions">
             <label>Select Payment Method</label>
-            <div class="payment-option" onclick="selectPayment(this, 'qr')">
+            <div class="payment-option" onclick="highlightPayment(this)">
                 <i class="fas fa-qrcode payment-icon"></i>
                 <div class="payment-details">
                     <div class="payment-title">Scan QR Code</div>
                     <div class="payment-description">Pay by scanning UPI QR code</div>
                 </div>
                 <i class="fas fa-check" style="display: none;"></i>
+                <button class="select-payment-btn" disabled onclick="selectPayment(this, 'qr')">Select</button>
             </div>
-            <div class="payment-option" onclick="selectPayment(this, 'upi')">
+            <div class="payment-option" onclick="highlightPayment(this)">
                 <i class="fas fa-mobile-alt payment-icon"></i>
                 <div class="payment-details">
                     <div class="payment-title">UPI Payment</div>
                     <div class="payment-description">Pay using UPI app</div>
                 </div>
                 <i class="fas fa-check" style="display: none;"></i>
+                <button class="select-payment-btn" disabled onclick="selectPayment(this, 'upi')">Select</button>
             </div>
-            <!--  
-            <div class="payment-option" onclick="selectPayment(this, 'card')">
-                <i class="far fa-credit-card payment-icon"></i>
-                <div class="payment-details">
-                    <div class="payment-title">Credit/Debit Card</div>
-                    <div class="payment-description">Pay with Visa, Mastercard, etc.</div>
-                </div>
-                <i class="fas fa-check" style="display: none;"></i>
-            </div>
-            <div class="payment-option" onclick="selectPayment(this, 'netbanking')">
-                <i class="fas fa-university payment-icon"></i>
-                <div class="payment-details">
-                    <div class="payment-title">Net Banking</div>
-                    <div class="payment-description">Pay directly from your bank</div>
-                </div>
-                <i class="fas fa-check" style="display: none;"></i>
-            </div>
-            -->
         </div>
 
         <div class="transaction-type-section" id="transactionTypeSection">
@@ -710,7 +725,7 @@
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal()">×</button>
             <h3 class="modal-title">Confirm Seva Booking</h3>
-            <div class="modal-seva-name">Abhisheka (Saturday only)</div>
+            <div class="modal-seva-name">Abhisheka</div>
             <div class="modal-seva-price">₹250</div>
 
             <div class="modal-form">
@@ -733,10 +748,6 @@
                 <div class="form-group">
                     <label for="modal-rashi">Raashi</label>
                     <input type="text" id="modal-rashi" placeholder="Enter raashi" required>
-                </div>
-                <div class="form-group">
-                    <label for="modal-email">Email ID</label>
-                    <input type="email" id="modal-email" placeholder="Enter Email ID" required>
                 </div>
                 <div class="form-group">
                     <label for="modal-district">Enter District</label>
@@ -804,11 +815,6 @@
                     dayElement.className = 'calendar-day';
                     dayElement.textContent = day;
 
-                    const dayOfWeek = new Date(year, month, day).getDay();
-                    if (dayOfWeek === 6) {
-                        dayElement.classList.add('saturday');
-                    }
-
                     if (selectedDate && 
                         selectedDate.getDate() === day && 
                         selectedDate.getMonth() === month && 
@@ -819,7 +825,7 @@
                     const today = new Date();
                     if (new Date(year, month, day) < today.setHours(0, 0, 0, 0)) {
                         dayElement.classList.add('disabled');
-                    } else if (dayOfWeek === 6) {
+                    } else {
                         dayElement.addEventListener('click', function() {
                             document.querySelectorAll('.calendar-day').forEach(d => {
                                 d.classList.remove('selected');
@@ -827,8 +833,6 @@
                             this.classList.add('selected');
                             selectedDate = new Date(year, month, day);
                         });
-                    } else {
-                        dayElement.classList.add('disabled');
                     }
 
                     calendarDays.appendChild(dayElement);
@@ -845,7 +849,7 @@
                 generateCalendar(currentDate);
             };
 
-            window.selectPayment = function(element, method) {
+            window.highlightPayment = function(element) {
                 document.querySelectorAll('.payment-option').forEach(option => {
                     option.classList.remove('selected');
                     option.querySelector('.fa-check').style.display = 'none';
@@ -853,8 +857,10 @@
 
                 element.classList.add('selected');
                 element.querySelector('.fa-check').style.display = 'inline-block';
-                selectedPaymentMethod = method;
+            };
 
+            window.selectPayment = function(element, method) {
+                selectedPaymentMethod = method;
                 document.getElementById('transactionTypeSection').style.display = 'block';
                 document.getElementById('onlinePaymentSection').style.display = 'none';
                 document.getElementById('qrPaymentSection').style.display = 'none';
@@ -892,23 +898,16 @@
                 }
             };
 
-            window.confirmQRPayment = function() {
-                document.getElementById('qrPaymentSection').style.display = 'none';
-                document.getElementById('uploadSection').style.display = 'block';
-                alert('Please upload the payment confirmation screenshot after scanning the QR code.');
-            };
-
             window.validateForm = function() {
                 if (!selectedDate) {
-                    alert('Please select a Saturday for the seva.');
+                    alert('Please select a date for the seva.');
                     return;
                 }
 
-                const requiredFields = ['name', 'mobile', 'gotra', 'nakshatra', 'rashi', 'email', 'district', 'state', 'address', 'pincode'];
+                const requiredFields = ['name', 'mobile', 'gotra', 'nakshatra', 'rashi', 'district', 'state', 'address', 'pincode'];
                 let isValid = true;
                 const mobile = document.getElementById('mobile').value.trim();
                 const pincode = document.getElementById('pincode').value.trim();
-                const email = document.getElementById('email').value.trim();
 
                 requiredFields.forEach(field => {
                     if (!document.getElementById(field).value.trim()) {
@@ -928,26 +927,15 @@
                     return;
                 }
 
-                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                    isValid = false;
-                    alert('Please enter a valid email address.');
-                    return;
-                }
-
                 if (!isValid) {
                     alert('Please fill in all required fields.');
                     return;
                 }
 
-                if (!selectedPaymentMethod) {
-                    alert('Please select a payment method.');
-                    return;
-                }
-
-                if (!selectedTransactionType) {
-                    alert('Please select a transaction type (Online/Manual).');
-                    return;
-                }
+                document.getElementById('paymentOptions').style.display = 'block';
+                document.querySelectorAll('.select-payment-btn').forEach(btn => {
+                    btn.disabled = false;
+                });
 
                 openModal();
             };
@@ -956,6 +944,12 @@
                 document.getElementById('onlinePaymentSection').style.display = 'none';
                 document.getElementById('uploadSection').style.display = 'block';
                 alert(`Please complete the payment of ₹250 using ${selectedPaymentMethod} and upload the screenshot.`);
+            };
+
+            window.confirmQRPayment = function() {
+                document.getElementById('qrPaymentSection').style.display = 'none';
+                document.getElementById('uploadSection').style.display = 'block';
+                alert('Please upload the payment confirmation screenshot after scanning the QR code.');
             };
 
             window.confirmManualPayment = function() {
@@ -990,7 +984,6 @@
                 document.getElementById('modal-gotra').value = document.getElementById('gotra').value;
                 document.getElementById('modal-nakshatra').value = document.getElementById('nakshatra').value;
                 document.getElementById('modal-rashi').value = document.getElementById('rashi').value;
-                document.getElementById('modal-email').value = document.getElementById('email').value;
                 document.getElementById('modal-district').value = document.getElementById('district').value;
                 document.getElementById('modal-state').value = document.getElementById('state').value;
                 document.getElementById('modal-address').value = document.getElementById('address').value;
@@ -1014,20 +1007,18 @@
                 const gotra = document.getElementById('modal-gotra').value;
                 const nakshatra = document.getElementById('modal-nakshatra').value;
                 const rashi = document.getElementById('modal-rashi').value;
-                const email = document.getElementById('modal-email').value;
                 const district = document.getElementById('modal-district').value;
                 const state = document.getElementById('modal-state').value;
                 const address = document.getElementById('modal-address').value;
                 const pincode = document.getElementById('modal-pincode').value;
 
-                if (name && mobile && gotra && nakshatra && rashi && email && district && state && address && pincode && selectedDate) {
+                if (name && mobile && gotra && nakshatra && rashi && district && state && address && pincode && selectedDate) {
                     bookingDetails = {
                         name: name,
                         mobile: mobile,
                         gotra: gotra,
                         nakshatra: nakshatra,
                         rashi: rashi,
-                        email: email,
                         district: district,
                         state: state,
                         address: address,
@@ -1040,13 +1031,12 @@
                     alert(`Booking confirmed for ${name} on ${selectedDate.toDateString()} at 10:00 AM IST! We'll contact you at ${mobile}. Payment method: ${bookingDetails.paymentMethod}`);
 
                     document.getElementById('calendarSection').style.display = 'none';
-                    document.getElementById('calendarHeader').style.display = 'none';
                     document.getElementById('divider1').style.display = 'none';
                     document.getElementById('kartaDetailsHeader').style.display = 'none';
                     document.querySelectorAll('#formSection').forEach(section => {
                         section.style.display = 'none';
                     });
-                    document.getElementById(' Prussia: paymentOptions').style.display = 'none';
+                    document.getElementById('paymentOptions').style.display = 'none';
                     document.getElementById('transactionTypeSection').style.display = 'none';
                     document.getElementById('onlinePaymentSection').style.display = 'none';
                     document.getElementById('qrPaymentSection').style.display = 'none';
@@ -1058,16 +1048,18 @@
 
                     const ticketDetails = document.getElementById('ticketDetails');
                     ticketDetails.innerHTML = `
+                        <div style="text-align: center; margin-bottom: 10px;">
+                            <img src="images/l-2.png" style="width: 80px; height: 80px; margin-left: 3px; background: linear-gradient(#f7971e, #ffd200);" alt="SJRSM Logo">
+                        </div>
                         <div class="temple-name">Sri JayaRama Seva Mandali</div>
                         <p><strong>Temple Address:</strong> 123 Temple Road, Bangalore, Karnataka, India 560001</p>
-                        <p><strong>Seva:</strong> Abhisheka (Saturday only)</p>
+                        <p><strong>Seva:</strong> Abhisheka</p>
                         <p><strong>Seva Date and Time:</strong> ${selectedDate.toDateString()} at 10:00 AM IST</p>
                         <p><strong>Karta's Name:</strong> ${name}</p>
                         <p><strong>Mobile Number:</strong> ${mobile}</p>
                         <p><strong>Gotra:</strong> ${gotra}</p>
                         <p><strong>Nakshatra:</strong> ${nakshatra}</p>
                         <p><strong>Raashi:</strong> ${rashi}</p>
-                        <p><strong>Email ID:</strong> ${email}</p>
                         <p><strong>District:</strong> ${district}</p>
                         <p><strong>State:</strong> ${state}</p>
                         <p><strong>Address:</strong> ${address}</p>
@@ -1107,7 +1099,7 @@
                     const doc = new jsPDF({
                         orientation: 'landscape',
                         unit: 'mm',
-                        format: [210, 148] // A5 size in landscape
+                        format: [210, 148]
                     });
 
                     const pageWidth = doc.internal.pageSize.getWidth();
@@ -1226,14 +1218,13 @@
                         }
 
                         addDetail('Temple Address:', '123 Temple Road, Bangalore, Karnataka, India 560001');
-                        addDetail('Seva:', 'Abhisheka (Saturday only)');
+                        addDetail('Seva:', 'Abhisheka');
                         addDetail('Seva Date and Time:', `${bookingDetails.date} at 10:00 AM IST`);
                         addDetail('Karta\'s Name:', bookingDetails.name);
                         addDetail('Mobile Number:', bookingDetails.mobile);
                         addDetail('Gotra:', bookingDetails.gotra);
                         addDetail('Nakshatra:', bookingDetails.nakshatra);
                         addDetail('Raashi:', bookingDetails.rashi);
-                        addDetail('Email ID:', bookingDetails.email);
                         addDetail('District:', bookingDetails.district);
                         addDetail('State:', bookingDetails.state);
                         addDetail('Address:', bookingDetails.address);
@@ -1286,14 +1277,13 @@
 
                 document.getElementById('ticketSection').style.display = 'none';
                 document.getElementById('calendarSection').style.display = 'block';
-                document.getElementById('calendarHeader').style.display = 'block';
                 document.getElementById('divider1').style.display = 'block';
                 document.getElementById('kartaDetailsHeader').style.display = 'block';
                 document.querySelectorAll('#formSection').forEach(section => {
                     section.style.display = 'block';
                     section.querySelector('input').value = '';
                 });
-                document.getElementById('paymentOptions').style.display = 'block';
+                document.getElementById('paymentOptions').style.display = 'none';
                 document.getElementById('transactionTypeSection').style.display = 'none';
                 document.getElementById('onlinePaymentSection').style.display = 'none';
                 document.getElementById('qrPaymentSection').style.display = 'none';
@@ -1313,6 +1303,10 @@
                 document.querySelectorAll('.transaction-type-option').forEach(option => {
                     option.classList.remove('selected');
                     option.querySelector('.fa-check').style.display = 'none';
+                });
+
+                document.querySelectorAll('.select-payment-btn').forEach(btn => {
+                    btn.disabled = true;
                 });
 
                 generateCalendar(new Date());

@@ -47,11 +47,10 @@
     <div class="header">
     <nav class="navbar">
       <div class="logo" style="display: flex; align-items: center;">
-        <img src="images/l-2.png" style="width: 80px; height: 80px; margin-left: 3px; background: linear-gradient(#f7971e, #ffd200);" alt="SJRSM Logo">
-       
+        <img src="images/l-2.png" style="width: 80px; height: 80px;margin-left: 3px; background: linear-gradient(#f7971e, #ffd200);" alt="SJRSM Logo">
         <div style="display: flex; flex-direction: column; margin-left: 10px;">
           <span class="brand-name" style="font-weight: bold; font-size: clamp(16px, 2vw, 24px); font-family: sans-serif; color: #000000; white-space: nowrap;">
-              SRI JAYARAMA SEVA MANDALI  <sub><font color="red">®</font></sub>
+              SRI JAYARAMA SEVA MANDALI <span style="font-size: clamp(12px, 1.5vw, 16px); color: red;">(R)</span>
           </span>
           <span style="margin-left: 6px; font-size: clamp(12px, 1.5vw, 16px); color: red; font-family: sans-serif; white-space: nowrap;">
               8th Block, Jayanagar, Bangalore
@@ -67,13 +66,10 @@
           <li><a href="About_us.html"><h4>About Us</h4></a></li>
           <li class="dropdown">
               <a href="javascript:void(0);" class="dropdown-toggle"><h4>Events</h4></a> <!-- Fixed typo: changed <h3> to <h4> -->
-              <div class="dropdown-content">
-                 
+                <div class="dropdown-content">
                   <a href="Upcoming Pooja Dates.html">Upcoming Pooja Dates</a>
-
                   <a href="previous-events.html">Previous Events</a>
-                 
-                 
+                  <a href="recurring.html">Recurring Events</a>
               </div>
           </li>
           <li><a href="Book-seva.html"><h4>Seva</h4></a></li>
@@ -180,22 +176,29 @@ if (menuToggle && navLinks) {
 
 
 <!-- Scrolling Marquee at the top -->
-<div class="scrolling-text-container">
+<div class="scrolling-text-container" onclick="window.location.href='Upcoming Pooja Dates.html'">
   <div class="scrolling-text-track">
     <div class="scrolling-text-content">📿 Weekly Prakarothsava Seva & Samoohika Sri Vishnusahasranama Parayana — Every Saturday at 5:30 PM — 📍 At Sri Jayarama Sannidhi, Bangalore.</div>
-    
   </div>
 </div>
 
 <!-- Hero Section -->
+<!-- Hero Section -->
 <div class="hero">
   <div class="slider">
     <button class="slider-arrow slider-arrow-left" aria-label="Previous Slide">←</button>
-    <img class="slide" src="images/image-2.jpg" alt="Slide 2" onerror="this.classList.add('error'); this.innerHTML='Image 2 not loaded'">
+    <img class="slide active" src="images/image-2.jpg" alt="Slide 2" onerror="this.classList.add('error'); this.innerHTML='Image 2 not loaded'">
     <img class="slide" src="images/image-4.jpg" alt="Slide 4" onerror="this.classList.add('error'); this.innerHTML='Image 4 not loaded'">
     <button class="slider-arrow slider-arrow-right" aria-label="Next Slide">→</button>
+
+    <!-- ✅ Hero Content Added -->
+    <div class="hero-content">
+      <p id="p1">Welcome to Sri Jayarama Sannidhi</p>
+      <p id="p2">Join us every Saturday for Prakarothsava Seva & Vishnusahasranama Parayana</p>
+    </div>
   </div>
 </div>
+
 
 <style>
   * {
@@ -349,6 +352,9 @@ if (menuToggle && navLinks) {
     margin-top: -40px;
   }
 
+
+
+
   /* Slider container with fallback background */
   .slider {
     position: relative;
@@ -400,25 +406,25 @@ if (menuToggle && navLinks) {
   }
 
   #p1 {
-    font-family: 'Dancing Script', cursive;
-    font-size: 2.5em;
-    color: #fff5e1;
-    margin: 0;
-    opacity: 0;
-    animation: fadeIn 1s ease-in-out 0.5s forwards;
-    text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
-  }
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.5em;
+  color: white; /* Black text */
+  margin-top: 100px; /* Push content down */
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out 0.5s forwards;
+  text-shadow: none;
+}
 
-  #p2 {
-    font-family: 'Raleway', sans-serif;
-    font-size: 1.5em;
-    font-weight: 700;
-    color: #ffffff;
-    margin: 10px 0;
-    opacity: 0;
-    animation: fadeIn 1s ease-in-out 1s forwards;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-  }
+#p2 {
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.5em;
+  font-weight: 700;
+  color: white; /* Black text */
+  margin-top: 20px;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out 1s forwards;
+  text-shadow: none;
+}
 
   @keyframes fadeIn {
     from {
@@ -994,7 +1000,7 @@ if (menuToggle && navLinks) {
     </div>
     <button class="carousel-button prev-button" onclick="prevSlide()">❮</button>
     <button class="carousel-button next-button" onclick="nextSlide()">❯</button>
-    <a href="Book-seva.html" class="explore-more-button">Explore More</a>
+    <a href="Book-seva.html" class="explore-more-button">More Sevas</a>
   </div>
 </div>
 

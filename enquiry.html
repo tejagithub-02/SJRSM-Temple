@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Seva - Abhisheka (Saturday only)</title>
+    <title>Book Seva - Abhisheka</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -150,11 +150,6 @@
             cursor: not-allowed;
         }
 
-        .calendar-day.saturday {
-            color: #4a4a4a;
-            font-weight: 500;
-        }
-
         .divider {
             border-top: 1px solid #ff3333;
             margin: 20px 0;
@@ -220,82 +215,6 @@
             transform: translateY(-2px);
         }
 
-        .payment-option, .transaction-type-option {
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            margin-bottom: 10px;
-            background: #f9f9f9;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 1px solid #e0e0e0;
-        }
-
-        .payment-option:hover, .transaction-type-option:hover {
-            background: #ffe6e6;
-            border-color: #ff3333;
-        }
-
-        .payment-option.selected, .transaction-type-option.selected {
-            background: #ffe6e6;
-            border: 2px solid #ff3333;
-        }
-
-        .payment-icon {
-            font-size: 1.8em;
-            margin-right: 15px;
-            color: #4a4a4a;
-        }
-
-        .payment-details {
-            flex-grow: 1;
-        }
-
-        .payment-title {
-            font-weight: 500;
-            color: #4a4a4a;
-            margin-bottom: 3px;
-        }
-
-        .payment-description {
-            font-size: 0.8em;
-            color: #777;
-        }
-
-        .transaction-type-section, .online-payment-section, .upload-section, .manual-payment-section {
-            display: none;
-            margin-top: 20px;
-        }
-
-        .upload-preview {
-            margin-top: 10px;
-            max-width: 100%;
-            max-height: 200px;
-            display: none;
-            border: 1px solid #ff3333;
-            border-radius: 6px;
-        }
-
-        .upload-btn, .confirm-payment-btn {
-            background: #ff3333;
-            color: #ffffff;
-            border: none;
-            padding: 12px;
-            width: 100%;
-            border-radius: 6px;
-            font-size: 1em;
-            font-weight: 500;
-            cursor: pointer;
-            margin-top: 15px;
-            transition: background 0.3s ease, transform 0.2s ease;
-        }
-
-        .upload-btn:hover, .confirm-payment-btn:hover {
-            background: #4a4a4a;
-            transform: translateY(-2px);
-        }
-
         .ticket-section {
             display: none;
             margin-top: 20px;
@@ -326,13 +245,6 @@
             color: #ff3333;
             text-align: center;
             margin-bottom: 10px;
-        }
-
-        .logo-placeholder {
-            text-align: center;
-            margin-bottom: 10px;
-            font-style: italic;
-            color: #777;
         }
 
         .download-ticket-btn, .new-booking-btn {
@@ -443,6 +355,109 @@
             transform: translateY(-2px);
         }
 
+        .payment-section {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .payment-option, .transaction-type-option {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+
+        .payment-option:hover, .transaction-type-option:hover {
+            background: #ffe6e6;
+            border-color: #ff3333;
+        }
+
+        .payment-option.selected, .transaction-type-option.selected {
+            background: #ffe6e6;
+            border: 2px solid #ff3333;
+        }
+
+        .payment-icon {
+            font-size: 1.8em;
+            margin-right: 15px;
+            color: #4a4a4a;
+        }
+
+        .payment-details {
+            flex-grow: 1;
+        }
+
+        .select-payment-btn {
+            background: #ff3333;
+            color: #ffffff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.9em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .select-payment-btn:hover {
+            background: #4a4a4a;
+            transform: translateY(-2px);
+        }
+
+        .select-payment-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .payment-title {
+            font-weight: 500;
+            color: #4a4a4a;
+            margin-bottom: 3px;
+        }
+
+        .payment-description {
+            font-size: 0.8em;
+            color: #777;
+        }
+
+        .transaction-type-section, .online-payment-section, .qr-payment-section, .upload-section, .manual-payment-section {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .upload-preview {
+            margin-top: 10px;
+            max-width: 100%;
+            max-height: 200px;
+            display: none;
+            border: 1px solid #ff3333;
+            border-radius: 6px;
+        }
+
+        .upload-btn, .confirm-payment-btn {
+            background: #ff3333;
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .upload-btn:hover, .confirm-payment-btn:hover {
+            background: #4a4a4a;
+            transform: translateY(-2px);
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -488,6 +503,11 @@
             .temple-name {
                 font-size: 1.2em;
             }
+
+            .select-payment-btn {
+                font-size: 0.8em;
+                padding: 6px 10px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -505,18 +525,9 @@
                 font-size: 0.7em;
             }
 
-            .submit-btn, .modal-submit-btn, .upload-btn, .confirm-payment-btn, .download-ticket-btn, .new-booking-btn {
+            .submit-btn, .modal-submit-btn, .download-ticket-btn, .new-booking-btn, .upload-btn, .confirm-payment-btn {
                 font-size: 0.9em;
                 padding: 10px;
-            }
-
-            .payment-option, .transaction-type-option {
-                padding: 10px;
-            }
-
-            .payment-icon {
-                font-size: 1.5em;
-                margin-right: 10px;
             }
 
             .ticket-section h2 {
@@ -530,6 +541,20 @@
             .temple-name {
                 font-size: 1em;
             }
+
+            .payment-option, .transaction-type-option {
+                padding: 10px;
+            }
+
+            .payment-icon {
+                font-size: 1.5em;
+                margin-right: 10px;
+            }
+
+            .select-payment-btn {
+                font-size: 0.7em;
+                padding: 5px 8px;
+            }
         }
     </style>
 </head>
@@ -539,7 +564,7 @@
             <i class="fas fa-arrow-left"></i> Back
         </a>
 
-        <h1>Abhisheka (Saturday only) - ₹250</h1>
+        <h1>Abhisheka - ₹250</h1>
 
         <div class="calendar-container" id="calendarSection">
             <div class="calendar-header">
@@ -599,97 +624,6 @@
             <input type="text" id="pincode" placeholder="Enter Pincode" pattern="[0-9]{6}" required>
         </div>
 
-        <div class="form-group" id="paymentOptions">
-            <label>Select Payment Method</label>
-            <div class="payment-option" onclick="selectPayment(this, 'qr')">
-                <i class="fas fa-qrcode payment-icon"></i>
-                <div class="payment-details">
-                    <div class="payment-title">Scan QR Code</div>
-                    <div class="payment-description">Pay by scanning UPI QR code</div>
-                </div>
-                <i class="fas fa-check" style="display: none;"></i>
-            </div>
-            <div class="payment-option" onclick="selectPayment(this, 'upi')">
-                <i class="fas fa-mobile-alt payment-icon"></i>
-                <div class="payment-details">
-                    <div class="payment-title">UPI Payment</div>
-                    <div class="payment-description">Pay using UPI app</div>
-                </div>
-                <i class="fas fa-check" style="display: none;"></i>
-            </div>
-
-            <!--  
-            <div class="payment-option" onclick="selectPayment(this, 'card')">
-                <i class="far fa-credit-card payment-icon"></i>
-                <div class="payment-details">
-                    <div class="payment-title">Credit/Debit Card</div>
-                    <div class="payment-description">Pay with Visa, Mastercard, etc.</div>
-                </div>
-                <i class="fas fa-check" style="display: none;"></i>
-            </div>
-            <div class="payment-option" onclick="selectPayment(this, 'netbanking')">
-                <i class="fas fa-university payment-icon"></i>
-                <div class="payment-details">
-                    <div class="payment-title">Net Banking</div>
-                    <div class="payment-description">Pay directly from your bank</div>
-                </div>
-                <i class="fas fa-check" style="display: none;"></i>
-            </div>
-        </div>
--->
-        <div class="transaction-type-section" id="transactionTypeSection">
-            <label>Transaction Type</label>
-            <div class="transaction-type-option" onclick="selectTransactionType(this, 'online')">
-                <div class="payment-details">
-                    <div class="payment-title">Online</div>
-                    <div class="payment-description">Pay online using selected method</div>
-                </div>
-                <i class="fas fa-check" style="display: none;"></i>
-            </div>
-            <div class="transaction-type-option" onclick="selectTransactionType(this, 'manual')">
-                <div class="payment-details">
-                    <div class="payment-title">Manual</div>
-                    <div class="payment-description">Pay offline and confirm</div>
-                </div>
-                <i class="fas fa-check" style="display: none;"></i>
-            </div>
-        </div>
-
-        <div class="online-payment-section" id="onlinePaymentSection">
-            <p>Please complete the payment using the selected method: <span id="selectedPaymentMethodDisplay"></span></p>
-            <button class="confirm-payment-btn" onclick="confirmOnlinePayment()">Confirm Payment</button>
-        </div>
-
-        <div class="qr-payment-section" id="qrPaymentSection" style="display: none;">
-            <p>Please scan the QR code below to complete your payment of ₹250:</p>
-            <div style="text-align: center; margin: 20px 0;">
-                <img src="https://thumb.ac-illust.com/16/16537c8a55c9792d39b3b2c303df5d83_t.jpeg" 
-                     alt="UPI QR Code" 
-                     style="max-width: 250px; border: 1px solid #ddd; padding: 10px; background: white;">
-            </div>
-            <p style="text-align: center; font-weight: bold;">UPI ID: sjrsm@upi</p>
-            <p style="text-align: center;">After payment, please click the confirmation button below.</p>
-            <button class="confirm-payment-btn" onclick="confirmQRPayment()">I've Completed Payment</button>
-        </div>
-
-        <div class="manual-payment-section" id="manualPaymentSection">
-            <p><strong>Manual Payment Instructions:</strong></p>
-            <p>Please make the payment of ₹250 to the following account:</p>
-            <p><strong>Account Name:</strong> Sri JayaRama Seva Mandali</p>
-            <p><strong>Account Number:</strong> 123456789012</p>
-            <p><strong>IFSC Code:</strong> SBIN0001234</p>
-            <p><strong>Bank:</strong> State Bank of India</p>
-            <p>Once the payment is made, click the button below to confirm.</p>
-            <button class="confirm-payment-btn" onclick="confirmManualPayment()">Confirm Manual Payment</button>
-        </div>
-
-        <div class="upload-section" id="uploadSection">
-            <label for="paymentScreenshot">Upload Payment Screenshot (PNG, JPG, JPEG)</label>
-            <input type="file" id="paymentScreenshot" accept="image/png, image/jpeg, image/jpg" required>
-            <img id="uploadPreview" class="upload-preview" alt="Payment Screenshot Preview">
-            <button class="upload-btn" onclick="validateUpload()">Submit Screenshot</button>
-        </div>
-
         <div class="divider" id="divider2"></div>
 
         <div class="total-amount" id="totalAmount">
@@ -697,6 +631,106 @@
         </div>
 
         <button class="submit-btn" id="submitBtn" onclick="validateForm()">Proceed to Payment</button>
+
+        <div class="payment-section" id="paymentSection">
+            <h2>Payment Options</h2>
+            <div class="total-amount" id="paymentTotalAmount">
+                Total Amount: ₹250
+            </div>
+
+            <div class="form-group" id="paymentOptions">
+                <label>Select Payment Method</label>
+                <div class="payment-option" onclick="highlightPayment(this)">
+                    <i class="fas fa-qrcode payment-icon"></i>
+                    <div class="payment-details">
+                        <div class="payment-title">Scan QR Code</div>
+                        <div class="payment-description">Pay by scanning UPI QR code</div>
+                    </div>
+                    <i class="fas fa-check" style="display: none;"></i>
+                    <button class="select-payment-btn" onclick="selectPayment(this, 'qr')">Select</button>
+                </div>
+                <div class="payment-option" onclick="highlightPayment(this)">
+                    <i class="fas fa-mobile-alt payment-icon"></i>
+                    <div class="payment-details">
+                        <div class="payment-title">UPI Payment</div>
+                        <div class="payment-description">Pay using UPI app</div>
+                    </div>
+                    <i class="fas fa-check" style="display: none;"></i>
+                    <button class="select-payment-btn" onclick="selectPayment(this, 'upi')">Select</button>
+                </div>
+                <div class="payment-option" onclick="highlightPayment(this)">
+                    <i class="fas fa-credit-card payment-icon"></i>
+                    <div class="payment-details">
+                        <div class="payment-title">Credit/Debit Card</div>
+                        <div class="payment-description">Pay using your card</div>
+                    </div>
+                    <i class="fas fa-check" style="display: none;"></i>
+                    <button class="select-payment-btn" onclick="selectPayment(this, 'card')">Select</button>
+                </div>
+                <div class="payment-option" onclick="highlightPayment(this)">
+                    <i class="fas fa-university payment-icon"></i>
+                    <div class="payment-details">
+                        <div class="payment-title">Net Banking</div>
+                        <div class="payment-description">Pay via online banking</div>
+                    </div>
+                    <i class="fas fa-check" style="display: none;"></i>
+                    <button class="select-payment-btn" onclick="selectPayment(this, 'netbanking')">Select</button>
+                </div>
+            </div>
+
+            <div class="transaction-type-section" id="transactionTypeSection">
+                <label>Transaction Type</label>
+                <div class="transaction-type-option" onclick="selectTransactionType(this, 'online')">
+                    <div class="payment-details">
+                        <div class="payment-title">Online</div>
+                        <div class="payment-description">Pay online using selected method</div>
+                    </div>
+                    <i class="fas fa-check" style="display: none;"></i>
+                </div>
+                <div class="transaction-type-option" onclick="selectTransactionType(this, 'manual')">
+                    <div class="payment-details">
+                        <div class="payment-title">Manual</div>
+                        <div class="payment-description">Pay offline and confirm</div>
+                    </div>
+                    <i class="fas fa-check" style="display: none;"></i>
+                </div>
+            </div>
+
+            <div class="online-payment-section" id="onlinePaymentSection">
+                <p>Please complete the payment using the selected method: <span id="selectedPaymentMethodDisplay"></span></p>
+                <button class="confirm-payment-btn" onclick="confirmOnlinePayment()">Confirm Payment</button>
+            </div>
+
+            <div class="qr-payment-section" id="qrPaymentSection" style="display: none;">
+                <p>Please scan the QR code below to complete your payment of ₹250:</p>
+                <div style="text-align: center; margin: 20px 0;">
+                    <img src="https://thumb.ac-illust.com/16/16537c8a55c9792d39b3b2c303df5d83_t.jpeg" 
+                         alt="UPI QR Code" 
+                         style="max-width: 250px; border: 1px solid #ddd; padding: 10px; background: white;">
+                </div>
+                <p style="text-align: center; font-weight: bold;">UPI ID: sjrsm@upi</p>
+                <p style="text-align: center;">After payment, please click the confirmation button below.</p>
+                <button class="confirm-payment-btn" onclick="confirmQRPayment()">I've Completed Payment</button>
+            </div>
+
+            <div class="manual-payment-section" id="manualPaymentSection">
+                <p><strong>Manual Payment Instructions:</strong></p>
+                <p>Please make the payment of ₹250 to the following account:</p>
+                <p><strong>Account Name:</strong> Sri JayaRama Seva Mandali</p>
+                <p><strong>Account Number:</strong> 123456789012</p>
+                <p><strong>IFSC Code:</strong> SBIN0001234</p>
+                <p><strong>Bank:</strong> State Bank of India</p>
+                <p>Once the payment is made, click the button below to confirm.</p>
+                <button class="confirm-payment-btn" onclick="confirmManualPayment()">Confirm Manual Payment</button>
+            </div>
+
+            <div class="upload-section" id="uploadSection">
+                <label for="paymentScreenshot">Upload Payment Screenshot (PNG, JPG, JPEG)</label>
+                <input type="file" id="paymentScreenshot" accept="image/png, image/jpeg, image/jpg" required>
+                <img id="uploadPreview" class="upload-preview" alt="Payment Screenshot Preview">
+                <button class="upload-btn" onclick="validateUpload()">Submit Screenshot</button>
+            </div>
+        </div>
 
         <div class="ticket-section" id="ticketSection">
             <h2>Seva Booking Ticket</h2>
@@ -710,7 +744,7 @@
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal()">×</button>
             <h3 class="modal-title">Confirm Seva Booking</h3>
-            <div class="modal-seva-name">Abhisheka (Saturday only)</div>
+            <div class="modal-seva-name">Abhisheka</div>
             <div class="modal-seva-price">₹250</div>
 
             <div class="modal-form">
@@ -750,7 +784,7 @@
                     <label for="modal-pincode">Pincode</label>
                     <input type="text" id="modal-pincode" placeholder="Enter Pincode" pattern="[0-9]{6}" required>
                 </div>
-                <button class="modal-submit-btn" onclick="submitBooking()">Confirm Booking</button>
+                <button class="modal-submit-btn" onclick="proceedToPayment()">Confirm and Proceed</button>
             </div>
         </div>
     </div>
@@ -762,25 +796,26 @@
             const monthYearDisplay = document.getElementById('calendarMonthYear');
             let currentDate = new Date();
             let selectedDate = null;
+            let bookingDetails = {};
             let selectedPaymentMethod = null;
             let selectedTransactionType = null;
-            let bookingDetails = {};
-            let paymentConfirmed = false;
-    
+            const amount = 250;
+
+            // Check URL parameters for payment success (not needed since payment is now on the same page)
             generateCalendar(currentDate);
-    
+
             function generateCalendar(date) {
                 const year = date.getFullYear();
                 const month = date.getMonth();
                 currentDate = new Date(year, month, 1);
-    
+
                 monthYearDisplay.textContent = `${currentDate.toLocaleString('default', { month: 'long' })} ${year}`;
-    
+
                 const firstDay = new Date(year, month, 1).getDay();
                 const daysInMonth = new Date(year, month + 1, 0).getDate();
-    
+
                 calendarDays.innerHTML = '';
-    
+
                 const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
                 dayNames.forEach(day => {
                     const dayElement = document.createElement('div');
@@ -788,34 +823,29 @@
                     dayElement.textContent = day;
                     calendarDays.appendChild(dayElement);
                 });
-    
+
                 for (let i = 0; i < firstDay; i++) {
                     const emptyCell = document.createElement('div');
                     emptyCell.className = 'calendar-day disabled';
                     calendarDays.appendChild(emptyCell);
                 }
-    
+
                 for (let day = 1; day <= daysInMonth; day++) {
                     const dayElement = document.createElement('div');
                     dayElement.className = 'calendar-day';
                     dayElement.textContent = day;
-    
-                    const dayOfWeek = new Date(year, month, day).getDay();
-                    if (dayOfWeek === 6) {
-                        dayElement.classList.add('saturday');
-                    }
-    
+
                     if (selectedDate && 
                         selectedDate.getDate() === day && 
                         selectedDate.getMonth() === month && 
                         selectedDate.getFullYear() === year) {
                         dayElement.classList.add('selected');
                     }
-    
+
                     const today = new Date();
                     if (new Date(year, month, day) < today.setHours(0, 0, 0, 0)) {
                         dayElement.classList.add('disabled');
-                    } else if (dayOfWeek === 6) {
+                    } else {
                         dayElement.addEventListener('click', function() {
                             document.querySelectorAll('.calendar-day').forEach(d => {
                                 d.classList.remove('selected');
@@ -823,141 +853,59 @@
                             this.classList.add('selected');
                             selectedDate = new Date(year, month, day);
                         });
-                    } else {
-                        dayElement.classList.add('disabled');
                     }
-    
+
                     calendarDays.appendChild(dayElement);
                 }
             }
-    
+
             window.prevMonth = function() {
                 currentDate.setMonth(currentDate.getMonth() - 1);
                 generateCalendar(currentDate);
             };
-    
+
             window.nextMonth = function() {
                 currentDate.setMonth(currentDate.getMonth() + 1);
                 generateCalendar(currentDate);
             };
-    
-            window.selectPayment = function(element, method) {
-                document.querySelectorAll('.payment-option').forEach(option => {
-                    option.classList.remove('selected');
-                    option.querySelector('.fa-check').style.display = 'none';
-                });
-    
-                element.classList.add('selected');
-                element.querySelector('.fa-check').style.display = 'inline-block';
-                selectedPaymentMethod = method;
-    
-                document.getElementById('transactionTypeSection').style.display = 'block';
-                document.getElementById('onlinePaymentSection').style.display = 'none';
-                document.getElementById('manualPaymentSection').style.display = 'none';
-                document.getElementById('uploadSection').style.display = 'none';
-            };
-    
-            window.selectTransactionType = function(element, type) {
-                document.querySelectorAll('.transaction-type-option').forEach(option => {
-                    option.classList.remove('selected');
-                    option.querySelector('.fa-check').style.display = 'none';
-                });
-    
-                element.classList.add('selected');
-                element.querySelector('.fa-check').style.display = 'inline-block';
-                selectedTransactionType = type;
-    
-                if (type === 'online') {
-                    document.getElementById('onlinePaymentSection').style.display = 'block';
-                    document.getElementById('selectedPaymentMethodDisplay').textContent = selectedPaymentMethod.charAt(0).toUpperCase() + selectedPaymentMethod.slice(1);
-                    document.getElementById('manualPaymentSection').style.display = 'none';
-                    document.getElementById('uploadSection').style.display = 'none';
-                } else {
-                    document.getElementById('manualPaymentSection').style.display = 'block';
-                    document.getElementById('onlinePaymentSection').style.display = 'none';
-                    document.getElementById('uploadSection').style.display = 'none';
-                }
-            };
-    
+
             window.validateForm = function() {
                 if (!selectedDate) {
-                    alert('Please select a Saturday for the seva.');
+                    alert('Please select a date for the seva.');
                     return;
                 }
-    
+
                 const requiredFields = ['name', 'mobile', 'gotra', 'nakshatra', 'rashi', 'district', 'state', 'address', 'pincode'];
                 let isValid = true;
                 const mobile = document.getElementById('mobile').value.trim();
                 const pincode = document.getElementById('pincode').value.trim();
-    
+
                 requiredFields.forEach(field => {
                     if (!document.getElementById(field).value.trim()) {
                         isValid = false;
                     }
                 });
-    
+
                 if (!/^\d{10}$/.test(mobile)) {
                     isValid = false;
                     alert('Please enter a valid 10-digit mobile number.');
                     return;
                 }
-    
+
                 if (!/^\d{6}$/.test(pincode)) {
                     isValid = false;
                     alert('Please enter a valid 6-digit pincode.');
                     return;
                 }
-    
+
                 if (!isValid) {
                     alert('Please fill in all required fields.');
                     return;
                 }
-    
-                if (!selectedPaymentMethod) {
-                    alert('Please select a payment method.');
-                    return;
-                }
-    
-                if (!selectedTransactionType) {
-                    alert('Please select a transaction type (Online/Manual).');
-                    return;
-                }
-    
+
                 openModal();
             };
-    
-            window.confirmOnlinePayment = function() {
-                document.getElementById('onlinePaymentSection').style.display = 'none';
-                document.getElementById('uploadSection').style.display = 'block';
-                alert(`Please complete the payment of ₹250 using ${selectedPaymentMethod} and upload the screenshot.`);
-            };
-    
-            window.confirmManualPayment = function() {
-                paymentConfirmed = true;
-                alert('Manual payment confirmed. Proceeding to booking confirmation.');
-                submitBooking();
-            };
-    
-            window.validateUpload = function() {
-                const screenshotInput = document.getElementById('paymentScreenshot');
-                const file = screenshotInput.files[0];
-    
-                if (!file) {
-                    alert('Please upload a payment screenshot.');
-                    return;
-                }
-    
-                const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg'];
-                if (!allowedTypes.includes(file.type)) {
-                    alert('Please upload a valid image file (PNG, JPG, JPEG).');
-                    return;
-                }
-    
-                paymentConfirmed = true;
-                alert('Screenshot uploaded successfully. Proceeding to booking confirmation.');
-                submitBooking();
-            };
-    
+
             window.openModal = function() {
                 document.getElementById('modal-name').value = document.getElementById('name').value;
                 document.getElementById('modal-mobile').value = document.getElementById('mobile').value;
@@ -970,71 +918,12 @@
                 document.getElementById('modal-pincode').value = document.getElementById('pincode').value;
                 modal.style.display = 'flex';
             };
-    
+
             window.closeModal = function() {
                 modal.style.display = 'none';
             };
 
-            window.selectPayment = function(element, method) {
-    document.querySelectorAll('.payment-option').forEach(option => {
-        option.classList.remove('selected');
-        option.querySelector('.fa-check').style.display = 'none';
-    });
-
-    element.classList.add('selected');
-    element.querySelector('.fa-check').style.display = 'inline-block';
-    selectedPaymentMethod = method;
-
-    document.getElementById('transactionTypeSection').style.display = 'block';
-    document.getElementById('onlinePaymentSection').style.display = 'none';
-    document.getElementById('qrPaymentSection').style.display = 'none';
-    document.getElementById('manualPaymentSection').style.display = 'none';
-    document.getElementById('uploadSection').style.display = 'none';
-};
-
-window.selectTransactionType = function(element, type) {
-    document.querySelectorAll('.transaction-type-option').forEach(option => {
-        option.classList.remove('selected');
-        option.querySelector('.fa-check').style.display = 'none';
-    });
-
-    element.classList.add('selected');
-    element.querySelector('.fa-check').style.display = 'inline-block';
-    selectedTransactionType = type;
-
-    if (type === 'online') {
-        if (selectedPaymentMethod === 'qr') {
-            document.getElementById('qrPaymentSection').style.display = 'block';
-            document.getElementById('onlinePaymentSection').style.display = 'none';
-        } else {
-            document.getElementById('onlinePaymentSection').style.display = 'block';
-            document.getElementById('selectedPaymentMethodDisplay').textContent = 
-                selectedPaymentMethod.charAt(0).toUpperCase() + selectedPaymentMethod.slice(1);
-            document.getElementById('qrPaymentSection').style.display = 'none';
-        }
-        document.getElementById('manualPaymentSection').style.display = 'none';
-        document.getElementById('uploadSection').style.display = 'none';
-    } else {
-        document.getElementById('manualPaymentSection').style.display = 'block';
-        document.getElementById('onlinePaymentSection').style.display = 'none';
-        document.getElementById('qrPaymentSection').style.display = 'none';
-        document.getElementById('uploadSection').style.display = 'none';
-    }
-};
-
-window.confirmQRPayment = function() {
-    document.getElementById('qrPaymentSection').style.display = 'none';
-    document.getElementById('uploadSection').style.display = 'block';
-    alert('Please upload the payment confirmation screenshot after scanning the QR code.');
-};
-    
-            window.submitBooking = function() {
-                if (!paymentConfirmed) {
-                    alert('Please confirm payment before proceeding.');
-                    closeModal();
-                    return;
-                }
-    
+            window.proceedToPayment = function() {
                 const name = document.getElementById('modal-name').value;
                 const mobile = document.getElementById('modal-mobile').value;
                 const gotra = document.getElementById('modal-gotra').value;
@@ -1044,7 +933,7 @@ window.confirmQRPayment = function() {
                 const state = document.getElementById('modal-state').value;
                 const address = document.getElementById('modal-address').value;
                 const pincode = document.getElementById('modal-pincode').value;
-    
+
                 if (name && mobile && gotra && nakshatra && rashi && district && state && address && pincode && selectedDate) {
                     bookingDetails = {
                         name: name,
@@ -1057,468 +946,393 @@ window.confirmQRPayment = function() {
                         address: address,
                         pincode: pincode,
                         date: selectedDate.toDateString(),
-                        time: "10:00 AM IST",
-                        paymentMethod: `${selectedPaymentMethod.charAt(0).toUpperCase() + selectedPaymentMethod.slice(1)} - ${selectedTransactionType.charAt(0).toUpperCase() + selectedTransactionType.slice(1)}`
+                        time: "10:00 AM IST"
                     };
-    
-                    alert(`Booking confirmed for ${name} on ${selectedDate.toDateString()} at 10:00 AM IST! We'll contact you at ${mobile}. Payment method: ${bookingDetails.paymentMethod}`);
-    
+
+                    // Hide form sections and show payment section
                     document.getElementById('calendarSection').style.display = 'none';
                     document.getElementById('divider1').style.display = 'none';
                     document.getElementById('kartaDetailsHeader').style.display = 'none';
                     document.querySelectorAll('#formSection').forEach(section => {
                         section.style.display = 'none';
                     });
-                    document.getElementById('paymentOptions').style.display = 'none';
-                    document.getElementById('transactionTypeSection').style.display = 'none';
-                    document.getElementById('onlinePaymentSection').style.display = 'none';
-                    document.getElementById('manualPaymentSection').style.display = 'none';
-                    document.getElementById('uploadSection').style.display = 'none';
                     document.getElementById('divider2').style.display = 'none';
                     document.getElementById('totalAmount').style.display = 'none';
                     document.getElementById('submitBtn').style.display = 'none';
-    
-                    const ticketDetails = document.getElementById('ticketDetails');
-                    ticketDetails.innerHTML = `
-                        <div style="text-align: center; margin-bottom: 10px;">
-                            <img src="images/l-2.png" style="width: 80px; height: 80px; margin-left: 3px; background: linear-gradient(#f7971e, #ffd200);" alt="SJRSM Logo">
-                        </div>
-                        <div class="temple-name">Sri JayaRama Seva Mandali</div>
-                        <p><strong>Temple Address:</strong> 123 Temple Road, Bangalore, Karnataka, India 560001</p>
-                        <p><strong>Seva:</strong> Abhisheka (Saturday only)</p>
-                        <p><strong>Seva Date and Time:</strong> ${selectedDate.toDateString()} at 10:00 AM IST</p>
-                        <p><strong>Karta's Name:</strong> ${name}</p>
-                        <p><strong>Mobile Number:</strong> ${mobile}</p>
-                        <p><strong>Gotra:</strong> ${gotra}</p>
-                        <p><strong>Nakshatra:</strong> ${nakshatra}</p>
-                        <p><strong>Raashi:</strong> ${rashi}</p>
-                        <p><strong>District:</strong> ${district}</p>
-                        <p><strong>State:</strong> ${state}</p>
-                        <p><strong>Address:</strong> ${address}</p>
-                        <p><strong>Pincode:</strong> ${pincode}</p>
-                        <p><strong>Amount:</strong> ₹250</p>
-                        <p><strong>Payment Method:</strong> ${bookingDetails.paymentMethod}</p>
-                    `;
-                    document.getElementById('ticketSection').style.display = 'block';
-    
-                    closeModal();
-    
-                    const screenshotInput = document.getElementById('paymentScreenshot');
-                    const preview = document.getElementById('uploadPreview');
-                    screenshotInput.addEventListener('change', function() {
-                        const file = this.files[0];
-                        if (file) {
-                            const reader = new FileReader();
-                            reader.onload = function(e) {
-                                preview.src = e.target.result;
-                                preview.style.display = 'block';
-                            };
-                            reader.readAsDataURL(file);
-                        }
-                    });
+
+                    document.getElementById('paymentSection').style.display = 'block';
+                    modal.style.display = 'none';
                 } else {
                     alert('Please fill in all fields and select a date.');
                 }
             };
-    
-           window.downloadTicket = function() {
-    try {
-        // Debug: Check if jsPDF is loaded
-        console.log('jsPDF available:', window.jspdf);
-        if (!window.jspdf || !window.jspdf.jsPDF) {
-            throw new Error('jsPDF library is not loaded. Please check the CDN link or network connection.');
-        }
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF({
-            orientation: 'landscape',
-            unit: 'mm',
-            format: [210, 148] // A5 size in landscape
-        });
 
-        // Page dimensions and margins
-        const pageWidth = doc.internal.pageSize.getWidth();
-        const pageHeight = doc.internal.pageSize.getHeight();
-        const margin = 10;
-        const contentWidth = pageWidth - 2 * margin;
-        let y = margin;
+            window.highlightPayment = function(element) {
+                document.querySelectorAll('.payment-option').forEach(option => {
+                    option.classList.remove('selected');
+                    option.querySelector('.fa-check').style.display = 'none';
+                });
 
-        // Background: Soft Gradient
-        doc.setFillColor(255, 245, 235); // Very light peach
-        doc.rect(0, 0, pageWidth, pageHeight, 'F');
-        doc.setFillColor(255, 235, 225); // Slightly deeper peach gradient
-        doc.rect(0, 0, pageWidth, pageHeight / 2, 'F');
+                element.classList.add('selected');
+                element.querySelector('.fa-check').style.display = 'inline-block';
+            };
 
-        // Watermark: Temple Name (Subtle)
-        doc.setFontSize(40);
-        doc.setTextColor(200, 200, 200, 0.2); // Very light gray with higher transparency
-        doc.setFont('times', 'italic');
-        doc.text('Sri JayaRama Seva Mandali', pageWidth / 2 - 60, pageHeight / 2 + 10, { angle: 45 });
+            window.selectPayment = function(element, method) {
+                selectedPaymentMethod = method;
+                document.getElementById('transactionTypeSection').style.display = 'block';
+                document.getElementById('onlinePaymentSection').style.display = 'none';
+                document.getElementById('qrPaymentSection').style.display = 'none';
+                document.getElementById('manualPaymentSection').style.display = 'none';
+                document.getElementById('uploadSection').style.display = 'none';
+            };
 
-        // Outer Border: Soft Double-Line with Subtle Shadow
-        doc.setDrawColor(255, 210, 180); // Soft peach
-        doc.setLineWidth(0.8);
-        doc.roundedRect(margin - 2, margin - 2, pageWidth - 2 * (margin - 2), pageHeight - 2 * (margin - 2), 3, 3, 'S');
-        doc.setDrawColor(255, 220, 150); // Light gold
-        doc.setLineWidth(0.4);
-        doc.roundedRect(margin - 1, margin - 1, pageWidth - 2 * (margin - 1), pageHeight - 2 * (margin - 1), 2, 2, 'S');
-        doc.setDrawColor(200, 200, 200, 0.2); // Subtle shadow
-        doc.setLineWidth(0.8);
-        doc.roundedRect(margin - 1.5, margin - 1.5, pageWidth - 2 * (margin - 1.5), pageHeight - 2 * (margin - 1.5), 3, 3, 'S');
+            window.selectTransactionType = function(element, type) {
+                document.querySelectorAll('.transaction-type-option').forEach(option => {
+                    option.classList.remove('selected');
+                    option.querySelector('.fa-check').style.display = 'none';
+                });
 
-        // Header Banner: Soft Gradient
-        doc.setFillColor(255, 210, 180); // Soft peach
-        doc.rect(margin - 2, y - 2, pageWidth - 2 * (margin - 2), 10, 'F');
-        doc.setFillColor(255, 220, 150); // Light gold accent
-        doc.rect(margin - 2, y + 8, pageWidth - 2 * (margin - 2), 1, 'F');
+                element.classList.add('selected');
+                element.querySelector('.fa-check').style.display = 'inline-block';
+                selectedTransactionType = type;
 
-        // Header: Temple Name with Subtle Shadow
-        doc.setFontSize(20);
-        doc.setTextColor(255, 255, 255); // White for contrast
-        doc.setFont('times', 'bolditalic');
-        const templeName = 'Sri JayaRama Seva Mandali';
-        const templeNameWidth = doc.getTextWidth(templeName);
-        doc.setTextColor(150, 150, 150, 0.5); // Light shadow
-        doc.text(templeName, (pageWidth - templeNameWidth) / 2 + 1, y + 6);
-        doc.setTextColor(255, 255, 255);
-        doc.text(templeName, (pageWidth - templeNameWidth) / 2, y + 5);
-        y += 12;
-
-        // Add the temple logo with a simple frame
-        const logoImg = new Image();
-        logoImg.crossOrigin = 'Anonymous'; // Handle CORS if needed
-        logoImg.src = 'images/l-2.png';
-
-        logoImg.onload = function() {
-            try {
-                doc.addImage(logoImg, 'PNG', (pageWidth - 25) / 2, y, 25, 25); // Smaller logo to save space
-                // Simple Frame: Light Circle
-                doc.setDrawColor(255, 220, 150); // Light gold
-                doc.setLineWidth(0.6);
-                doc.circle((pageWidth - 25) / 2 + 12.5, y + 12.5, 13, 'S');
-            } catch (imgError) {
-                console.error('Error adding image to PDF:', imgError);
-            }
-            continuePDFGeneration();
-        };
-
-        logoImg.onerror = function() {
-            console.error('Failed to load logo image: images/l-2.png');
-            continuePDFGeneration();
-        };
-
-        function continuePDFGeneration() {
-            y += 30;
-
-            // Ticket Title: Clean and Elegant
-            doc.setFontSize(14);
-            doc.setTextColor(139, 69, 19); // Soft brown for contrast
-            doc.setFont('times', 'bold');
-            const ticketTitle = 'Seva Booking Ticket';
-            const ticketTitleWidth = doc.getTextWidth(ticketTitle);
-            doc.text(ticketTitle, (pageWidth - ticketTitleWidth) / 2, y);
-            y += 5;
-
-            // Divider: Subtle Gradient Bar (No Black Lines)
-            doc.setFillColor(255, 220, 180, 0.5); // Soft peach with transparency
-            doc.rect(margin, y, contentWidth, 1, 'F');
-            doc.setFillColor(255, 220, 150, 0.5); // Light gold accent
-            doc.rect(margin, y + 1, contentWidth, 0.5, 'F');
-            y += 5;
-
-            // Ticket Details: Compact Table
-            const tableTop = y;
-            const tableLeft = margin + 5;
-            const tableWidth = contentWidth - 10;
-            doc.setFillColor(255, 255, 255, 0.9); // Semi-transparent white
-            doc.setDrawColor(255, 210, 180); // Soft peach
-            doc.setLineWidth(0.2);
-            doc.roundedRect(tableLeft, tableTop, tableWidth, pageHeight - tableTop - 20, 2, 2, 'FD');
-            doc.setDrawColor(200, 200, 200, 0.1);
-            doc.setLineWidth(0.6);
-            doc.roundedRect(tableLeft + 0.5, tableTop + 0.5, tableWidth, pageHeight - tableTop - 20, 2, 2, 'S');
-
-            y += 4;
-            doc.setFontSize(9); // Smaller font to fit all content
-            doc.setTextColor(50, 50, 50); // Dark gray for readability
-            doc.setFont('times', 'normal');
-
-            // Helper function to add ticket details
-            let rowCount = 0;
-            function addDetail(label, value) {
-                const labelWidth = doc.getTextWidth(label);
-                const maxValueWidth = tableWidth - labelWidth - 15;
-                const splitValue = doc.splitTextToSize(value, maxValueWidth);
-                const rowHeight = splitValue.length * 4 + 1;
-
-                if (rowCount % 2 === 0) {
-                    doc.setFillColor(255, 240, 230); // Very light peach for alternate rows
-                    doc.rect(tableLeft, y - 2, tableWidth, rowHeight, 'F');
+                if (type === 'online') {
+                    if (selectedPaymentMethod === 'qr') {
+                        document.getElementById('qrPaymentSection').style.display = 'block';
+                        document.getElementById('onlinePaymentSection').style.display = 'none';
+                    } else {
+                        document.getElementById('onlinePaymentSection').style.display = 'block';
+                        let displayMethod = '';
+                        switch (selectedPaymentMethod) {
+                            case 'upi':
+                                displayMethod = 'UPI';
+                                break;
+                            case 'card':
+                                displayMethod = 'Credit/Debit Card';
+                                break;
+                            case 'netbanking':
+                                displayMethod = 'Net Banking';
+                                break;
+                            default:
+                                displayMethod = selectedPaymentMethod;
+                        }
+                        document.getElementById('selectedPaymentMethodDisplay').textContent = displayMethod;
+                        document.getElementById('qrPaymentSection').style.display = 'none';
+                    }
+                    document.getElementById('manualPaymentSection').style.display = 'none';
+                    document.getElementById('uploadSection').style.display = 'none';
+                } else {
+                    document.getElementById('manualPaymentSection').style.display = 'block';
+                    document.getElementById('onlinePaymentSection').style.display = 'none';
+                    document.getElementById('qrPaymentSection').style.display = 'none';
+                    document.getElementById('uploadSection').style.display = 'none';
                 }
-                doc.setFont('times', 'bold');
-                doc.setTextColor(139, 69, 19); // Soft brown for labels
-                doc.text(label, tableLeft + 5, y);
-                doc.setFont('times', 'normal');
-                doc.setTextColor(50, 50, 50); // Dark gray for values
-                doc.text(splitValue, tableLeft + labelWidth + 10, y);
-                y += rowHeight;
-                rowCount++;
-            }
+            };
 
-            addDetail('Temple Address:', '123 Temple Road, Bangalore, Karnataka, India 560001');
-            addDetail('Seva:', 'Abhisheka (Saturday only)');
-            addDetail('Seva Date and Time:', `${bookingDetails.date} at 10:00 AM IST`);
-            addDetail('Karta\'s Name:', bookingDetails.name);
-            addDetail('Mobile Number:', bookingDetails.mobile);
-            addDetail('Gotra:', bookingDetails.gotra);
-            addDetail('Nakshatra:', bookingDetails.nakshatra);
-            addDetail('Raashi:', bookingDetails.rashi);
-            addDetail('District:', bookingDetails.district);
-            addDetail('State:', bookingDetails.state);
-            addDetail('Address:', bookingDetails.address);
-            addDetail('Pincode:', bookingDetails.pincode);
-            addDetail('Amount:', '₹250');
-            addDetail('Payment Method:', bookingDetails.paymentMethod);
-
-            y += 3;
-
-            // Footer Divider: Subtle Gradient Bar (No Black Lines)
-            doc.setFillColor(255, 220, 180, 0.5); // Soft peach with transparency
-            doc.rect(margin, y, contentWidth, 1, 'F');
-            doc.setFillColor(255, 220, 150, 0.5); // Light gold accent
-            doc.rect(margin, y + 1, contentWidth, 0.5, 'F');
-            y += 4;
-
-            // Footer: Compact and Light
-            doc.setFontSize(7);
-            doc.setTextColor(100, 100, 100); // Light gray
-            doc.setFont('times', 'italic');
-            const thankYou = 'Thank you for booking with Sri JayaRama Seva Mandali!';
-            const thankYouWidth = doc.getTextWidth(thankYou);
-            doc.text(thankYou, (pageWidth - thankYouWidth) / 2, y);
-            y += 3;
-
-            const contactInfo = 'Contact: +91-123-456-7890 | Email: info@sjrsm.org';
-            const contactInfoWidth = doc.getTextWidth(contactInfo);
-            doc.text(contactInfo, (pageWidth - contactInfoWidth) / 2, y);
-
-            // Alternative download method using blob URL
-            const pdfOutput = doc.output('blob');
-            const url = URL.createObjectURL(pdfOutput);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'Seva_Ticket.pdf';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        }
-    } catch (error) {
-        console.error('Error generating PDF:', error);
-    }
-};
-
-window.downloadTicket = function() {
-    try {
-        // Debug: Check if jsPDF is loaded
-        console.log('jsPDF available:', window.jspdf);
-        if (!window.jspdf || !window.jspdf.jsPDF) {
-            throw new Error('jsPDF library is not loaded. Please check the CDN link or network connection.');
-        }
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF({
-            orientation: 'landscape',
-            unit: 'mm',
-            format: [210, 148] // A5 size in landscape
-        });
-
-        // Page dimensions and margins
-        const pageWidth = doc.internal.pageSize.getWidth();
-        const pageHeight = doc.internal.pageSize.getHeight();
-        const margin = 10;
-        const contentWidth = pageWidth - 2 * margin;
-        let y = margin;
-
-        // Background: Very Soft Gradient
-        doc.setFillColor(255, 248, 240); // Very light cream
-        doc.rect(0, 0, pageWidth, pageHeight, 'F');
-        doc.setFillColor(255, 238, 230); // Very light peach gradient
-        doc.rect(0, 0, pageWidth, pageHeight / 2, 'F');
-
-        // Watermark: Temple Name (Very Subtle)
-        doc.setFontSize(40);
-        doc.setTextColor(220, 220, 220, 0.15); // Extremely light gray with high transparency
-        doc.setFont('times', 'italic');
-        doc.text('Sri JayaRama Seva Mandali', pageWidth / 2 - 60, pageHeight / 2 + 10, { angle: 45 });
-
-        // Outer Border: Soft Single-Line with Subtle Shadow
-        doc.setDrawColor(255, 215, 180); // Very soft peach
-        doc.setLineWidth(0.6);
-        doc.roundedRect(margin - 1, margin - 1, pageWidth - 2 * (margin - 1), pageHeight - 2 * (margin - 1), 3, 3, 'S');
-        doc.setDrawColor(200, 200, 200, 0.15); // Subtle shadow
-        doc.setLineWidth(0.8);
-        doc.roundedRect(margin - 0.5, margin - 0.5, pageWidth - 2 * (margin - 0.5), pageHeight - 2 * (margin - 0.5), 3, 3, 'S');
-
-        // Header Banner: Soft Gradient
-        doc.setFillColor(255, 215, 180); // Very soft peach
-        doc.rect(margin - 1, y - 2, pageWidth - 2 * (margin - 1), 10, 'F');
-        doc.setFillColor(255, 225, 160); // Very light gold accent
-        doc.rect(margin - 1, y + 8, pageWidth - 2 * (margin - 1), 0.5, 'F');
-
-        // Header: Temple Name with Subtle Shadow
-        doc.setFontSize(20);
-        doc.setTextColor(255, 255, 255); // White for contrast
-        doc.setFont('times', 'bolditalic');
-        const templeName = 'Sri JayaRama Seva Mandali';
-        const templeNameWidth = doc.getTextWidth(templeName);
-        doc.setTextColor(150, 150, 150, 0.4); // Light shadow
-        doc.text(templeName, (pageWidth - templeNameWidth) / 2 + 1, y + 6);
-        doc.setTextColor(255, 255, 255);
-        doc.text(templeName, (pageWidth - templeNameWidth) / 2, y + 5);
-        y += 12;
-
-        // Add the temple logo with a simple frame
-        const logoImg = new Image();
-        logoImg.crossOrigin = 'Anonymous'; // Handle CORS if needed
-        logoImg.src = 'images/l-2.png';
-
-        logoImg.onload = function() {
-            try {
-                doc.addImage(logoImg, 'PNG', (pageWidth - 25) / 2, y, 25, 25); // Smaller logo to save space
-                // Simple Frame: Very Light Circle
-                doc.setDrawColor(255, 225, 160); // Very light gold
-                doc.setLineWidth(0.5);
-                doc.circle((pageWidth - 25) / 2 + 12.5, y + 12.5, 13, 'S');
-            } catch (imgError) {
-                console.error('Error adding image to PDF:', imgError);
-            }
-            continuePDFGeneration();
-        };
-
-        logoImg.onerror = function() {
-            console.error('Failed to load logo image: images/l-2.png');
-            continuePDFGeneration();
-        };
-
-        function continuePDFGeneration() {
-            y += 30;
-
-            // Ticket Title: Clean and Elegant
-            doc.setFontSize(14);
-            doc.setTextColor(139, 69, 19); // Soft brown for contrast
-            doc.setFont('times', 'bold');
-            const ticketTitle = 'Seva Booking Ticket';
-            const ticketTitleWidth = doc.getTextWidth(ticketTitle);
-            doc.text(ticketTitle, (pageWidth - ticketTitleWidth) / 2, y);
-            y += 6;
-
-            // Divider: Subtle Dashed Line (No Black Lines)
-            doc.setDrawColor(255, 225, 160); // Very light gold
-            doc.setLineWidth(0.3);
-            doc.setLineDashPattern([1, 1], 0); // Dashed pattern: 1mm dash, 1mm gap
-            doc.line(margin, y, pageWidth - margin, y);
-            doc.setLineDashPattern([], 0); // Reset to solid line
-            y += 5;
-
-            // Ticket Details: Compact Table
-            const tableTop = y;
-            const tableLeft = margin + 5;
-            const tableWidth = contentWidth - 10;
-            doc.setFillColor(255, 255, 255, 0.95); // Almost fully opaque white for clarity
-            doc.setDrawColor(255, 215, 180); // Very soft peach
-            doc.setLineWidth(0.2);
-            doc.roundedRect(tableLeft, tableTop, tableWidth, pageHeight - tableTop - 20, 2, 2, 'FD');
-            doc.setDrawColor(200, 200, 200, 0.1);
-            doc.setLineWidth(0.6);
-            doc.roundedRect(tableLeft + 0.5, tableTop + 0.5, tableWidth, pageHeight - tableTop - 20, 2, 2, 'S');
-
-            y += 4;
-            doc.setFontSize(9); // Smaller font to fit all content
-            doc.setTextColor(60, 60, 60); // Slightly darker gray for better readability
-            doc.setFont('times', 'normal');
-
-            // Helper function to add ticket details
-            let rowCount = 0;
-            function addDetail(label, value) {
-                const labelWidth = doc.getTextWidth(label);
-                const maxValueWidth = tableWidth - labelWidth - 15;
-                const splitValue = doc.splitTextToSize(value, maxValueWidth);
-                const rowHeight = splitValue.length * 4 + 1;
-
-                if (rowCount % 2 === 0) {
-                    doc.setFillColor(255, 245, 235); // Very light peach for alternate rows
-                    doc.rect(tableLeft, y - 2, tableWidth, rowHeight, 'F');
+            window.confirmOnlinePayment = function() {
+                document.getElementById('onlinePaymentSection').style.display = 'none';
+                document.getElementById('uploadSection').style.display = 'block';
+                let displayMethod = '';
+                switch (selectedPaymentMethod) {
+                    case 'upi':
+                        displayMethod = 'UPI';
+                        break;
+                    case 'card':
+                        displayMethod = 'Credit/Debit Card';
+                        break;
+                    case 'netbanking':
+                        displayMethod = 'Net Banking';
+                        break;
+                    default:
+                        displayMethod = selectedPaymentMethod;
                 }
-                doc.setFont('times', 'bold');
-                doc.setTextColor(139, 69, 19); // Soft brown for labels
-                doc.text(label, tableLeft + 5, y);
-                doc.setFont('times', 'normal');
-                doc.setTextColor(60, 60, 60); // Slightly darker gray for values
-                doc.text(splitValue, tableLeft + labelWidth + 10, y);
-                y += rowHeight;
-                rowCount++;
+                alert(`Please complete the payment of ₹${amount} using ${displayMethod} and upload the screenshot.`);
+            };
+
+            window.confirmQRPayment = function() {
+                document.getElementById('qrPaymentSection').style.display = 'none';
+                document.getElementById('uploadSection').style.display = 'block';
+                alert('Please upload the payment confirmation screenshot after scanning the QR code.');
+            };
+
+            window.confirmManualPayment = function() {
+                let displayMethod = '';
+                switch (selectedPaymentMethod) {
+                    case 'upi':
+                        displayMethod = 'UPI';
+                        break;
+                    case 'card':
+                        displayMethod = 'Credit/Debit Card';
+                        break;
+                    case 'netbanking':
+                        displayMethod = 'Net Banking';
+                        break;
+                    case 'qr':
+                        displayMethod = 'QR Code';
+                        break;
+                    default:
+                        displayMethod = selectedPaymentMethod;
+                }
+                bookingDetails.paymentMethod = `${displayMethod} - ${selectedTransactionType.charAt(0).toUpperCase() + selectedTransactionType.slice(1)}`;
+                showTicket();
+            };
+
+            window.validateUpload = function() {
+                const screenshotInput = document.getElementById('paymentScreenshot');
+                const file = screenshotInput.files[0];
+
+                if (!file) {
+                    alert('Please upload a payment screenshot.');
+                    return;
+                }
+
+                const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg'];
+                if (!allowedTypes.includes(file.type)) {
+                    alert('Please upload a valid image file (PNG, JPG, JPEG).');
+                    return;
+                }
+
+                let displayMethod = '';
+                switch (selectedPaymentMethod) {
+                    case 'upi':
+                        displayMethod = 'UPI';
+                        break;
+                    case 'card':
+                        displayMethod = 'Credit/Debit Card';
+                        break;
+                    case 'netbanking':
+                        displayMethod = 'Net Banking';
+                        break;
+                    case 'qr':
+                        displayMethod = 'QR Code';
+                        break;
+                    default:
+                        displayMethod = selectedPaymentMethod;
+                }
+                bookingDetails.paymentMethod = `${displayMethod} - ${selectedTransactionType.charAt(0).toUpperCase() + selectedTransactionType.slice(1)}`;
+                showTicket();
+            };
+
+            function showTicket() {
+                document.getElementById('paymentSection').style.display = 'none';
+
+                const ticketDetails = document.getElementById('ticketDetails');
+                ticketDetails.innerHTML = `
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <img src="images/l-2.png" style="width: 80px; height: 80px; margin-left: 3px; background: linear-gradient(#f7971e, #ffd200);" alt="SJRSM Logo">
+                    </div>
+                    <div class="temple-name">Sri JayaRama Seva Mandali</div>
+                    <p><strong>Temple Address:</strong> 123 Temple Road, Bangalore, Karnataka, India 560001</p>
+                    <p><strong>Seva:</strong> Abhisheka</p>
+                    <p><strong>Seva Date and Time:</strong> ${bookingDetails.date} at 10:00 AM IST</p>
+                    <p><strong>Karta's Name:</strong> ${bookingDetails.name}</p>
+                    <p><strong>Mobile Number:</strong> ${bookingDetails.mobile}</p>
+                    <p><strong>Gotra:</strong> ${bookingDetails.gotra}</p>
+                    <p><strong>Nakshatra:</strong> ${bookingDetails.nakshatra}</p>
+                    <p><strong>Raashi:</strong> ${bookingDetails.rashi}</p>
+                    <p><strong>District:</strong> ${bookingDetails.district}</p>
+                    <p><strong>State:</strong> ${bookingDetails.state}</p>
+                    <p><strong>Address:</strong> ${bookingDetails.address}</p>
+                    <p><strong>Pincode:</strong> ${bookingDetails.pincode}</p>
+                    <p><strong>Amount:</strong> ₹250</p>
+                    <p><strong>Payment Method:</strong> ${bookingDetails.paymentMethod}</p>
+                `;
+                document.getElementById('ticketSection').style.display = 'block';
             }
 
-            addDetail('Temple Address:', '123 Temple Road, Bangalore, Karnataka, India 560001');
-            addDetail('Seva:', 'Abhisheka (Saturday only)');
-            addDetail('Seva Date and Time:', `${bookingDetails.date} at 10:00 AM IST`);
-            addDetail('Karta\'s Name:', bookingDetails.name);
-            addDetail('Mobile Number:', bookingDetails.mobile);
-            addDetail('Gotra:', bookingDetails.gotra);
-            addDetail('Nakshatra:', bookingDetails.nakshatra);
-            addDetail('Raashi:', bookingDetails.rashi);
-            addDetail('District:', bookingDetails.district);
-            addDetail('State:', bookingDetails.state);
-            addDetail('Address:', bookingDetails.address);
-            addDetail('Pincode:', bookingDetails.pincode);
-            addDetail('Amount:', '₹250');
-            addDetail('Payment Method:', bookingDetails.paymentMethod);
+            window.downloadTicket = function() {
+                try {
+                    console.log('jsPDF available:', window.jspdf);
+                    if (!window.jspdf || !window.jspdf.jsPDF) {
+                        throw new Error('jsPDF library is not loaded. Please check the CDN link or network connection.');
+                    }
+                    const { jsPDF } = window.jspdf;
+                    const doc = new jsPDF({
+                        orientation: 'landscape',
+                        unit: 'mm',
+                        format: [210, 148]
+                    });
 
-            y += 3;
+                    const pageWidth = doc.internal.pageSize.getWidth();
+                    const pageHeight = doc.internal.pageSize.getHeight();
+                    const margin = 10;
+                    const contentWidth = pageWidth - 2 * margin;
+                    let y = margin;
 
-            // Footer Divider: Subtle Dashed Line (No Black Lines)
-            doc.setDrawColor(255, 225, 160); // Very light gold
-            doc.setLineWidth(0.3);
-            doc.setLineDashPattern([1, 1], 0); // Dashed pattern: 1mm dash, 1mm gap
-            doc.line(margin, y, pageWidth - margin, y);
-            doc.setLineDashPattern([], 0); // Reset to solid line
-            y += 4;
+                    doc.setFillColor(255, 248, 240);
+                    doc.rect(0, 0, pageWidth, pageHeight, 'F');
+                    doc.setFillColor(255, 238, 230);
+                    doc.rect(0, 0, pageWidth, pageHeight / 2, 'F');
 
-            // Footer: Compact and Light
-            doc.setFontSize(7);
-            doc.setTextColor(100, 100, 100); // Light gray
-            doc.setFont('times', 'italic');
-            const thankYou = 'Thank you for booking with Sri JayaRama Seva Mandali!';
-            const thankYouWidth = doc.getTextWidth(thankYou);
-            doc.text(thankYou, (pageWidth - thankYouWidth) / 2, y);
-            y += 3;
+                    doc.setFontSize(40);
+                    doc.setTextColor(220, 220, 220, 0.15);
+                    doc.setFont('times', 'italic');
+                    doc.text('Sri JayaRama Seva Mandali', pageWidth / 2 - 60, pageHeight / 2 + 10, { angle: 45 });
 
-            const contactInfo = 'Contact: +91-123-456-7890 | Email: info@sjrsm.org';
-            const contactInfoWidth = doc.getTextWidth(contactInfo);
-            doc.text(contactInfo, (pageWidth - contactInfoWidth) / 2, y);
+                    doc.setDrawColor(255, 215, 180);
+                    doc.setLineWidth(0.6);
+                    doc.roundedRect(margin - 1, margin - 1, pageWidth - 2 * (margin - 1), pageHeight - 2 * (margin - 1), 3, 3, 'S');
+                    doc.setDrawColor(200, 200, 200, 0.15);
+                    doc.setLineWidth(0.8);
+                    doc.roundedRect(margin - 0.5, margin - 0.5, pageWidth - 2 * (margin - 0.5), pageHeight - 2 * (margin - 0.5), 3, 3, 'S');
 
-            // Alternative download method using blob URL
-            const pdfOutput = doc.output('blob');
-            const url = URL.createObjectURL(pdfOutput);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'Seva_Ticket.pdf';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        }
-    } catch (error) {
-        console.error('Error generating PDF:', error);
-    }
-};
+                    doc.setFillColor(255, 215, 180);
+                    doc.rect(margin - 1, y - 2, pageWidth - 2 * (margin - 1), 10, 'F');
+                    doc.setFillColor(255, 225, 160);
+                    doc.rect(margin - 1, y + 8, pageWidth - 2 * (margin - 1), 0.5, 'F');
+
+                    doc.setFontSize(20);
+                    doc.setTextColor(255, 255, 255);
+                    doc.setFont('times', 'bolditalic');
+                    const templeName = 'Sri JayaRama Seva Mandali';
+                    const templeNameWidth = doc.getTextWidth(templeName);
+                    doc.setTextColor(150, 150, 150, 0.4);
+                    doc.text(templeName, (pageWidth - templeNameWidth) / 2 + 1, y + 6);
+                    doc.setTextColor(255, 255, 255);
+                    doc.text(templeName, (pageWidth - templeNameWidth) / 2, y + 5);
+                    y += 12;
+
+                    const logoImg = new Image();
+                    logoImg.crossOrigin = 'Anonymous';
+                    logoImg.src = 'images/l-2.png';
+
+                    logoImg.onload = function() {
+                        try {
+                            doc.addImage(logoImg, 'PNG', (pageWidth - 25) / 2, y, 25, 25);
+                            doc.setDrawColor(255, 225, 160);
+                            doc.setLineWidth(0.5);
+                            doc.circle((pageWidth - 25) / 2 + 12.5, y + 12.5, 13, 'S');
+                        } catch (imgError) {
+                            console.error('Error adding image to PDF:', imgError);
+                        }
+                        continuePDFGeneration();
+                    };
+
+                    logoImg.onerror = function() {
+                        console.error('Failed to load logo image: images/l-2.png');
+                        continuePDFGeneration();
+                    };
+
+                    function continuePDFGeneration() {
+                        y += 30;
+
+                        doc.setFontSize(14);
+                        doc.setTextColor(139, 69, 19);
+                        doc.setFont('times', 'bold');
+                        const ticketTitle = 'Seva Booking Ticket';
+                        const ticketTitleWidth = doc.getTextWidth(ticketTitle);
+                        doc.text(ticketTitle, (pageWidth - ticketTitleWidth) / 2, y);
+                        y += 6;
+
+                        doc.setDrawColor(255, 225, 160);
+                        doc.setLineWidth(0.3);
+                        doc.setLineDashPattern([1, 1], 0);
+                        doc.line(margin, y, pageWidth - margin, y);
+                        doc.setLineDashPattern([], 0);
+                        y += 5;
+
+                        const tableTop = y;
+                        const tableLeft = margin + 5;
+                        const tableWidth = contentWidth - 10;
+                        doc.setFillColor(255, 255, 255, 0.95);
+                        doc.setDrawColor(255, 215, 180);
+                        doc.setLineWidth(0.2);
+                        doc.roundedRect(tableLeft, tableTop, tableWidth, pageHeight - tableTop - 20, 2, 2, 'FD');
+                        doc.setDrawColor(200, 200, 200, 0.1);
+                        doc.setLineWidth(0.6);
+                        doc.roundedRect(tableLeft + 0.5, tableTop + 0.5, tableWidth, pageHeight - tableTop - 20, 2, 2, 'S');
+
+                        y += 4;
+                        doc.setFontSize(9);
+                        doc.setTextColor(60, 60, 60);
+                        doc.setFont('times', 'normal');
+
+                        let rowCount = 0;
+                        function addDetail(label, value) {
+                            const labelWidth = doc.getTextWidth(label);
+                            const maxValueWidth = tableWidth - labelWidth - 15;
+                            const splitValue = doc.splitTextToSize(value, maxValueWidth);
+                            const rowHeight = splitValue.length * 4 + 1;
+
+                            if (rowCount % 2 === 0) {
+                                doc.setFillColor(255, 245, 235);
+                                doc.rect(tableLeft, y - 2, tableWidth, rowHeight, 'F');
+                            }
+                            doc.setFont('times', 'bold');
+                            doc.setTextColor(139, 69, 19);
+                            doc.text(label, tableLeft + 5, y);
+                            doc.setFont('times', 'normal');
+                            doc.setTextColor(60, 60, 60);
+                            doc.text(splitValue, tableLeft + labelWidth + 10, y);
+                            y += rowHeight;
+                            rowCount++;
+                        }
+
+                        addDetail('Temple Address:', '123 Temple Road, Bangalore, Karnataka, India 560001');
+                        addDetail('Seva:', 'Abhisheka');
+                        addDetail('Seva Date and Time:', `${bookingDetails.date} at 10:00 AM IST`);
+                        addDetail('Karta\'s Name:', bookingDetails.name);
+                        addDetail('Mobile Number:', bookingDetails.mobile);
+                        addDetail('Gotra:', bookingDetails.gotra);
+                        addDetail('Nakshatra:', bookingDetails.nakshatra);
+                        addDetail('Raashi:', bookingDetails.rashi);
+                        addDetail('District:', bookingDetails.district);
+                        addDetail('State:', bookingDetails.state);
+                        addDetail('Address:', bookingDetails.address);
+                        addDetail('Pincode:', bookingDetails.pincode);
+                        addDetail('Amount:', '₹250');
+                        addDetail('Payment Method:', bookingDetails.paymentMethod);
+
+                        y += 3;
+
+                        doc.setDrawColor(255, 225, 160);
+                        doc.setLineWidth(0.3);
+                        doc.setLineDashPattern([1, 1], 0);
+                        doc.line(margin, y, pageWidth - margin, y);
+                        doc.setLineDashPattern([], 0);
+                        y += 4;
+
+                        doc.setFontSize(7);
+                        doc.setTextColor(100, 100, 100);
+                        doc.setFont('times', 'italic');
+                        const thankYou = 'Thank you for booking with Sri JayaRama Seva Mandali!';
+                        const thankYouWidth = doc.getTextWidth(thankYou);
+                        doc.text(thankYou, (pageWidth - thankYouWidth) / 2, y);
+                        y += 3;
+
+                        const contactInfo = 'Contact: +91-123-456-7890 | Email: info@sjrsm.org';
+                        const contactInfoWidth = doc.getTextWidth(contactInfo);
+                        doc.text(contactInfo, (pageWidth - contactInfoWidth) / 2, y);
+
+                        const pdfOutput = doc.output('blob');
+                        const url = URL.createObjectURL(pdfOutput);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = 'Seva_Ticket.pdf';
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+                    }
+                } catch (error) {
+                    console.error('Error generating PDF:', error);
+                }
+            };
+
             window.newBooking = function() {
                 selectedDate = null;
+                bookingDetails = {};
                 selectedPaymentMethod = null;
                 selectedTransactionType = null;
-                bookingDetails = {};
-                paymentConfirmed = false;
-    
+
                 document.getElementById('ticketSection').style.display = 'none';
+                document.getElementById('paymentSection').style.display = 'none';
+                document.getElementById('transactionTypeSection').style.display = 'none';
+                document.getElementById('onlinePaymentSection').style.display = 'none';
+                document.getElementById('qrPaymentSection').style.display = 'none';
+                document.getElementById('manualPaymentSection').style.display = 'none';
+                document.getElementById('uploadSection').style.display = 'none';
+
                 document.getElementById('calendarSection').style.display = 'block';
                 document.getElementById('divider1').style.display = 'block';
                 document.getElementById('kartaDetailsHeader').style.display = 'block';
@@ -1526,73 +1340,32 @@ window.downloadTicket = function() {
                     section.style.display = 'block';
                     section.querySelector('input').value = '';
                 });
-                document.getElementById('paymentOptions').style.display = 'block';
-                document.getElementById('transactionTypeSection').style.display = 'none';
-                document.getElementById('onlinePaymentSection').style.display = 'none';
-                document.getElementById('manualPaymentSection').style.display = 'none';
-                document.getElementById('uploadSection').style.display = 'none';
                 document.getElementById('divider2').style.display = 'block';
                 document.getElementById('totalAmount').style.display = 'block';
                 document.getElementById('submitBtn').style.display = 'block';
-                document.getElementById('paymentScreenshot').value = '';
-                document.getElementById('uploadPreview').style.display = 'none';
-    
-                document.querySelectorAll('.payment-option').forEach(option => {
-                    option.classList.remove('selected');
-                    option.querySelector('.fa-check').style.display = 'none';
-                });
-    
-                document.querySelectorAll('.transaction-type-option').forEach(option => {
-                    option.classList.remove('selected');
-                    option.querySelector('.fa-check').style.display = 'none';
-                });
+
                 generateCalendar(new Date());
             };
-    
+
+            const screenshotInput = document.getElementById('paymentScreenshot');
+            const preview = document.getElementById('uploadPreview');
+            screenshotInput.addEventListener('change', function() {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        preview.src = e.target.result;
+                        preview.style.display = 'block';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
             window.addEventListener('click', function(e) {
                 if (e.target === modal) {
                     closeModal();
                 }
             });
-
-            window.newBooking = function() {
-    selectedDate = null;
-    selectedPaymentMethod = null;
-    selectedTransactionType = null;
-    bookingDetails = {};
-    paymentConfirmed = false;
-
-    document.getElementById('ticketSection').style.display = 'none';
-    document.getElementById('calendarSection').style.display = 'block';
-    document.getElementById('divider1').style.display = 'block';
-    document.getElementById('kartaDetailsHeader').style.display = 'block';
-    document.querySelectorAll('#formSection').forEach(section => {
-        section.style.display = 'block';
-        section.querySelector('input').value = '';
-    });
-    document.getElementById('paymentOptions').style.display = 'block';
-    document.getElementById('transactionTypeSection').style.display = 'none';
-    document.getElementById('onlinePaymentSection').style.display = 'none';
-    document.getElementById('qrPaymentSection').style.display = 'none';
-    document.getElementById('manualPaymentSection').style.display = 'none';
-    document.getElementById('uploadSection').style.display = 'none';
-    document.getElementById('divider2').style.display = 'block';
-    document.getElementById('totalAmount').style.display = 'block';
-    document.getElementById('submitBtn').style.display = 'block';
-    document.getElementById('paymentScreenshot').value = '';
-    document.getElementById('uploadPreview').style.display = 'none';
-
-    document.querySelectorAll('.payment-option').forEach(option => {
-        option.classList.remove('selected');
-        option.querySelector('.fa-check').style.display = 'none';
-    });
-
-    document.querySelectorAll('.transaction-type-option').forEach(option => {
-        option.classList.remove('selected');
-        option.querySelector('.fa-check').style.display = 'none';
-    });
-    generateCalendar(new Date());
-};
         });
     </script>
 </body>
