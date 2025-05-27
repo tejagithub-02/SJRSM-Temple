@@ -550,95 +550,87 @@ if (menuToggle && navLinks) {
 </style>
 
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const slides = document.querySelectorAll('.slide');
-    const leftArrow = document.querySelector('.slider-arrow-left');
-    const rightArrow = document.querySelector('.slider-arrow-right');
-    const slider = document.querySelector('.slider');
-    let currentSlide = 0;
-    let touchStartX = 0;
-    let touchEndX = 0;
-    let isAnimating = false;
+<script>document.addEventListener('DOMContentLoaded', function () {
+  const slides = document.querySelectorAll('.slide');
+  const leftArrow = document.querySelector('.slider-arrow-left');
+  const rightArrow = document.querySelector('.slider-arrow-right');
+  const slider = document.querySelector('.slider');
+  let currentSlide = 0;
+  let touchStartX = 0;
+  let touchEndX = 0;
+  let isAnimating = false;
 
-    function showSlide(index) {
-      if (isAnimating) return;
-      
-      isAnimating = true;
-      slides[currentSlide].classList.remove('active');
-      currentSlide = (index + slides.length) % slides.length;
-      slides[currentSlide].classList.add('active');
-      
-      // Reset animation state after transition
-      setTimeout(() => {
-        isAnimating = false;
-      }, 1000);
-    }
-
-    function showNextSlide() {
-      showSlide(currentSlide + 1);
-    }
-
-    function showPrevSlide() {
-      showSlide(currentSlide - 1);
-    }
-
-    // Initialize the first slide
-    if (slides.length > 0) {
-      showSlide(0);
-    }
-
-    // Arrow button events
-    if (leftArrow && rightArrow) {
-      leftArrow.addEventListener('click', showPrevSlide);
-      rightArrow.addEventListener('click', showNextSlide);
-    }
-
-    // Touch events for mobile swipe
-    slider.addEventListener('touchstart', function(e) {
-      touchStartX = e.touches[0].clientX;
-    }, { passive: true });
-
-    slider.addEventListener('touchmove', function(e) {
-      touchEndX = e.touches[0].clientX;
-    }, { passive: true });
-
-    slider.addEventListener('touchend', function() {
-      const threshold = 50; // Minimum swipe distance
-      const difference = touchStartX - touchEndX;
-      
-      if (Math.abs(difference) > threshold) {
-        if (difference > 0) {
-          showNextSlide(); // Swipe left
-        } else {
-          showPrevSlide(); // Swipe right
-        }
-      }
-    }, { passive: true });
-
-    // Handle image load errors
-    slides.forEach(slide => {
-      if (slide.complete && slide.naturalHeight === 0) {
-        slide.classList.add('error');
-        slide.innerHTML = 'Image failed to load';
-      }
-      
-      // Add error listener for images that fail later
-      slide.addEventListener('error', function() {
-        this.classList.add('error');
-        this.innerHTML = 'Image failed to load';
-      });
-    });
-
-    // Auto-rotate slides (optional)
-    let slideInterval = setInterval(showNextSlide, 5000);
+  function showSlide(index) {
+    if (isAnimating) return;
     
-    // Pause auto-rotation when user interacts
-    slider.addEventListener('mouseenter', () => clearInterval(slideInterval));
-    slider.addEventListener('mouseleave', () => slideInterval = setInterval(showNextSlide, 5000));
-    slider.addEventListener('touchstart', () => clearInterval(slideInterval), { passive: true });
+    isAnimating = true;
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (index + slides.length) % slides.length;
+    slides[currentSlide].classList.add('active');
+    
+    // Reset animation state after transition
+    setTimeout(() => {
+      isAnimating = false;
+    }, 1000);
+  }
+
+  function showNextSlide() {
+    showSlide(currentSlide + 1);
+  }
+
+  function showPrevSlide() {
+    showSlide(currentSlide - 1);
+  }
+
+  // Initialize the first slide
+  if (slides.length > 0) {
+    showSlide(0);
+  }
+
+  // Arrow button events
+  if (leftArrow && rightArrow) {
+    leftArrow.addEventListener('click', showPrevSlide);
+    rightArrow.addEventListener('click', showNextSlide);
+  }
+
+  // Touch events for mobile swipe
+  slider.addEventListener('touchstart', function(e) {
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+
+  slider.addEventListener('touchmove', function(e) {
+    touchEndX = e.touches[0].clientX;
+  }, { passive: true });
+
+  slider.addEventListener('touchend', function() {
+    const threshold = 50; // Minimum swipe distance
+    const difference = touchStartX - touchEndX;
+    
+    if (Math.abs(difference) > threshold) {
+      if (difference > 0) {
+        showNextSlide(); // Swipe left
+      } else {
+        showPrevSlide(); // Swipe right
+      }
+    }
+  }, { passive: true });
+
+  // Handle image load errors
+  slides.forEach(slide => {
+    if (slide.complete && slide.naturalHeight === 0) {
+      slide.classList.add('error');
+      slide.innerHTML = 'Image failed to load';
+    }
+    
+    // Add error listener for images that fail later
+    slide.addEventListener('error', function() {
+      this.classList.add('error');
+      this.innerHTML = 'Image failed to load';
+    });
   });
-</script>
+
+  // Removed the auto-rotation interval code completely
+});</script>
 
 <!-- banner -->
 
