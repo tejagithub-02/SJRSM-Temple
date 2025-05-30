@@ -413,23 +413,27 @@ if (menuToggle && navLinks) {
   #p1 {
   font-family: 'Dancing Script', cursive;
   font-size: 2.5em;
-  color: white; /* Black text */
-  margin-top: 100px; /* Push content down */
+  color: white;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+  margin-top: 200px; /* Increased from 140px */
   opacity: 0;
+  animation: fadeIn 1s ease-in-out 0.5s forwards;
+}
+
+
+#p2 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.5em;
+  color: white;
+text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+
+  margin-top: 140px; /* Increased from 100px to push content down */
+  opacity: 0;
+  margin-top: 20px;
   animation: fadeIn 1s ease-in-out 0.5s forwards;
   text-shadow: none;
 }
 
-#p2 {
-  font-family: 'Raleway', sans-serif;
-  font-size: 1.5em;
-  font-weight: 700;
-  color: white; /* Black text */
-  margin-top: 20px;
-  opacity: 0;
-  animation: fadeIn 1s ease-in-out 1s forwards;
-  text-shadow: none;
-}
 
   @keyframes fadeIn {
     from {

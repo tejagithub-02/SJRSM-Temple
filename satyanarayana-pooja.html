@@ -4,42 +4,39 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ಸಾಮೂಹಿಕ ಶ್ರೀ ಸತ್ಯನಾರಾಯಣ ಪೂಜ - Sri Jayarama Seva Mandali</title>
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&family=Dancing+Script:wght@700&family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-  <meta name="keywords" content="" />
-  <meta name="description" content="Details about the ಸಾಮೂಹಿಕ ಶ್ರೀ ಸತ್ಯನಾರಾಯಣ ಪೂಜ event at Sri Jayarama Seva Mandali, including description and dates." />
+  <meta name="keywords" content="Sankashtahara Ganapati Pooja, Sri Jayarama Seva Mandali, Bangalore, Abhisheka Booking" />
+  <meta name="description" content="Details about the ಸಾಮೂಹಿಕ ಸಂಕಷಕ್ಟಹರ ಗಣಪತಿ ಪೂಜ event at Sri Jayarama Seva Mandali, including description, dates, and booking for Abhisheka seva." />
   <style>
+    /* Event Details Styles */
     @media (max-width: 768px) {
       .nav-links {
         display: none;
       }
-
       .nav-links.active {
         display: block;
       }
-
       .dropdown-content {
         display: none;
       }
-
       .dropdown.active .dropdown-content {
         display: block;
       }
-
       .sub-dropdown-content {
         display: none;
       }
     }
-
     .container {
+      position: relative;
       padding: 20px;
       max-width: 1400px;
       margin: 0 auto;
       margin-top: 100px;
     }
-
     .event-details {
       display: flex;
       flex-direction: column;
@@ -49,37 +46,25 @@
       padding: 20px;
       gap: 20px;
     }
-
-    .content-wrapper {
+    .content-section {
       display: flex;
       flex-direction: row;
       gap: 30px;
       align-items: flex-start;
     }
-
     .left-content {
       flex: 2;
       display: flex;
       flex-direction: column;
       gap: 20px;
     }
-
-    .title {
-      font-size: 1.8em;
-      color: #b71c1c;
-      margin-bottom: 15px;
-      font-weight: bold;
-      text-align: center;
-    }
-
     .image-container {
       display: flex;
       flex-direction: row;
       gap: 15px;
-      justify-content: center;
+      justify-content: space-between;
       flex-wrap: wrap;
     }
-
     .image-container img {
       flex: 1;
       min-width: 200px;
@@ -89,19 +74,23 @@
       border: 2px solid #ccc;
       object-fit: cover;
     }
-
+    .right-content {
+      flex: 1;
+      min-width: 300px;
+    }
+    .title {
+      font-size: 1.8em;
+      color: #b71c1c;
+      margin-bottom: 15px;
+      font-weight: bold;
+      text-align: center;
+    }
     .description {
       font-size: 1.1em;
       color: #333;
       line-height: 1.6;
       text-align: justify;
     }
-
-    .right-content {
-      flex: 1;
-      min-width: 300px;
-    }
-
     .dates-section {
       background: linear-gradient(135deg, #ffeb3b, #ff9800);
       border-radius: 10px;
@@ -109,7 +98,6 @@
       position: sticky;
       top: 120px;
     }
-
     .dates-title {
       font-size: 1.5em;
       color: #333;
@@ -118,13 +106,11 @@
       font-family: 'Raleway', sans-serif;
       font-weight: bold;
     }
-
     .dates-grid {
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
-
     .date-card {
       background: rgba(255, 255, 255, 0.9);
       border: 2px solid #2196f3;
@@ -132,25 +118,26 @@
       padding: 10px;
       text-align: center;
       transition: transform 0.2s ease-in-out;
+      cursor: pointer;
     }
-
     .date-card:hover {
       transform: scale(1.05);
     }
-
+    .date-card.selected {
+      background: #2196f3;
+      color: #fff;
+    }
     .date-card .date {
       font-size: 1em;
       font-weight: bold;
       color: #333;
       font-family: 'Raleway', sans-serif;
     }
-
     .date-card .day {
       font-size: 0.9em;
       color: #666;
       font-family: 'Raleway', sans-serif;
     }
-
     .notes {
       margin-top: 15px;
       font-size: 1em;
@@ -158,110 +145,442 @@
       text-align: center;
       font-weight: bold;
     }
-
     .notes p {
       margin: 5px 0;
     }
 
-    @media (max-width: 992px) {
-      .content-wrapper {
+    /* Booking Form Styles */
+    #eventDetails {
+      display: block;
+    }
+    #bookingContainer {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+    #bookingContainer .booking-container {
+      margin: 0;
+      padding: 20px;
+      background: linear-gradient(135deg, #fff8e1, #ffe0b2);
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .booking-title {
+      font-family: 'Playfair Display', serif;
+      color: #ff3333;
+      font-size: 2em;
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5em;
+      color: #ff3333;
+      margin: 25px 0 15px;
+      font-weight: 700;
+      text-align: center;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      color: #ff3333;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1em;
+      margin-bottom: 15px;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .back-btn i {
+      margin-right: 5px;
+    }
+    .back-btn:hover {
+      color: #4a4a4a;
+      transform: translateX(-3px);
+    }
+    .calendar-container {
+      background: #f9f9f9;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      border: 1px solid #ff3333;
+    }
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .calendar-header button {
+      background: none;
+      border: none;
+      font-size: 1.2em;
+      cursor: pointer;
+      color: #ff3333;
+      transition: transform 0.2s ease;
+    }
+    .calendar-header button:hover {
+      transform: scale(1.3);
+    }
+    .calendar-header h3 {
+      font-size: 1.2em;
+      font-weight: 500;
+      color: #ff3333;
+    }
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 3px;
+    }
+    .calendar div {
+      padding: 8px;
+      text-align: center;
+      border-radius: 6px;
+      font-size: 0.9em;
+      transition: all 0.3s ease;
+    }
+    .day-header {
+      background: #ff3333;
+      color: #ffffff;
+      font-weight: 500;
+      font-size: 0.8em;
+      text-transform: uppercase;
+    }
+    .calendar-day {
+      background: #ffffff;
+      border: 1px solid #d9d9d9;
+      cursor: pointer;
+    }
+    .calendar-day:hover {
+      background: #ffe6e6;
+      transform: scale(1.05);
+    }
+    .calendar-day.selected {
+      background: #ff3333;
+      color: #ffffff;
+      border-color: #ff3333;
+      font-weight: 500;
+    }
+    .calendar-day.disabled {
+      background: #f5f5f5;
+      color: #ccc;
+      cursor: not-allowed;
+    }
+    .divider {
+      border-top: 1px solid #ff3333;
+      margin: 20px 0;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      display: block;
+      font-weight: 500;
+      color: #ff3333;
+      margin-bottom: 5px;
+      font-size: 0.9em;
+    }
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ff3333;
+      border-radius: 6px;
+      font-size: 0.9em;
+      transition: border-color 0.3s ease;
+    }
+    .form-group input:focus, .form-group select:focus {
+      outline: none;
+      border-color: #ff3333;
+      box-shadow: 0 0 3px rgba(255, 51, 51, 0.3);
+    }
+    .form-group input:invalid {
+      border-color: #ff6666;
+    }
+    .total-amount {
+      font-size: 1.2em;
+      font-weight: 500;
+      text-align: right;
+      padding: 15px;
+      background: #ffe6e6;
+      border-radius: 6px;
+      color: #ff3333;
+      margin: 20px 0;
+    }
+    .submit-btn {
+      background: #ff3333;
+      color: #ffffff;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 6px;
+      font-size: 1em;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    .submit-btn:hover {
+      background: #4a4a4a;
+      transform: translateY(-2px);
+    }
+    .ticket-section {
+      display: none;
+      margin-top: 20px;
+      padding: 20px;
+      background: #f9f9f9;
+      border-radius: 8px;
+      border: 1px solid #ff3333;
+    }
+    .ticket-section h2 {
+      font-size: 1.8em;
+      margin-bottom: 15px;
+    }
+    .ticket-details {
+      margin-bottom: 20px;
+    }
+    .ticket-details p {
+      font-size: 1em;
+      color: #4a4a4a;
+      margin: 5px 0;
+    }
+    .temple-name {
+      font-size: 1.4em;
+      font-weight: 700;
+      color: #ff3333;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .download-ticket-btn, .new-booking-btn {
+      background: #ff3333;
+      color: #ffffff;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 6px;
+      font-size: 1em;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+      margin-top: 10px;
+    }
+    .download-ticket-btn:hover, .new-booking-btn:hover {
+      background: #4a4a4a;
+      transform: translateY(-2px);
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.3s ease;
+    }
+    .modal-content {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 20px;
+      width: 90%;
+      max-width: 500px;
+      max-height: 85vh;
+      overflow-y: auto;
+      border: 2px solid #ff3333;
+      animation: slideIn 0.3s ease;
+    }
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5em;
+      color: #ff3333;
+      cursor: pointer;
+      background: none;
+      border: none;
+      transition: transform 0.2s ease;
+    }
+    .close-btn:hover {
+      transform: rotate(90deg);
+    }
+    .modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6em;
+      color: #ff3333;
+      text-align: center;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+    .modal-seva-name {
+      font-size: 1.2em;
+      text-align: center;
+      margin-bottom: 10px;
+      color: #ff3333;
+      font-weight: 500;
+    }
+    .modal-seva-price {
+      font-size: 1.1em;
+      text-align: center;
+      margin-bottom: 15px;
+      color: #4a4a4a;
+      font-weight: 500;
+    }
+    .modal-form .form-group {
+      margin-bottom: 12px;
+    }
+    .modal-submit-btn {
+      background: #ff3333;
+      color: #ffffff;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 6px;
+      font-size: 1em;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    .modal-submit-btn:hover {
+      background: #4a4a4a;
+      transform: translateY(-2px);
+    }
+    .payment-section {
+      display: none;
+      margin-top: 20px;
+    }
+    .payment-option, .transaction-type-option {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      margin-bottom: 10px;
+      background: #f9f9f9;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 1px solid #e0e0e0;
+    }
+    .payment-option:hover, .transaction-type-option:hover {
+      background: #ffe6e6;
+      border-color: #ff3333;
+    }
+    .payment-option.selected, .transaction-type-option.selected {
+      background: #ffe6e6;
+      border: 2px solid #ff3333;
+    }
+    .payment-icon {
+      font-size: 1.8em;
+      margin-right: 15px;
+      color: #4a4a4a;
+    }
+    .payment-details {
+      flex-grow: 1;
+    }
+    .select-payment-btn {
+      background: #ff3333;
+      color: #ffffff;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.9em;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    .select-payment-btn:hover {
+      background: #4a4a4a;
+      transform: translateY(-2px);
+    }
+    .select-payment-btn:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+    .payment-title {
+      font-weight: 500;
+      color: #4a4a4a;
+      margin-bottom: 3px;
+    }
+    .payment-description {
+      font-size: 0.8em;
+      color: #777;
+    }
+    .transaction-type-section, .online-payment-section, .qr-payment-section, .upload-section, .manual-payment-section {
+      display: none;
+      margin-top: 20px;
+    }
+    .upload-preview {
+      margin-top: 10px;
+      max-width: 100%;
+      max-height: 200px;
+      display: none;
+      border: 1px solid #ff3333;
+      border-radius: 6px;
+    }
+    .upload-btn, .confirm-payment-btn {
+      background: #ff3333;
+      color: #ffffff;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 6px;
+      font-size: 1em;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    .upload-btn:hover, .confirm-payment-btn:hover {
+      background: #4a4a4a;
+      transform: translateY(-2px);
+    }
+    .pq-copyright-footer {
+  padding-bottom: 20px;
+  margin-top: -130px;
+  margin-left: 0px;
+}
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideIn {
+      from { transform: translateY(-30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    /* Responsive Styles */
+    @media (max-width: 992px) 
+    {
+      .content-section {
         flex-direction: column;
       }
-      
       .right-content {
         width: 100%;
         min-width: auto;
       }
-      
       .dates-section {
         position: static;
       }
-    }
-
-    @media (max-width: 768px) {
-      .event-details {
-        padding: 15px;
-      }
-
-      .container {
-        margin-top: 80px;
-      }
-
-      .title {
-        font-size: 1.5em;
-      }
-
-      .image-container {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .image-container img {
-        width: 100%;
-        max-width: 100%;
-        height: 180px;
-      }
-
-      .description {
-        font-size: 1em;
-      }
-
-      .dates-title {
-        font-size: 1.3em;
-      }
-
-      .date-card {
-        padding: 8px;
-      }
-
-      .date-card .date {
-        font-size: 0.9em;
-      }
-
-      .date-card .day {
-        font-size: 0.8em;
-      }
-
-      .notes {
-        font-size: 0.9em;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        padding: 10px;
-        margin-top: 60px;
-      }
-
-      .event-details {
-        padding: 10px;
-      }
-
-      .image-container img {
-        height: 160px;
-      }
-    }
-
-    @media (min-width: 992px) {
-      .pq-copyright-footer {
-        margin-top: -150px;
-      }
-      
       .pq-footer-top {
-        padding-top: -180px;
+    padding-top: 40px; /* Previously negative, now positive */
+  }
+
+  .pq-copyright-footer {
+        padding-bottom: 20px;
+        margin-top: -130px;
+        margin-left: 0px;
       }
     }
-
+  
     @media (max-width: 991.98px) {
       .pq-footer-top {
         margin-top: -80px;
       }
-      
       .pq-footer-items .pq-footer-item:nth-child(2) {
         position: relative;
         top: -30px;
       }
-
       .pq-footer-items .pq-footer-item:nth-child(3) {
         position: relative;
         top: -60px;
@@ -269,90 +588,377 @@
       .pq-copyright-footer {
         padding-bottom: 20px;
         margin-top: -130px;
+        margin-left: 0px;
+      }
+    }
+    @media (max-width: 767.98px) {
+  .pq-footer-items .pq-footer-item:nth-child(2) {
+    position: relative;
+    top: -30px; /* Remove the upward shift */
+  }
+
+  .pq-footer-items .pq-footer-item:nth-child(3) {
+    position: relative;
+    top: -30px; /* Remove the upward shift */
+  }
+
+  .pq-copyright-footer {
+    padding-bottom: 30px;
+  
+    margin-top: -70px; /* Push it down */
+  }
+}
+    @media (max-width: 768px) {
+      .event-details, #bookingContainer .booking-container {
+        padding: 15px;
+      }
+      .container {
+        margin-top: 200px;
+        padding: 10px;
+      }
+      .title, .booking-title {
+        font-size: 1.5em;
+      }
+      .image-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .image-container img {
+        width: 100%;
+        max-width: 100%;
+        height: 180px;
+      }
+      .description {
+        font-size: 1em;
+      }
+      .dates-title {
+        font-size: 1.3em;
+      }
+      .date-card {
+        padding: 8px;
+      }
+      .date-card .date {
+        font-size: 0.9em;
+      }
+      .date-card .day {
+        font-size: 0.8em;
+      }
+      .notes {
+        font-size: 0.9em;
+      }
+      .section-title {
+        font-size: 1.2em;
+      }
+      .calendar div {
+        padding: 6px;
+        font-size: 0.8em;
+      }
+      .modal-content {
+        padding: 15px;
+        width: 95%;
+      }
+      .ticket-section h2 {
+        font-size: 1.4em;
+      }
+      .ticket-details p {
+        font-size: 0.9em;
+      }
+      .temple-name {
+        font-size: 1.2em;
+      }
+      .select-payment-btn {
+        font-size: 0.8em;
+        padding: 6px 10px;
+      }
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 10px;
+        margin-top: 60px;
+      }
+      .event-details, #bookingContainer .booking-container {
+        padding: 10px;
+      }
+      .image-container img {
+        height: 160px;
+      }
+    }
+    @media (max-width: 480px) {
+      .container {
+        margin: 60px auto;
+        padding: 15px;
+      }
+      .title, .booking-title {
+        font-size: 1.4em;
+      }
+      .calendar div {
+        padding: 5px;
+        font-size: 0.7em;
+      }
+      .submit-btn, .modal-submit-btn, .download-ticket-btn, .new-booking-btn, .upload-btn, .confirm-payment-btn {
+        font-size: 0.9em;
+        padding: 10px;
+      }
+      .ticket-section h2 {
+        font-size: 1.2em;
+      }
+      .ticket-details p {
+        font-size: 0.8em;
+      }
+      .temple-name {
+        font-size: 1em;
+      }
+      .payment-option, .transaction-type-option {
+        padding: 10px;
+      }
+      .payment-icon {
+        font-size: 1.5em;
+        margin-right: 10px;
+      }
+      .select-payment-btn {
+        font-size: 0.7em;
+        padding: 5px 8px;
       }
     }
   </style>
 </head>
 <body>
-  <header>
+  <header id="header">
     <div class="header">
-        <nav class="navbar">
-            <div class="logo" style="display: flex; align-items: center;">
-                <img src="images/l-2.png" style="width: 80px; height: 80px; margin-left: 3px;background: linear-gradient(#f7971e, #ffd200);" alt="SJRSM Logo">
-                <div style="display: flex; flex-direction: column; margin-left: 10px;">
-                  <span class="brand-name" style="font-weight: bold; font-size: clamp(16px, 2vw, 24px); font-family: sans-serif; color: #000000; white-space: nowrap;">
-                      SRI JAYARAMA SEVA MANDALI <span style="font-size: clamp(12px, 1.5vw, 16px); color: red;">(R)</span>
-                  </span>
-                  <span style="margin-left: 6px; font-size: clamp(12px, 1.5vw, 16px); color: red; font-family: sans-serif; white-space: nowrap;">
-                      8th Block, Jayanagar, Bangalore
-                  </span>
-              </div>
+      <nav class="navbar">
+        <div class="logo" style="display: flex; align-items: center;">
+          <img src="images/l-2.png" style="width: 80px; height: 80px; margin-left: 3px;background: linear-gradient(#f7971e, #ffd200);" alt="SJRSM Logo">
+         
+          <div style="display: flex; flex-direction: column; margin-left: 10px;">
+            <span style="font-weight: bold; font-size: clamp(16px, 2vw, 24px); font-family: sans-serif; color: #000000; white-space: nowrap;">
+              SRI JAYARAMA SEVA MANDALI <span style="font-size: clamp(12px, 1.5vw, 16px); color: red;">(R)</span>
+            </span>
+            <span style="margin-left: 6px; font-size: clamp(12px, 1.5vw, 16px); color: red; font-family: sans-serif; white-space: nowrap;">
+              8th Block, Jayanagar, Bangalore
+            </span>
+          </div>
+        </div>
+        <div class="menu-toggle">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+        <ul class="nav-links">
+          <li><a href="index.html"><h4>Home</h4></a></li>
+          <li><a href="About_us.html"><h4>About Us</h4></a></li>
+          <li class="dropdown">
+            <a href="javascript:void(0);" class="dropdown-toggle"><h4>Events</h4></a>
+            <div class="dropdown-content">
+              <a href="Upcoming Pooja Dates.html">Upcoming Pooja Dates</a>
+              <a href="previous-events.html">Previous Events</a>
+              <a href="recurring.html">Recurring Events</a>
             </div>
-            <div class="menu-toggle">
-                <i class="fa-solid fa-bars"></i>
-            </div>
-            <ul class="nav-links">
-              <li><a href="index.html"><h4>Home</h4></a></li>
-              <li><a href="About_us.html"><h4>About Us</h4></a></li>
-              <li class="dropdown">
-                <a href="javascript:void(0);" class="dropdown-toggle"><h4>Events</h4></a>
-                <div class="dropdown-content">
-                  <a href="Upcoming Pooja Dates.html">Upcoming Pooja Dates</a>
-                  <a href="previous-events.html">Previous Events</a>
-                  <a href="recurring.html">Recurring Events</a>
-              </div>
-            </li>
-              <li><a href="Book-seva.html"><h4>Seva</h4></a></li>
-              <li><a href="gallery.html"><h4>Gallery</h4></a></li>
-              <li><a href="publications.html"><h4>Publications</h4></a></li>
-              <li><a href="Contact.html"><h4>Contact Us</h4></a></li>
-            </ul>
-        </nav>
+          </li>
+          <li><a href="Book-seva.html"><h4>Seva</h4></a></li>
+          <li><a href="gallery.html"><h4>Gallery</h4></a></li>
+          <li><a href="publications.html"><h4>Publications</h4></a></li>
+          <li><a href="Contact.html"><h4>Contact Us</h4></a></li>
+        </ul>
+      </nav>
     </div>
   </header>
 
+  <!-- Moved container section (originally here, kept in the same position as no new position specified) -->
   <div class="container">
-    <div class="event-details">
+    <div class="event-details" id="eventDetails">
       <h2 class="title">ಸಾಮೂಹಿಕ ಶ್ರೀ ಸತ್ಯನಾರಾಯಣ ಪೂಜ</h2>
-      
-      <div class="content-wrapper">
+      <div class="content-section">
         <div class="left-content">
           <div class="image-container">
             <img src="images/r.jpeg" alt="Satyanarayana Pooja">
             <img src="images/ram.jpeg" alt="Satyanarayana Pooja Ritual">
             <img src="images/rama.jpeg" alt="Satyanarayana Pooja Offering">
           </div>
-          
           <div class="description">
             <p>
               The ಸಾಮೂಹಿಕ ಶ್ರೀ ಸತ್ಯನಾರಾಯಣ ಪೂಜ is a revered group ritual dedicated to Lord Satyanarayana, an incarnation of Lord Vishnu, known for granting truth, prosperity, and fulfillment of desires. Held at Sri Jayarama Seva Mandali, this sacred ceremony brings devotees together to seek blessings for happiness, success, and spiritual growth. The pooja begins with an invocation of Lord Ganesha to ensure a smooth ritual, followed by the recitation of the Satyanarayana Vrat Katha, a series of stories narrating the miracles of Lord Satyanarayana. Devotees offer items such as bananas, ghee, and tulsi leaves, and participate in the aarti and mantra chanting led by experienced priests. The atmosphere is filled with devotion as participants perform sankalpa (intention-setting) to express their prayers and gratitude. This pooja is particularly significant for those seeking divine intervention for family well-being, career advancement, or resolution of personal challenges. The ritual concludes with the distribution of prasadam, typically including sweetened wheat flour and fruits, which devotees partake in with reverence. Join us to experience the divine grace of Lord Satyanarayana, immerse yourself in the spiritual ambiance, and receive blessings for a truthful and prosperous life.
             </p>
           </div>
         </div>
-        
         <div class="right-content">
           <div class="dates-section">
             <h2 class="dates-title">Pooja Dates</h2>
             <div class="dates-grid">
-              <a href="enquiry.html" class="date-card">
+              <div class="date-card" data-date="2025-04-16">
                 <div class="date">April 16, 2025</div>
                 <div class="day">Wednesday</div>
-              </a>
-              <a href="enquiry.html" class="date-card">
+              </div>
+              <div class="date-card" data-date="2025-05-16">
                 <div class="date">May 16, 2025</div>
                 <div class="day">Friday</div>
-              </a>
-              <a href="enquiry.html" class="date-card">
+              </div>
+              <div class="date-card" data-date="2025-06-14">
                 <div class="date">June 14, 2025</div>
                 <div class="day">Saturday</div>
-              </a>
-              <a href="enquiry.html" class="date-card">
+              </div>
+              <div class="date-card" data-date="2025-07-14">
                 <div class="date">July 14, 2025</div>
                 <div class="day">Monday</div>
-              </a>
+              </div>
             </div>
-            
           </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="bookingContainer">
+      <div class="booking-container">
+        <a href="#" class="back-btn" onclick="goBack()">
+          <i class="fas fa-arrow-left"></i> Back
+        </a>
+        <h1 class="booking-title">Abhisheka - ₹250</h1>
+        <div class="calendar-container" id="calendarSection">
+          <div class="calendar-header">
+            <button onclick="prevMonth()"><</button>
+            <h3 id="calendarMonthYear"></h3>
+            <button onclick="nextMonth()">></button>
+          </div>
+          <div class="calendar" id="calendarDays"></div>
+        </div>
+        <div class="divider" id="divider1"></div>
+        <h2 class="section-title" id="kartaDetailsHeader">Karta's Details</h2>
+        <div class="form-group" id="formSection">
+          <label for="name">Karta's Name</label>
+          <input type="text" id="name" placeholder="Enter your full name" />
+        </div>
+        <div class="form-group" id="formSection">
+          <label for="mobile">Mobile Number</label>
+          <input type="tel" id="mobile" placeholder="Enter mobile number" pattern="[0-9]{10}" />
+        </div>
+        <div class="form-group" id="formSection">
+          <label for="gotra">Gotra</label>
+          <input type="text" id="gotra" placeholder="Enter gotra" />
+        </div>
+        <div class="form-group" id="formSection">
+          <label for="nakshatra">Nakshatra</label>
+          <input type="text" id="nakshatra" placeholder="Enter nakshatra" />
+        </div>
+        <div class="form-group" id="formSection">
+          <label for="rashi">Raashi</label>
+          <input type="text" id="rashi" placeholder="Enter raashi" />
+        </div>
+        <div class="form-group" id="formSection">
+          <label for="district">Enter District</label>
+          <input type="text" id="district" placeholder="Enter district" />
+        </div>
+        <div class="form-group" id="formSection">
+          <label for="state">Enter State</label>
+          <input type="text" id="state" placeholder="Enter State" />
+        </div>
+        <div class="form-group" id="formSection">
+          <label for="address">Enter Address</label>
+        <input type="text" id="address" placeholder="Enter Address" />
+        </div>
+        <div class="form-group" id="formSection">
+          <label for="pincode">Pincode</label>
+          <input type="text" id="pincode" placeholder="Enter Pincode" pattern="[0-9]{6}" />
+        </div>
+        <div class="divider" id="divider2"></div>
+        <div class="total-amount" id="totalAmount">
+          Total Amount: ₹250
+        </div>
+        <button class="submit-btn" id="submitBtn" onclick="validateForm()">Proceed to Payment</button>
+        <div class="payment-section" id="paymentSection">
+          <h2 class="section-title">Payment Options</h2>
+          <div class="total-amount" id="paymentTotalAmount">
+            Total Amount: ₹250
+          </div>
+          <div class="form-group" id="paymentOptions">
+            <label>Select Payment Method</label>
+            <div class="payment-option" onclick="highlightPayment(this)">
+              <i class="fas fa-qrcode payment-icon"></i>
+              <div class="payment-details">
+                <div class="payment-title">Scan QR Code</div>
+                <div class="payment-description">Pay by scanning UPI QR code</div>
+              </div>
+              <i class="fas fa-check" style="display: none;"></i>
+              <button class="select-payment-btn" onclick="selectPayment(this, 'qr')")>Select</button>
+            </div>
+            <div class="payment-option" onclick="highlightPayment(this)">
+              <i class="fas fa-mobile-alt payment-icon"></i>
+              <div class="payment-details">
+                <div class="payment-title">UPI Payment</div>
+                <div class="payment-description">Pay using UPI app</div>
+              </div>
+              <i class="fas fa-check" style="display: none;"></i>
+              <button class="select-payment-btn" onclick="selectPayment(this, 'upi')">Select</button>
+            </div>
+            <div class="payment-option" onclick="highlightPayment(this)">
+              <i class="fas fa-credit-card payment-icon"></i>
+              <div class="payment-details">
+                <div class="payment-title">Credit/Debit Card</div>
+                <div class="payment-description">Pay using your card</div>
+              </div>
+              <i class="fas fa-check" style="display: none;"></i>
+              <button class="select-payment-btn" onclick="selectPayment(this, 'card')">Select</button>
+            </div>
+            <div class="payment-option" onclick="highlightPayment(this)">
+              <i class="fas fa-university payment-icon"></i>
+              <div class="payment-details">
+                <div class="payment-title">Net Banking</div>
+                <div class="payment-description">Pay via online banking</div>
+              </div>
+              <i class="fas fa-check" style="display: none;"></i>
+              <button class="select-payment-btn" onclick="selectPayment(this, 'netbanking')">Select</button>
+            </div>
+          </div>
+          <div class="transaction-type-section" id="transactionTypeSection">
+            <label>Transaction Type</label>
+            <div class="transaction-type-option" onclick="selectTransactionType(this, 'online')">
+              <div class="payment-details">
+                <div class="payment-title">Online</div>
+                <div class="payment-description">Pay online using selected method</div>
+              </div>
+              <i class="fas fa-check" style="display: none;"></i>
+            </div>
+            <div class="transaction-type-option" onclick="selectTransactionType(this, 'manual')">
+              <div class="payment-details">
+                <div class="payment-title">Manual</div>
+                <div class="payment-description">Pay offline and confirm</div>
+              </div>
+              <i class="fas fa-check" style="display: none;"></i>
+            </div>
+          </div>
+          <div class="online-payment-section" id="onlinePaymentSection">
+            <p>Please complete the payment using the selected method: <span id="selectedPaymentMethodDisplay"></span></p>
+            <button class="confirm-payment-btn" onclick="confirmOnlinePayment()">Confirm Payment</button>
+          </div>
+          <div class="qr-payment-section" id="qrPaymentSection" style="display: none;">
+            <p>Please scan the QR code below to complete your payment of ₹250:</p>
+            <div style="text-align: center; margin: 20px 0;">
+              <img src="https://thumb.ac-illust.com/16/16537c8a55c9792d39b3b2c303df5d83_t.jpeg" 
+                   alt="UPI QR Code" 
+                   style="max-width: 250px; border: 1px solid #ddd; padding: 10px; background: white;">
+            </div>
+            <p style="text-align: center; font-weight: bold;">UPI ID: sjrsm@upi</p>
+            <p style="text-align: center;">After payment, please click the confirmation button below.</p>
+            <button class="confirm-payment-btn" onclick="confirmQRPayment()">I've Completed Payment</button>
+          </div>
+          <div class="manual-payment-section" id="manualPaymentSection">
+            <p><strong>Manual Payment Instructions:</strong></p>
+            <p>Please make the payment of ₹250 to the following account:</p>
+            <p><strong>Account Name:</strong> Sri JayaRama Seva Mandali</p>
+            <p><strong>Account Number:</strong> 123456789012</p>
+            <p><strong>IFSC Code:</strong> SBIN0001234</p>
+            <p><strong>Bank:</strong> State Bank of India</p>
+            <p>Once the payment is made, click the button below to confirm.</p>
+            <button class="confirm-payment-btn" onclick="confirmManualPayment()">Confirm Manual Payment</button>
+          </div>
+          <div class="upload-section" id="uploadSection">
+            <label for="paymentScreenshot">Upload Payment Screenshot (PNG, JPG, JPEG)</label>
+            <input type="file" id="paymentScreenshot" accept="image/png, image/jpeg, image/jpg" />
+            <img id="uploadPreview" class="upload-preview" alt="Payment Screenshot Preview" />
+            <button class="upload-btn" onclick="validateUpload()">Submit Screenshot</button>
+          </div>
+        </div>
+        <div class="ticket-section" id="ticketSection">
+          <h2 class="section-title">Seva Booking Ticket</h2>
+          <div class="ticket-details" id="ticketDetails"></div>
+          <button class="download-ticket-btn" onclick="downloadTicket()">Download Ticket</button>
+          <button class="new-booking-btn" onclick="newBooking()">Book Another Seva</button>
         </div>
       </div>
     </div>
@@ -373,16 +979,16 @@
                         <h4>Address</h4>
                         <span> Sri Jayarama Seva Mandali(R),<br/>
                           492/A, Sri Jayarama Seva Mandli Road, 1st main,<br/>
-                           8th block, Jayanagar,Banglore - 560070, India</span>
+                          8th block, Jayanagar, Bangalore - 560070, India</span>
                       </div>
                     </div>
                     <div class="pq-footer-item text-start">
-                        <i class="ti-email"></i>
-                        <div class="pq-footer-items-info">
-                          <h4>Email Us</h4>
-                          <a href="mailto:jayaramasevamandali@gmail.com"><span>jayaramasevamandali@gmail.com</span></a>
-                        </div>
+                      <i class="ti-email"></i>
+                      <div class="pq-footer-items-info">
+                        <h4>Email Us</h4>
+                        <a href="mailto:jayaramasevamandali@gmail.com"><span>jayaramasevamandali@gmail.com</span></a>
                       </div>
+                    </div>
                     <div class="pq-footer-item text-start">
                       <i class="ti-mobile"></i>
                       <div class="pq-footer-items-info">
@@ -416,81 +1022,686 @@
     </div>
   </footer>
 
+  <div class="modal" id="bookingModal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal()">×</button>
+      <h3 class="modal-title">Confirm Seva Booking</h3>
+      <div class="modal-seva-name">Abhisheka</div>
+      <div class="modal-seva-price">₹250</div>
+      <div class="modal-form">
+        <div class="form-group">
+          <label for="modal-name">Name</label>
+          <input type="text" id="modal-name" placeholder="Enter full name" />
+        </div>
+        <div class="form-group">
+          <label for="modal-mobile">Mobile Number</label>
+          <input type="tel" id="modal-mobile" placeholder="Enter mobile number" pattern="[0-9]{10}" />
+        </div>
+        <div class="form-group">
+          <label for="modal-gotra">Gotra</label>
+          <input type="text" id="modal-gotra" placeholder="Enter gotra" />
+        </div>
+        <div class="form-group">
+          <label for="modal-nakshatra">Nakshatra</label>
+          <input type="text" id="modal-nakshatra" placeholder="Enter nakshatra" />
+        </div>
+        <div class="form-group">
+          <label for="modal-rashi">Raashi</label>
+          <input type="text" id="modal-rashi" placeholder="Enter raashi" />
+        </div>
+        <div class="form-group">
+          <label for="modal-district">District</label>
+          <input type="text" id="modal-district" placeholder="Enter district" />
+        </div>
+        <div class="form-group">
+          <label for="modal-state">State</label>
+          <input type="text" id="modal-state" placeholder="Enter State" />
+        </div>
+        <div class="form-group">
+          <label for="modal-address">Address</label>
+          <input type="text" id="modal-address" placeholder="Enter Address" />
+        </div>
+        <div class="form-group">
+          <label for="modal-pincode">Pincode</label>
+          <input type="text" id="modal-pincode" placeholder="Enter Pincode" pattern="[0-9]{6}" />
+        </div>
+        <button class="modal-submit-btn" onclick="proceedToPayment()">Confirm and Proceed</button>
+      </div>
+    </div>
+  </div>
+
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const menuToggle = document.querySelector('.menu-toggle');
-      const navLinks = document.querySelector('.nav-links');
-    
-      if (menuToggle && navLinks) {
-        // Toggle mobile menu
-        menuToggle.addEventListener('click', function(e) {
-          e.preventDefault();
-          navLinks.classList.toggle('active');
-        });
-    
-        // Handle dropdown toggles on mobile
-        document.querySelectorAll('.dropdown .dropdown-toggle').forEach(toggle => {
-          toggle.addEventListener('click', function(e) {
-            if (window.innerWidth <= 768) {
-              e.preventDefault();
-              this.closest('.dropdown').classList.toggle('active');
-            }
-          });
-        });
-    
-        // Handle sub-dropdown toggles
-        document.querySelectorAll('.toggle-sub').forEach(toggle => {
-          toggle.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('data-target');
-            const targetDropdown = document.getElementById(targetId);
-    
-            // Close all other sub-dropdowns
-            document.querySelectorAll('.sub-dropdown-content').forEach(menu => {
-              if (menu !== targetDropdown) {
-                menu.style.display = 'none';
-              }
-            });
-    
-            // Remove active class from other toggle-sub links
-            document.querySelectorAll('.toggle-sub').forEach(link => {
-              if (link !== this) {
-                link.classList.remove('active');
-              }
-            });
-    
-            // Toggle the target sub-dropdown
-            if (targetDropdown) {
-              if (targetDropdown.style.display === 'block') {
-                targetDropdown.style.display = 'none';
-                this.classList.remove('active');
-              } else {
-                targetDropdown.style.display = 'block';
-                this.classList.add('active');
-              }
-            }
-          });
-        });
-    
-        // Close menu when clicking outside on mobile
-        document.addEventListener('click', function(e) {
+  document.addEventListener('DOMContentLoaded', function() {
+    // Navigation Menu Functionality
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const header = document.getElementById('header');
+    const footer = document.getElementById('pq-footer');
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        navLinks.classList.toggle('active');
+      });
+      document.querySelectorAll('.dropdown .dropdown-toggle').forEach(toggle => {
+        toggle.addEventListener('click', function(e) {
           if (window.innerWidth <= 768) {
-            if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
-              navLinks.classList.remove('active');
-              document.querySelectorAll('.dropdown').forEach(dropdown => {
-                dropdown.classList.remove('active');
-              });
-              document.querySelectorAll('.sub-dropdown-content').forEach(menu => {
-                menu.style.display = 'none';
-              });
-              document.querySelectorAll('.toggle-sub').forEach(link => {
-                link.classList.remove('active');
-              });
-            }
+            e.preventDefault();
+            this.closest('.dropdown').classList.toggle('active');
           }
         });
+      });
+      document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768) {
+          if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+            navLinks.classList.remove('active');
+            document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+          }
+        }
+      });
+    }
+  
+    // Calendar and Booking Functionality
+    const modal = document.getElementById('bookingModal');
+    const calendarDays = document.getElementById('calendarDays');
+    const monthYearDisplay = document.getElementById('calendarMonthYear');
+    let currentDate = new Date();
+    let selectedDate = null;
+    let bookingDetails = {};
+    let selectedPaymentMethod = null;
+    let selectedTransactionType = null;
+    const amount = 250;
+    const poojaDates = ['2025-04-16', '2025-05-16', '2025-06-14', '2025-07-14'];
+  
+    generateCalendar(currentDate);
+  
+    // Date Card Selection
+    document.querySelectorAll('.date-card').forEach(card => {
+      card.addEventListener('click', function() {
+        document.querySelectorAll('.date-card').forEach(c => c.classList.remove('selected'));
+        this.classList.add('selected');
+        const dateStr = this.getAttribute('data-date');
+        selectedDate = new Date(dateStr);
+        showBookingForm();
+      });
+    });
+  
+    function showBookingForm() {
+  document.getElementById('eventDetails').style.display = 'none';
+  document.getElementById('bookingContainer').style.display = 'block';
+  header.style.display = 'none';
+  footer.style.display = 'none'; // Hide footer when showing booking form
+  resetForm(); // Reset form to clear previous data
+  generateCalendar(selectedDate || currentDate);
+  window.scrollTo({ top: document.querySelector('.container').offsetTop, behavior: 'smooth' });
+}
+
+window.goBack = function() {
+  document.getElementById('bookingContainer').style.display = 'none';
+  document.getElementById('eventDetails').style.display = 'block';
+  header.style.display = 'block';
+  footer.style.display = 'block'; // Show footer when returning to event details
+  resetForm(); // Reset form to clear previous data
+  selectedDate = null;
+  currentDate = new Date(); // Reset to current month
+  document.querySelectorAll('.date-card').forEach(c => c.classList.remove('selected'));
+  document.querySelectorAll('.calendar-day').forEach(d => d.classList.remove('selected'));
+  document.getElementById('paymentSection').style.display = 'none';
+  document.getElementById('ticketSection').style.display = 'none';
+  selectedPaymentMethod = null;
+  selectedTransactionType = null;
+  document.getElementById('transactionTypeSection').style.display = 'none';
+  document.getElementById('onlinePaymentSection').style.display = 'none';
+  document.getElementById('qrPaymentSection').style.display = 'none';
+  document.getElementById('manualPaymentSection').style.display = 'none';
+  document.getElementById('uploadSection').style.display = 'none';
+  generateCalendar(currentDate);
+  window.scrollTo({ top: document.querySelector('.container').offsetTop, behavior: 'smooth' });
+};
+  
+    function resetForm() {
+      const fields = ['name', 'mobile', 'gotra', 'nakshatra', 'rashi', 'district', 'state', 'address', 'pincode'];
+      fields.forEach(field => {
+        document.getElementById(field).value = '';
+      });
+      document.getElementById('paymentScreenshot').value = '';
+      document.getElementById('uploadPreview').style.display = 'none';
+      document.getElementById('calendarSection').style.display = 'block';
+      document.getElementById('divider1').style.display = 'block';
+      document.getElementById('kartaDetailsHeader').style.display = 'block';
+      document.querySelectorAll('#formSection').forEach(section => {
+        section.style.display = 'block';
+      });
+      document.getElementById('divider2').style.display = 'block';
+      document.getElementById('totalAmount').style.display = 'block';
+      document.getElementById('submitBtn').style.display = 'block';
+      // Reset modal fields as well
+      const modalFields = ['modal-name', 'modal-mobile', 'modal-gotra', 'modal-nakshatra', 'modal-rashi', 'modal-district', 'modal-state', 'modal-address', 'modal-pincode'];
+      modalFields.forEach(field => {
+        document.getElementById(field).value = '';
+      });
+    }
+  
+    function generateCalendar(date) {
+      const year = date.getFullYear();
+      const month = date.getMonth();
+      currentDate = new Date(year, month, 1);
+      monthYearDisplay.textContent = `${currentDate.toLocaleString('default', { month: 'long' })} ${year}`;
+      calendarDays.innerHTML = '';
+      const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+      dayNames.forEach(day => {
+        const dayElement = document.createElement('div');
+        dayElement.className = 'day-header';
+        dayElement.textContent = day;
+        calendarDays.appendChild(dayElement);
+      });
+      const firstDay = new Date(year, month, 1).getDay();
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+      for (let i = 0; i < firstDay; i++) {
+        const emptyCell = document.createElement('div');
+        emptyCell.className = 'calendar-day disabled';
+        calendarDays.appendChild(emptyCell);
+      }
+      for (let day = 1; day <= daysInMonth; day++) {
+        const dayElement = document.createElement('div');
+        dayElement.className = 'calendar-day';
+        dayElement.textContent = day;
+        const currentDay = new Date(year, month, day);
+        const dateStr = currentDay.toISOString().split('T')[0];
+        if (selectedDate && 
+            selectedDate.getDate() === day && 
+            selectedDate.getMonth() === month && 
+            selectedDate.getFullYear() === year) {
+          dayElement.classList.add('selected');
+        }
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const isPoojaDate = poojaDates.includes(dateStr);
+        if (currentDay < today || !isPoojaDate) {
+          dayElement.classList.add('disabled');
+        } else {
+          dayElement.addEventListener('click', function() {
+            document.querySelectorAll('.calendar-day').forEach(d => d.classList.remove('selected'));
+            document.querySelectorAll('.date-card').forEach(c => c.classList.remove('selected'));
+            this.classList.add('selected');
+            selectedDate = new Date(year, month, day);
+            document.querySelectorAll('.date-card').forEach(card => {
+              if (card.getAttribute('data-date') === dateStr) {
+                card.classList.add('selected');
+              }
+            });
+          });
+        }
+        calendarDays.appendChild(dayElement);
+      }
+    }
+  
+    window.prevMonth = function() {
+      currentDate.setMonth(currentDate.getMonth() - 1);
+      generateCalendar(currentDate);
+    };
+  
+    window.nextMonth = function() {
+      currentDate.setMonth(currentDate.getMonth() + 1);
+      generateCalendar(currentDate);
+    };
+  
+    window.validateForm = function() {
+      if (!selectedDate) {
+        alert('Please select a date for the seva from the calendar or pooja dates.');
+        return;
+      }
+      const requiredFields = ['name', 'mobile', 'gotra', 'nakshatra', 'rashi', 'district', 'state', 'address', 'pincode'];
+      let isValid = true;
+      const mobile = document.getElementById('mobile').value.trim();
+      const pincode = document.getElementById('pincode').value.trim();
+      requiredFields.forEach(field => {
+        if (!document.getElementById(field).value.trim()) {
+          isValid = false;
+        }
+      });
+      if (!/^\d{10}$/.test(mobile)) {
+        isValid = false;
+        alert('Please enter a valid 10-digit mobile number.');
+        return;
+      }
+      if (!/^\d{6}$/.test(pincode)) {
+        isValid = false;
+        alert('Please enter a valid 6-digit pincode.');
+        return;
+      }
+      if (!isValid) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+      openModal();
+    };
+  
+    window.openModal = function() {
+      document.getElementById('modal-name').value = document.getElementById('name').value;
+      document.getElementById('modal-mobile').value = document.getElementById('mobile').value;
+      document.getElementById('modal-gotra').value = document.getElementById('gotra').value;
+      document.getElementById('modal-nakshatra').value = document.getElementById('nakshatra').value;
+      document.getElementById('modal-rashi').value = document.getElementById('rashi').value;
+      document.getElementById('modal-district').value = document.getElementById('district').value;
+      document.getElementById('modal-state').value = document.getElementById('state').value;
+      document.getElementById('modal-address').value = document.getElementById('address').value;
+      document.getElementById('modal-pincode').value = document.getElementById('pincode').value;
+      modal.style.display = 'flex';
+    };
+  
+    window.closeModal = function() {
+      modal.style.display = 'none';
+    };
+
+    // Function to generate a unique Ticket ID (Booking ID)
+    function generateTicketId() {
+  const date = new Date();
+  const dateStr = date.toISOString().split('T')[0].replace(/-/g, ''); // e.g., 20250530
+  const randomNum = Math.floor(1000 + Math.random() * 9000); // 4-digit random number
+  return `SJRSM-${dateStr}-${randomNum}`; // e.g., SJRSM-20250530-1234
+}
+  
+  // Updated proceedToPayment to include Booking ID in bookingDetails
+window.proceedToPayment = function() {
+  const name = document.getElementById('modal-name').value;
+  const mobile = document.getElementById('modal-mobile').value;
+  const gotra = document.getElementById('modal-gotra').value;
+  const nakshatra = document.getElementById('modal-nakshatra').value;
+  const rashi = document.getElementById('modal-rashi').value;
+  const district = document.getElementById('modal-district').value;
+  const state = document.getElementById('modal-state').value;
+  const address = document.getElementById('modal-address').value;
+  const pincode = document.getElementById('modal-pincode').value;
+  if (name && mobile && gotra && nakshatra && rashi && district && state && address && pincode && selectedDate) {
+    bookingDetails = {
+      ticketId: generateTicketId(), // Add Booking ID
+      name: name,
+      mobile: mobile,
+      gotra: gotra,
+      nakshatra: nakshatra,
+      rashi: rashi,
+      district: district,
+      state: state,
+      address: address,
+      pincode: pincode,
+      date: selectedDate.toDateString(),
+      time: "10:00 AM IST"
+    };
+    document.getElementById('calendarSection').style.display = 'none';
+    document.getElementById('divider1').style.display = 'none';
+    document.getElementById('kartaDetailsHeader').style.display = 'none';
+    document.querySelectorAll('#formSection').forEach(section => {
+      section.style.display = 'none';
+    });
+    document.getElementById('divider2').style.display = 'none';
+    document.getElementById('totalAmount').style.display = 'none';
+    document.getElementById('submitBtn').style.display = 'none';
+    document.getElementById('paymentSection').style.display = 'block';
+    modal.style.display = 'none';
+  } else {
+    alert('Please fill in all fields and select a date.');
+  }
+};
+    
+window.highlightPayment = function(element) {
+      document.querySelectorAll('.payment-option').forEach(option => {
+        option.classList.remove('selected');
+        option.querySelector('.fa-check').style.display = 'none';
+      });
+      element.classList.add('selected');
+      element.querySelector('.fa-check').style.display = 'inline-block';
+    };
+  
+    window.selectPayment = function(element, method) {
+      selectedPaymentMethod = method;
+      document.getElementById('transactionTypeSection').style.display = 'block';
+      document.getElementById('onlinePaymentSection').style.display = 'none';
+      document.getElementById('qrPaymentSection').style.display = 'none';
+      document.getElementById('manualPaymentSection').style.display = 'none';
+      document.getElementById('uploadSection').style.display = 'none';
+    };
+  
+    window.selectTransactionType = function(element, type) {
+      document.querySelectorAll('.transaction-type-option').forEach(option => {
+        option.classList.remove('selected');
+        option.querySelector('.fa-check').style.display = 'none';
+      });
+      element.classList.add('selected');
+      element.querySelector('.fa-check').style.display = 'inline-block';
+      selectedTransactionType = type;
+      if (type === 'online') {
+        if (selectedPaymentMethod === 'qr') {
+          document.getElementById('qrPaymentSection').style.display = 'block';
+          document.getElementById('onlinePaymentSection').style.display = 'none';
+        } else {
+          document.getElementById('onlinePaymentSection').style.display = 'block';
+          let displayMethod = '';
+          switch (selectedPaymentMethod) {
+            case 'upi':
+              displayMethod = 'UPI';
+              break;
+            case 'card':
+              displayMethod = 'Credit/Debit Card';
+              break;
+            case 'netbanking':
+              displayMethod = 'Net Banking';
+              break;
+            default:
+              displayMethod = selectedPaymentMethod;
+          }
+          document.getElementById('selectedPaymentMethodDisplay').textContent = displayMethod;
+          document.getElementById('qrPaymentSection').style.display = 'none';
+        }
+        document.getElementById('manualPaymentSection').style.display = 'none';
+        document.getElementById('uploadSection').style.display = 'none';
+      } else {
+        document.getElementById('manualPaymentSection').style.display = 'block';
+        document.getElementById('onlinePaymentSection').style.display = 'none';
+        document.getElementById('qrPaymentSection').style.display = 'none';
+        document.getElementById('uploadSection').style.display = 'none';
+      }
+    };
+  
+    window.confirmOnlinePayment = function() {
+      document.getElementById('onlinePaymentSection').style.display = 'none';
+      document.getElementById('uploadSection').style.display = 'block';
+      let displayMethod = '';
+      switch (selectedPaymentMethod) {
+        case 'upi':
+          displayMethod = 'UPI';
+          break;
+        case 'card':
+          displayMethod = 'Credit/Debit Card';
+          break;
+        case 'netbanking':
+          displayMethod = 'Net Banking';
+          break;
+        default:
+          displayMethod = selectedPaymentMethod;
+      }
+      alert(`Please complete the payment of ₹${amount} using ${displayMethod} and upload the screenshot.`);
+    };
+  
+    window.confirmQRPayment = function() {
+      document.getElementById('qrPaymentSection').style.display = 'none';
+      document.getElementById('uploadSection').style.display = 'block';
+      alert('Please upload the payment confirmation screenshot after scanning the QR code.');
+    };
+  
+    window.confirmManualPayment = function() {
+      let displayMethod = '';
+      switch (selectedPaymentMethod) {
+        case 'upi':
+          displayMethod = 'UPI';
+          break;
+        case 'card':
+          displayMethod = 'Credit/Debit Card';
+          break;
+        case 'netbanking':
+          displayMethod = 'Net Banking';
+          break;
+        case 'qr':
+          displayMethod = 'QR Code';
+          break;
+        default:
+          displayMethod = selectedPaymentMethod;
+      }
+      bookingDetails.paymentMethod = `${displayMethod} - ${selectedTransactionType.charAt(0).toUpperCase() + selectedTransactionType.slice(1)}`;
+      showTicket();
+    };
+  
+    window.validateUpload = function() {
+      const screenshotInput = document.getElementById('paymentScreenshot');
+      const file = screenshotInput.files[0];
+      if (!file) {
+        alert('Please upload a payment screenshot.');
+        return;
+      }
+      const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg'];
+      if (!allowedTypes.includes(file.type)) {
+        alert('Please upload a valid image file (PNG, JPG, JPEG).');
+        return;
+      }
+      let displayMethod = '';
+      switch (selectedPaymentMethod) {
+        case 'upi':
+          displayMethod = 'UPI';
+          break;
+        case 'card':
+          displayMethod = 'Credit/Debit Card';
+          break;
+        case 'netbanking':
+          displayMethod = 'Net Banking';
+          break;
+        case 'qr':
+          displayMethod = 'QR Code';
+          break;
+        default:
+          displayMethod = selectedPaymentMethod;
+      }
+      bookingDetails.paymentMethod = `${displayMethod} - ${selectedTransactionType.charAt(0).toUpperCase() + selectedTransactionType.slice(1)}`;
+      showTicket();
+    };
+  
+    function showTicket() {
+      document.getElementById('paymentSection').style.display = 'none';
+      const ticketDetails = document.getElementById('ticketDetails');
+      ticketDetails.innerHTML = `
+        <div style="text-align: center; margin-bottom: 10px;">
+          <img src="images/l-2.png" style="width: 80px; height: 80px; margin-left: 3px; background: linear-gradient(#f7971e, #ffd200);" alt="SJRSM Logo">
+        </div>
+        <div class="temple-name">Sri JayaRama Seva Mandali</div>
+        <p><strong>Temple Address:</strong> 123 Temple Road, Bangalore, Karnataka, India 560001</p>
+        <p><strong>Seva:</strong> Abhisheka</p>
+        <p><strong>Seva Date and Time:</strong> ${bookingDetails.date} at 10:00 AM IST</p>
+        <p><strong>Karta's Name:</strong> ${bookingDetails.name}</p>
+        <p><strong>Mobile Number:</strong> ${bookingDetails.mobile}</p>
+        <p><strong>Gotra:</strong> ${bookingDetails.gotra}</p>
+        <p><strong>Nakshatra:</strong> ${bookingDetails.nakshatra}</p>
+        <p><strong>Raashi:</strong> ${bookingDetails.rashi}</p>
+        <p><strong>District:</strong> ${bookingDetails.district}</p>
+        <p><strong>State:</strong> ${bookingDetails.state}</p>
+        <p><strong>Address:</strong> ${bookingDetails.address}</p>
+        <p><strong>Pincode:</strong> ${bookingDetails.pincode}</p>
+        <p><strong>Amount:</strong> ₹250</p>
+        <p><strong>Payment Method:</strong> ${bookingDetails.paymentMethod}</p>
+      `;
+      document.getElementById('ticketSection').style.display = 'block';
+    }
+  
+// Updated downloadTicket without logo
+window.downloadTicket = function() {
+  try {
+    if (!window.jspdf || !window.jspdf.jsPDF) {
+      throw new Error('jsPDF library is not loaded.');
+    }
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({
+      orientation: 'landscape',
+      unit: 'mm',
+      format: [210, 148]
+    });
+    const pageWidth = doc.internal.pageSize.getWidth(); // 210mm
+    const pageHeight = doc.internal.pageSize.getHeight(); // 148mm
+    const margin = 12; // 12mm margin on all sides
+    const contentWidth = pageWidth - 2 * margin; // 186mm
+    let y = margin; // Start at top margin
+
+    // Background: Light peach color
+    doc.setFillColor(255, 248, 240);
+    doc.rect(0, 0, pageWidth, pageHeight, 'F');
+
+    // Outer Border: Subtle brown border
+    doc.setDrawColor(200, 150, 100);
+    doc.setLineWidth(0.3);
+    doc.roundedRect(margin, margin, contentWidth, pageHeight - 2 * margin, 3, 3, 'S');
+
+    function generatePDFContent() {
+  // Header: Temple Name (centered at the top)
+  doc.setFontSize(14);
+  doc.setTextColor(139, 69, 19); // Brown
+  doc.setFont('times', 'bold');
+  const templeName = 'Sri JayaRama Seva Mandali';
+  const templeNameWidth = doc.getTextWidth(templeName);
+  doc.text(templeName, (pageWidth - templeNameWidth) / 2, y + 5);
+
+  // Adjust y to below the temple name
+  y += 7; // 5mm for text + 2mm padding
+
+ 
+
+  // Add extra padding before Booking ID to drag content down
+  y += 5; // Add 5mm of padding
+
+  // Header: Ticket ID (labeled as Booking ID)
+  doc.setFontSize(9);
+  doc.setTextColor(139, 69, 19); // Brown
+  doc.setFont('times', 'bold');
+  const ticketIdText = `Booking ID: ${bookingDetails.ticketId}`;
+  const ticketIdWidth = doc.getTextWidth(ticketIdText);
+  doc.text(ticketIdText, (pageWidth - ticketIdWidth) / 2, y);
+  y += 4;
+
+  // Separator Line
+  doc.setDrawColor(200, 150, 100);
+  doc.setLineWidth(0.2);
+  doc.line(margin + 5, y, pageWidth - margin - 5, y);
+  y += 3;
+
+  // Table: Setup
+  const tableLeft = margin + 5; // 17mm
+  const tableWidth = contentWidth - 10; // 166mm
+  const labelColWidth = tableWidth * 0.35; // ~58mm (35%)
+  const valueColWidth = tableWidth * 0.65; // ~108mm (65%)
+  const tableTop = y;
+  const maxTableHeight = pageHeight - y - 10; // 10mm for footer
+  doc.setFillColor(255, 255, 255);
+  doc.roundedRect(tableLeft, tableTop, tableWidth, maxTableHeight, 2, 2, 'F');
+  y += 2; // Padding inside table
+
+  // Table: Content
+  doc.setFontSize(8);
+  let rowCount = 0;
+
+  function addDetail(label, value) {
+    const splitLabel = doc.splitTextToSize(label, labelColWidth - 2);
+    const splitValue = doc.splitTextToSize(value, valueColWidth - 2);
+    const rowHeight = Math.max(splitLabel.length, splitValue.length) * 3.2 + 1.5;
+
+    if (y + rowHeight > tableTop + maxTableHeight - 2) {
+      console.warn('Content exceeds page height; truncating to fit.');
+      return; // Stop adding rows if we exceed the page height
+    }
+
+    if (rowCount % 2 === 0) {
+      doc.setFillColor(255, 245, 235);
+      doc.rect(tableLeft, y - 2, tableWidth, rowHeight, 'F');
+    }
+
+    doc.setFont('times', 'bold');
+    doc.setTextColor(139, 69, 19);
+    doc.text(splitLabel, tableLeft + 2, y);
+
+    doc.setFont('times', 'normal');
+    doc.setTextColor(60, 60, 60);
+    doc.text(splitValue, tableLeft + labelColWidth + 2, y);
+
+    y += rowHeight;
+    rowCount++;
+  }
+
+  // Add all booking details, including Booking ID
+  addDetail('Booking ID:', bookingDetails.ticketId);
+  addDetail('Temple Address:', '123 Temple Road, Bangalore, Karnataka, India 560001');
+  addDetail('Seva:', 'Abhisheka');
+  addDetail('Seva Date and Time:', `${bookingDetails.date} at 10:00 AM IST`);
+  addDetail('Karta\'s Name:', bookingDetails.name);
+  addDetail('Mobile Number:', bookingDetails.mobile);
+  addDetail('Gotra:', bookingDetails.gotra);
+  addDetail('Nakshatra:', bookingDetails.nakshatra);
+  addDetail('Raashi:', bookingDetails.rashi);
+  addDetail('District:', bookingDetails.district);
+  addDetail('State:', bookingDetails.state);
+  addDetail('Address:', bookingDetails.address);
+  addDetail('Pincode:', bookingDetails.pincode);
+  addDetail('Amount:', '₹250');
+  addDetail('Payment Method:', bookingDetails.paymentMethod);
+
+  // Footer: Separator Line
+  y += 1;
+  doc.setDrawColor(200, 150, 100);
+  doc.setLineWidth(0.2);
+  doc.line(margin + 5, y, pageWidth - margin - 5, y);
+  y += 2;
+
+  // Footer: Thank You Note
+  doc.setFontSize(6);
+  doc.setTextColor(100, 100, 100);
+  doc.setFont('times', 'italic');
+  const thankYou = 'Thank you for booking with Sri JayaRama Seva Mandali!';
+  const thankYouWidth = doc.getTextWidth(thankYou);
+  doc.text(thankYou, (pageWidth - thankYouWidth) / 2, y);
+  y += 2;
+
+  // Footer: Contact Info
+  const contactInfo = 'Contact: 080 22445232 | Email: jayaramasevamandali@gmail.com';
+  const contactInfoWidth = doc.getTextWidth(contactInfo);
+  doc.text(contactInfo, (pageWidth - contactInfoWidth) / 2, y);
+
+  // Generate and Download PDF
+  const pdfOutput = doc.output('blob');
+  const url = URL.createObjectURL(pdfOutput);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `Seva_Ticket_${bookingDetails.ticketId}.pdf`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+    // Directly generate the PDF content (no logo to load)
+    generatePDFContent();
+  } catch (error) {
+    console.error('Error generating PDF:', error);
+    alert('Failed to generate ticket. Please try again.');
+  }
+};
+
+window.newBooking = function() {
+      selectedDate = null;
+      bookingDetails = {};
+      selectedPaymentMethod = null;
+      selectedTransactionType = null;
+      document.getElementById('ticketSection').style.display = 'none';
+      document.getElementById('paymentSection').style.display = 'none';
+      document.getElementById('transactionTypeSection').style.display = 'none';
+      document.getElementById('onlinePaymentSection').style.display = 'none';
+      document.getElementById('qrPaymentSection').style.display = 'none';
+      document.getElementById('manualPaymentSection').style.display = 'none';
+      document.getElementById('uploadSection').style.display = 'none';
+      resetForm();
+      generateCalendar(new Date());
+    };
+  
+    const screenshotInput = document.getElementById('paymentScreenshot');
+    const preview = document.getElementById('uploadPreview');
+    screenshotInput.addEventListener('change', function() {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          preview.src = e.target.result;
+          preview.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
       }
     });
-  </script>
+  
+    window.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+  });</script>
 </body>
 </html>
