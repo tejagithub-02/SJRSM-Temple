@@ -560,7 +560,7 @@
 </head>
 <body>
     <div class="container">
-        <a href="Upcoming Pooja Dates.html" class="back-btn">
+        <a href="enquiry.html" class="back-btn">
             <i class="fas fa-arrow-left"></i> Back
         </a>
 
@@ -1140,184 +1140,166 @@
                 document.getElementById('ticketSection').style.display = 'block';
             }
 
-            window.downloadTicket = function() {
-                try {
-                    console.log('jsPDF available:', window.jspdf);
-                    if (!window.jspdf || !window.jspdf.jsPDF) {
-                        throw new Error('jsPDF library is not loaded. Please check the CDN link or network connection.');
-                    }
-                    const { jsPDF } = window.jspdf;
-                    const doc = new jsPDF({
-                        orientation: 'landscape',
-                        unit: 'mm',
-                        format: [210, 148]
-                    });
+         // Updated downloadTicket without logo
+window.downloadTicket = function() {
+  try {
+    if (!window.jspdf || !window.jspdf.jsPDF) {
+      throw new Error('jsPDF library is not loaded.');
+    }
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({
+      orientation: 'landscape',
+      unit: 'mm',
+      format: [210, 148]
+    });
+    const pageWidth = doc.internal.pageSize.getWidth(); // 210mm
+    const pageHeight = doc.internal.pageSize.getHeight(); // 148mm
+    const margin = 12; // 12mm margin on all sides
+    const contentWidth = pageWidth - 2 * margin; // 186mm
+    let y = margin; // Start at top margin
 
-                    const pageWidth = doc.internal.pageSize.getWidth();
-                    const pageHeight = doc.internal.pageSize.getHeight();
-                    const margin = 10;
-                    const contentWidth = pageWidth - 2 * margin;
-                    let y = margin;
+    // Background: Light peach color
+    doc.setFillColor(255, 248, 240);
+    doc.rect(0, 0, pageWidth, pageHeight, 'F');
 
-                    doc.setFillColor(255, 248, 240);
-                    doc.rect(0, 0, pageWidth, pageHeight, 'F');
-                    doc.setFillColor(255, 238, 230);
-                    doc.rect(0, 0, pageWidth, pageHeight / 2, 'F');
+    // Outer Border: Subtle brown border
+    doc.setDrawColor(200, 150, 100);
+    doc.setLineWidth(0.3);
+    doc.roundedRect(margin, margin, contentWidth, pageHeight - 2 * margin, 3, 3, 'S');
 
-                    doc.setFontSize(40);
-                    doc.setTextColor(220, 220, 220, 0.15);
-                    doc.setFont('times', 'italic');
-                    doc.text('Sri JayaRama Seva Mandali', pageWidth / 2 - 60, pageHeight / 2 + 10, { angle: 45 });
+    function generatePDFContent() {
+  // Header: Temple Name (centered at the top)
+  doc.setFontSize(14);
+  doc.setTextColor(139, 69, 19); // Brown
+  doc.setFont('times', 'bold');
+  const templeName = 'Sri JayaRama Seva Mandali';
+  const templeNameWidth = doc.getTextWidth(templeName);
+  doc.text(templeName, (pageWidth - templeNameWidth) / 2, y + 5);
 
-                    doc.setDrawColor(255, 215, 180);
-                    doc.setLineWidth(0.6);
-                    doc.roundedRect(margin - 1, margin - 1, pageWidth - 2 * (margin - 1), pageHeight - 2 * (margin - 1), 3, 3, 'S');
-                    doc.setDrawColor(200, 200, 200, 0.15);
-                    doc.setLineWidth(0.8);
-                    doc.roundedRect(margin - 0.5, margin - 0.5, pageWidth - 2 * (margin - 0.5), pageHeight - 2 * (margin - 0.5), 3, 3, 'S');
+  // Adjust y to below the temple name
+  y += 7; // 5mm for text + 2mm padding
 
-                    doc.setFillColor(255, 215, 180);
-                    doc.rect(margin - 1, y - 2, pageWidth - 2 * (margin - 1), 10, 'F');
-                    doc.setFillColor(255, 225, 160);
-                    doc.rect(margin - 1, y + 8, pageWidth - 2 * (margin - 1), 0.5, 'F');
+ 
 
-                    doc.setFontSize(20);
-                    doc.setTextColor(255, 255, 255);
-                    doc.setFont('times', 'bolditalic');
-                    const templeName = 'Sri JayaRama Seva Mandali';
-                    const templeNameWidth = doc.getTextWidth(templeName);
-                    doc.setTextColor(150, 150, 150, 0.4);
-                    doc.text(templeName, (pageWidth - templeNameWidth) / 2 + 1, y + 6);
-                    doc.setTextColor(255, 255, 255);
-                    doc.text(templeName, (pageWidth - templeNameWidth) / 2, y + 5);
-                    y += 12;
+  // Add extra padding before Booking ID to drag content down
+  y += 5; // Add 5mm of padding
 
-                    const logoImg = new Image();
-                    logoImg.crossOrigin = 'Anonymous';
-                    logoImg.src = 'images/l-2.png';
+  // Header: Ticket ID (labeled as Booking ID)
+  doc.setFontSize(9);
+  doc.setTextColor(139, 69, 19); // Brown
+  doc.setFont('times', 'bold');
+  const ticketIdText = `Booking ID: ${bookingDetails.ticketId}`;
+  const ticketIdWidth = doc.getTextWidth(ticketIdText);
+  doc.text(ticketIdText, (pageWidth - ticketIdWidth) / 2, y);
+  y += 4;
 
-                    logoImg.onload = function() {
-                        try {
-                            doc.addImage(logoImg, 'PNG', (pageWidth - 25) / 2, y, 25, 25);
-                            doc.setDrawColor(255, 225, 160);
-                            doc.setLineWidth(0.5);
-                            doc.circle((pageWidth - 25) / 2 + 12.5, y + 12.5, 13, 'S');
-                        } catch (imgError) {
-                            console.error('Error adding image to PDF:', imgError);
-                        }
-                        continuePDFGeneration();
-                    };
 
-                    logoImg.onerror = function() {
-                        console.error('Failed to load logo image: images/l-2.png');
-                        continuePDFGeneration();
-                    };
 
-                    function continuePDFGeneration() {
-                        y += 30;
+  // Separator Line
+  doc.setDrawColor(200, 150, 100);
+  doc.setLineWidth(0.2);
+  doc.line(margin + 5, y, pageWidth - margin - 5, y);
+  y += 3;
 
-                        doc.setFontSize(14);
-                        doc.setTextColor(139, 69, 19);
-                        doc.setFont('times', 'bold');
-                        const ticketTitle = 'Seva Booking Ticket';
-                        const ticketTitleWidth = doc.getTextWidth(ticketTitle);
-                        doc.text(ticketTitle, (pageWidth - ticketTitleWidth) / 2, y);
-                        y += 6;
+  // Table: Setup
+  const tableLeft = margin + 5; // 17mm
+  const tableWidth = contentWidth - 10; // 166mm
+  const labelColWidth = tableWidth * 0.35; // ~58mm (35%)
+  const valueColWidth = tableWidth * 0.65; // ~108mm (65%)
+  const tableTop = y;
+  const maxTableHeight = pageHeight - y - 10; // 10mm for footer
+  doc.setFillColor(255, 255, 255);
+  doc.roundedRect(tableLeft, tableTop, tableWidth, maxTableHeight, 2, 2, 'F');
+  y += 2; // Padding inside table
 
-                        doc.setDrawColor(255, 225, 160);
-                        doc.setLineWidth(0.3);
-                        doc.setLineDashPattern([1, 1], 0);
-                        doc.line(margin, y, pageWidth - margin, y);
-                        doc.setLineDashPattern([], 0);
-                        y += 5;
+  // Table: Content
+  doc.setFontSize(8);
+  let rowCount = 0;
 
-                        const tableTop = y;
-                        const tableLeft = margin + 5;
-                        const tableWidth = contentWidth - 10;
-                        doc.setFillColor(255, 255, 255, 0.95);
-                        doc.setDrawColor(255, 215, 180);
-                        doc.setLineWidth(0.2);
-                        doc.roundedRect(tableLeft, tableTop, tableWidth, pageHeight - tableTop - 20, 2, 2, 'FD');
-                        doc.setDrawColor(200, 200, 200, 0.1);
-                        doc.setLineWidth(0.6);
-                        doc.roundedRect(tableLeft + 0.5, tableTop + 0.5, tableWidth, pageHeight - tableTop - 20, 2, 2, 'S');
+  function addDetail(label, value) {
+    const splitLabel = doc.splitTextToSize(label, labelColWidth - 2);
+    const splitValue = doc.splitTextToSize(value, valueColWidth - 2);
+    const rowHeight = Math.max(splitLabel.length, splitValue.length) * 3.2 + 1.5;
 
-                        y += 4;
-                        doc.setFontSize(9);
-                        doc.setTextColor(60, 60, 60);
-                        doc.setFont('times', 'normal');
+    if (y + rowHeight > tableTop + maxTableHeight - 2) {
+      console.warn('Content exceeds page height; truncating to fit.');
+      return; // Stop adding rows if we exceed the page height
+    }
 
-                        let rowCount = 0;
-                        function addDetail(label, value) {
-                            const labelWidth = doc.getTextWidth(label);
-                            const maxValueWidth = tableWidth - labelWidth - 15;
-                            const splitValue = doc.splitTextToSize(value, maxValueWidth);
-                            const rowHeight = splitValue.length * 4 + 1;
+    if (rowCount % 2 === 0) {
+      doc.setFillColor(255, 245, 235);
+      doc.rect(tableLeft, y - 2, tableWidth, rowHeight, 'F');
+    }
 
-                            if (rowCount % 2 === 0) {
-                                doc.setFillColor(255, 245, 235);
-                                doc.rect(tableLeft, y - 2, tableWidth, rowHeight, 'F');
-                            }
-                            doc.setFont('times', 'bold');
-                            doc.setTextColor(139, 69, 19);
-                            doc.text(label, tableLeft + 5, y);
-                            doc.setFont('times', 'normal');
-                            doc.setTextColor(60, 60, 60);
-                            doc.text(splitValue, tableLeft + labelWidth + 10, y);
-                            y += rowHeight;
-                            rowCount++;
-                        }
+    doc.setFont('times', 'bold');
+    doc.setTextColor(139, 69, 19);
+    doc.text(splitLabel, tableLeft + 2, y);
 
-                        addDetail('Temple Address:', '123 Temple Road, Bangalore, Karnataka, India 560001');
-                        addDetail('Seva:', 'Abhisheka');
-                        addDetail('Seva Date and Time:', `${bookingDetails.date} at 10:00 AM IST`);
-                        addDetail('Karta\'s Name:', bookingDetails.name);
-                        addDetail('Mobile Number:', bookingDetails.mobile);
-                        addDetail('Gotra:', bookingDetails.gotra);
-                        addDetail('Nakshatra:', bookingDetails.nakshatra);
-                        addDetail('Raashi:', bookingDetails.rashi);
-                        addDetail('District:', bookingDetails.district);
-                        addDetail('State:', bookingDetails.state);
-                        addDetail('Address:', bookingDetails.address);
-                        addDetail('Pincode:', bookingDetails.pincode);
-                        addDetail('Amount:', '₹250');
-                        addDetail('Payment Method:', bookingDetails.paymentMethod);
+    doc.setFont('times', 'normal');
+    doc.setTextColor(60, 60, 60);
+    doc.text(splitValue, tableLeft + labelColWidth + 2, y);
 
-                        y += 3;
+    y += rowHeight;
+    rowCount++;
+  }
 
-                        doc.setDrawColor(255, 225, 160);
-                        doc.setLineWidth(0.3);
-                        doc.setLineDashPattern([1, 1], 0);
-                        doc.line(margin, y, pageWidth - margin, y);
-                        doc.setLineDashPattern([], 0);
-                        y += 4;
+ 
+  // Add all booking details, including Booking ID
+  addDetail('Booking ID:', bookingDetails.ticketId);
+  addDetail('Temple Address:', '123 Temple Road, Bangalore, Karnataka, India 560001');
+  addDetail('Seva:', 'Abhisheka');
+  addDetail('Seva Date and Time:', `${bookingDetails.date} at 10:00 AM IST`);
+  addDetail('Karta\'s Name:', bookingDetails.name);
+  addDetail('Mobile Number:', bookingDetails.mobile);
+  addDetail('Gotra:', bookingDetails.gotra);
+  addDetail('Nakshatra:', bookingDetails.nakshatra);
+  addDetail('Raashi:', bookingDetails.rashi);
+  addDetail('District:', bookingDetails.district);
+  addDetail('State:', bookingDetails.state);
+  addDetail('Address:', bookingDetails.address);
+  addDetail('Pincode:', bookingDetails.pincode);
+  addDetail('Amount:', '₹250');
+  addDetail('Payment Method:', bookingDetails.paymentMethod);
 
-                        doc.setFontSize(7);
-                        doc.setTextColor(100, 100, 100);
-                        doc.setFont('times', 'italic');
-                        const thankYou = 'Thank you for booking with Sri JayaRama Seva Mandali!';
-                        const thankYouWidth = doc.getTextWidth(thankYou);
-                        doc.text(thankYou, (pageWidth - thankYouWidth) / 2, y);
-                        y += 3;
+  // Footer: Separator Line
+  y += 1;
+  doc.setDrawColor(200, 150, 100);
+  doc.setLineWidth(0.2);
+  doc.line(margin + 5, y, pageWidth - margin - 5, y);
+  y += 2;
 
-                        const contactInfo = 'Contact: +91-123-456-7890 | Email: info@sjrsm.org';
-                        const contactInfoWidth = doc.getTextWidth(contactInfo);
-                        doc.text(contactInfo, (pageWidth - contactInfoWidth) / 2, y);
+  // Footer: Thank You Note
+  doc.setFontSize(6);
+  doc.setTextColor(100, 100, 100);
+  doc.setFont('times', 'italic');
+  const thankYou = 'Thank you for booking with Sri JayaRama Seva Mandali!';
+  const thankYouWidth = doc.getTextWidth(thankYou);
+  doc.text(thankYou, (pageWidth - thankYouWidth) / 2, y);
+  y += 2;
 
-                        const pdfOutput = doc.output('blob');
-                        const url = URL.createObjectURL(pdfOutput);
-                        const a = document.createElement('a');
-                        a.href = url;
-                        a.download = 'Seva_Ticket.pdf';
-                        document.body.appendChild(a);
-                        a.click();
-                        document.body.removeChild(a);
-                        URL.revokeObjectURL(url);
-                    }
-                } catch (error) {
-                    console.error('Error generating PDF:', error);
-                }
-            };
+  // Footer: Contact Info
+  const contactInfo = 'Contact: 080 22445232 | Email: jayaramasevamandali@gmail.com';
+  const contactInfoWidth = doc.getTextWidth(contactInfo);
+  doc.text(contactInfo, (pageWidth - contactInfoWidth) / 2, y);
+
+  // Generate and Download PDF
+  const pdfOutput = doc.output('blob');
+  const url = URL.createObjectURL(pdfOutput);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `Seva_Ticket_${bookingDetails.ticketId}.pdf`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+    // Directly generate the PDF content (no logo to load)
+    generatePDFContent();
+  } catch (error) {
+    console.error('Error generating PDF:', error);
+    alert('Failed to generate ticket. Please try again.');
+  }
+};
 
             window.newBooking = function() {
                 selectedDate = null;
